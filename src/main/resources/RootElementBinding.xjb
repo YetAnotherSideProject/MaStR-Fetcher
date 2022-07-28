@@ -1,0 +1,9 @@
+<bindings version="2.0" xmlns="http://java.sun.com/xml/ns/jaxb"
+          xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc">
+    <!-- Wird benötigt um von den XML/XSD Definitionen benötigte RootElemente anzulegen,
+    wird vom maven-jaxb2-plugin beim compilen/generieren der Sourcen verwendet -->
+  <globalBindings>
+        <xjc:simple/>
+  </globalBindings>
+
+</bindings>
