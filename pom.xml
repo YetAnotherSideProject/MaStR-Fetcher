@@ -35,13 +35,6 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
@@ -49,11 +42,12 @@
 
     <profiles>
         <profile>
-            <id>java11</id>
+            <!-- Ab Java 11 sind einige Bibliotheken und Implementationen ausgegliedert und müssen eingebundne werden -->
+            <id>java11+</id>
             <activation>
+                <!-- https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html -->
                 <jdk>[11,)</jdk>
             </activation>
-
             <dependencies>
                 <dependency>
                     <groupId>org.glassfish.jaxb</groupId>
@@ -85,10 +79,6 @@
                 <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
                     <generatePackage>dev.yasp.mastrfetcher.wsdl</generatePackage>
-                    <bindingDirectory>${basedir}/src/main/resources</bindingDirectory>
-                    <bindingIncludes>
-                        <include>*.xjb</include>
-                    </bindingIncludes>
                     <schemas>
                         <schema>
                             <!-- TODO??? Absolut als Web URL lassen oder absolut im Projekt ablegen?-->
@@ -96,6 +86,11 @@
                             <url>https://www.marktstammdatenregister.de/MaStRAPI/wsdl/mastr.wsdl</url>
                         </schema>
                     </schemas>
+                    <!-- Bindings ergänzen/konfigurieren den Java-XML-Bind Prozess -->
+                    <bindingDirectory>${basedir}/src/main/resources</bindingDirectory>
+                    <bindingIncludes>
+                        <include>*.xjb</include>
+                    </bindingIncludes>
                 </configuration>
             </plugin>
         </plugins>
