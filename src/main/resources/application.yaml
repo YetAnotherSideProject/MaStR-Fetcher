@@ -1,0 +1,20 @@
+mastr:
+  webservice:
+    url: https://www.marktstammdatenregister.de/MaStRApi/Api.svc/Soap12/
+    apikey: ${MASTR_WEBSERVICE_APIKEY}
+  marktakteurmastrnummer: ${MARKTAKTEUR_MASTR_NUMMER}
+spring:
+  application:
+    name: MaStR-Fetcher
+  datasource:
+    url: ${SUPABASE_DATABASE_URL}
+    username: ${SUPABASE_DATABASE_USER}
+    password: ${SUPABASE_DATABASE_PASSWORD}
+    driverClassName: org.postgresql.Driver
+  jpa:
+    open-in-view: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: validate
+    show-sql: true

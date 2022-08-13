@@ -13,8 +13,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import dev.yasp.mastrfetcher.client.StromerzeugerClient;
+import dev.yasp.mastrfetcher.dao.AusbauMonatRepository;
+import dev.yasp.mastrfetcher.dao.GemeindeRepository;
 import dev.yasp.mastrfetcher.model.Anlage;
-import dev.yasp.mastrfetcher.model.AusbauHistorie;
+import dev.yasp.mastrfetcher.model.AusbauMonat;
 import dev.yasp.mastrfetcher.model.Gemeinde;
 import dev.yasp.mastrfetcher.wsdl.Einheit;
 
@@ -26,7 +28,7 @@ public class MaStRFetcherApplication {
     }
 
     @Bean
-    CommandLineRunner fetcher(StromerzeugerClient stromerzeugerClient) {
+    CommandLineRunner fetcher(StromerzeugerClient stromerzeugerClient, GemeindeRepository gemeindeRepository, AusbauMonatRepository ausbauMonatRepository) {
         return args -> {
             System.out.println("Testing Datenabfrage");
             //TODO
@@ -39,15 +41,15 @@ public class MaStRFetcherApplication {
 
             //Historie
             System.out.println("Abfrage der Einheiten in den letzten 12 Monaten");
-            List<AusbauHistorie> ausbauMonate = new ArrayList<>();
+            List<AusbauMonat> ausbauMonate = new ArrayList<>();
             int gesamtAnlagen = 0;
             BigDecimal gesamtBruttoleistung = BigDecimal.ZERO;
             for(int i = 1; i <= 12; i++) {
                 List<Einheit> monatsEinheiten = stromerzeugerClient.getPVEinheiten(plz, currentMonth.minusMonths(i), false, false);
-                AusbauHistorie monat = new AusbauHistorie(gemeindeSchluessel, currentMonth.minusMonths(i), monatsEinheiten.size(),
+                AusbauMonat monat = new AusbauMonat(gemeindeSchluessel, currentMonth.minusMonths(i).toString(), monatsEinheiten.size(),
                         monatsEinheiten.stream().map(Einheit::getBruttoleistung).reduce(BigDecimal.ZERO, BigDecimal::add));
-                gesamtAnlagen += monat.anzahlAnlagen();
-                gesamtBruttoleistung = gesamtBruttoleistung.add(monat.bruttoleistung());
+                gesamtAnlagen += monat.getAnzahlAnlagen();
+                gesamtBruttoleistung = gesamtBruttoleistung.add(monat.getBruttoleistung());
                 ausbauMonate.add(monat);
             }
 
@@ -58,7 +60,10 @@ public class MaStRFetcherApplication {
                     einheitenVorHist.size()+gesamtAnlagen,
                     einheitenVorHist.stream().map(Einheit::getBruttoleistung).reduce(BigDecimal.ZERO, BigDecimal::add).add(gesamtBruttoleistung),
                     currentMonth.minusMonths(1).atEndOfMonth());
-            System.out.println("Finish");
+
+            //Daten persisiteren, Gemeinde muss als Erstes existieren für Foreign Key
+            gemeindeRepository.save(gemeinde);
+            ausbauMonatRepository.saveAll(ausbauMonate);
 
             //Größte Anlagen
             System.out.println("Abfrage der größten Anlagen");
