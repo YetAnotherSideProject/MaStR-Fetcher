@@ -2,6 +2,7 @@ package dev.yasp.mastrfetcher.client;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.soap.SoapVersion;
@@ -9,6 +10,11 @@ import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 
 @Configuration
 public class ClientConfiguration {
+
+    private final Environment env;
+    public ClientConfiguration(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public Jaxb2Marshaller marshaller() {
@@ -30,9 +36,12 @@ public class ClientConfiguration {
     }
 
     @Bean
-    public UhrzeitClient einheitClient(Jaxb2Marshaller marshaller, WebServiceMessageFactory messageFactory) {
-        UhrzeitClient client = new UhrzeitClient();
-        client.setDefaultUri("https://test.marktstammdatenregister.de/MaStRApi/");
+    public StromerzeugerClient stromerzeugerClient(Jaxb2Marshaller marshaller, WebServiceMessageFactory messageFactory) {
+        StromerzeugerClient client = new StromerzeugerClient();
+        client.setApiKey(env.getProperty("mastr.webservice.apikey"));
+        client.setMarktakteurMastrNummer(env.getProperty("mastr.marktakteurmastrnummer"));
+        client.setMastrWebserviceUrl(env.getProperty("mastr.webservice.url"));
+        client.setDefaultUri(env.getProperty("mastr.webservice.url"));
         client.setMarshaller(marshaller);
         client.setUnmarshaller(marshaller);
         //Enforce SOAP 12
