@@ -61,7 +61,7 @@ public class MaStRFetcherApplication {
                     einheitenVorHist.stream().map(Einheit::getBruttoleistung).reduce(BigDecimal.ZERO, BigDecimal::add).add(gesamtBruttoleistung),
                     currentMonth.minusMonths(1).atEndOfMonth());
 
-            //Daten persisiteren, Gemeinde muss als Erstes existieren für Foreign Key
+            // Daten persisiteren, Gemeinde muss als Erstes existieren für Foreign Key
             gemeindeRepository.save(gemeinde);
             ausbauMonatRepository.saveAll(ausbauMonate);
 

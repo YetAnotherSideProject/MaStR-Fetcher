@@ -57,6 +57,30 @@
     name="SetKlaerungErforderlichResponse"
     type="mastr:SetKlaerungErforderlichAntwort" />
   <element
+    name="SetKorrekturBetriebsstatusRequest"
+    type="mastr:SetKorrekturBetriebsstatusParameter" />
+  <element
+    name="SetKorrekturBetriebsstatusResponse"
+    type="mastr:SetKorrekturBetriebsstatusAntwort" />
+  <element
+    name="GetKorrekturVorschlagBetriebsstatusRequest"
+    type="mastr:GetKorrekturVorschlagBetriebsstatusParameter" />
+  <element
+    name="GetKorrekturVorschlagBetriebsstatusResponse"
+    type="mastr:GetKorrekturVorschlagBetriebsstatusAntwort" />
+  <element
+    name="GetWiedervorlageVorschlagBetriebsstatusRequest"
+    type="mastr:GetWiedervorlageVorschlagBetriebsstatusParameter" />
+  <element
+    name="GetWiedervorlageVorschlagBetriebsstatusResponse"
+    type="mastr:GetWiedervorlageVorschlagBetriebsstatusAntwort" />
+  <element
+    name="SetKorrekturBetriebsstatusAbgeschlossenRequest"
+    type="mastr:SetKorrekturBetriebsstatusAbgeschlossenParameter" />
+  <element
+    name="SetKorrekturBetriebsstatusAbgeschlossenResponse"
+    type="mastr:SetKorrekturBetriebsstatusAbgeschlossenAntwort" />
+  <element
     name="SetStilllegungAbgelehntRequest"
     type="mastr:SetStilllegungAbgelehntParameter" />
   <element

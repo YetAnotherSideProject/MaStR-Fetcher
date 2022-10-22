@@ -550,6 +550,13 @@ Diese Funktion ermöglicht das Abrufen einer Liste mit allen öffentlichen Markt
 <td>4fil24gnio2gno24g2…</td>
 </tr>
 <tr>
+<td>marktakteurMastrNummer</td>
+<td>Die MaStR-Nummer des vom Webdienst-Benutzer verwendeten Marktakteurs</td>
+<td><a href="#marktakteurmastrnummerid">MarktakteurMastrNummerId</a></td>
+<td>Ja</td>
+<td>SNB91234567890</td>
+</tr>
+<tr>
 <td>startAb</td>
 <td>Setzt den Beginn der zu liefernden Datensätze [Standardwert: 1].</td>
 <td>int</td>
@@ -1044,8 +1051,8 @@ Diese Funktion ermöglicht das Abrufen von Informationen zu einem Marktakteur. E
 <td>12345678</td>
 </tr>
 <tr>
-<td>ZustelladresseVorhanden</td>
-<td>Angabe ob die Zustelladresse vorhanden ist</td>
+<td>AdresseIstZustelladresse</td>
+<td>Angabe ob an die angegebene Adresse Dokumente zugestellt werden können</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>true</td>
@@ -1514,7 +1521,7 @@ Diese Funktion ermöglicht das Abrufen einer Liste mit allen aktiven, öffentlic
 
 ## GetListeFreigegebeneEinheiten
 
-Diese Funktion ermöglicht das Abrufen einer Liste mit allen Einheiten, bei denen der Marktakteur Betreiber ist oder für die der Marktakteur auf Grund von Datenfreigaben eine Leseberechtigung besitzt. Dies ist gegeben, wenn ihm mindestens eines der Geheimnisfelder der Einheit über eine Datenfreigabe freigegeben wurde.
+Diese Funktion ermöglicht das Abrufen einer Liste mit allen Einheiten, bei denen der Netzbetreiber auf Grund von Datenfreigaben eine Leseberechtigung besitzt. Dies ist gegeben, wenn ihm mindestens eines der Geheimnisfelder der Einheit über eine Datenfreigabe freigegeben wurde.
 
 ### Parameter
 
@@ -2148,9 +2155,9 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wi
 </tr>
 <tr>
 <td>Einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
-<td>Nein</td>
+<td>Ja</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
@@ -2306,6 +2313,20 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wi
 <td>decimal</td>
 <td>Ja</td>
 <td>147.254</td>
+</tr>
+<tr>
+<td>Buergerenergie</td>
+<td>Bürgerenergieeigenschaft der Einheit</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>Nachtkennzeichen</td>
+<td>Nachtkennzeichen der Einheit</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
 </tr>
 <tr>
 <td>EegMastrNummer</td>
@@ -2765,9 +2786,9 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „So
 </tr>
 <tr>
 <td>Einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
-<td>Nein</td>
+<td>Ja</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
@@ -2881,6 +2902,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „So
 <td><a href="#nutzungsbereichenum">NutzungsbereichEnum</a></td>
 <td>Nein</td>
 <td>Industrie</td>
+</tr>
+<tr>
+<td>Buergerenergie</td>
+<td>Bürgerenergieeigenschaft der Einheit</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
 </tr>
 <tr>
 <td>EegMastrNummer</td>
@@ -3340,9 +3368,9 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Bi
 </tr>
 <tr>
 <td>Einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
-<td>Nein</td>
+<td>Ja</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
@@ -3845,9 +3873,9 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wa
 </tr>
 <tr>
 <td>Einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
-<td>Nein</td>
+<td>Ja</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
@@ -4392,9 +4420,9 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ge
 </tr>
 <tr>
 <td>Einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
-<td>Nein</td>
+<td>Ja</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
@@ -4883,9 +4911,9 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ve
 </tr>
 <tr>
 <td>Einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
-<td>Nein</td>
+<td>Ja</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
@@ -5516,9 +5544,9 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ke
 </tr>
 <tr>
 <td>Einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
-<td>Nein</td>
+<td>Ja</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
@@ -6007,9 +6035,9 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Sp
 </tr>
 <tr>
 <td>Einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
-<td>Nein</td>
+<td>Ja</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
@@ -6509,27 +6537,6 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „St
 <td>int</td>
 <td>Nein</td>
 <td>23</td>
-</tr>
-<tr>
-<td>PraequalifiziertGemaessAblav</td>
-<td>Liegt eine Päqualifizierung gemäß AbLaV vor?</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>AnteilBeinflussbareLast</td>
-<td>Leistung, die als beeinflussbar angesehen werden kann.</td>
-<td>decimal</td>
-<td>Nein</td>
-<td>574.147</td>
-</tr>
-<tr>
-<td>ArtAbschaltbareLast</td>
-<td>Art der abschaltbaren Last gemäß AbLaV</td>
-<td><a href="#artabschaltbarelastenum">ArtAbschaltbareLastEnum</a></td>
-<td>Nein</td>
-<td>Schnell</td>
 </tr>
 <tr>
 <td>GenMastrNummer</td>
@@ -8625,7 +8632,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine EEG-Anlage des Typs �
 <td>241.369</td>
 </tr>
 <tr>
-<td>BiogasHoechstbemessungsleistung</td>
+<td>Hoechstbemessungsleistung</td>
 <td>Höchstbemessungsleistung der Anlage</td>
 <td>decimal</td>
 <td>Nein</td>
@@ -8875,6 +8882,27 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine EEG-Anlage des Typs �
 <td><a href="#eegmastrnummerid">EegMastrNummerId</a></td>
 <td>Ja</td>
 <td>EEG91234567890</td>
+</tr>
+<tr>
+<td>eegAnlagenschluessel</td>
+<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage</td>
+<td>string</td>
+<td>Nein</td>
+<td>E2325426</td>
+</tr>
+<tr>
+<td>eegZuschlagsnummer</td>
+<td>Von der Bundesnetzagentur im Rahmen des Ausschreibungsverfahrens vergebene Nummern</td>
+<td>string</td>
+<td>Nein</td>
+<td>A15847</td>
+</tr>
+<tr>
+<td>eegAusschreibungZuschlag</td>
+<td>Angabe ob für die EEG-Anlage Im Rahmen des Ausschreibungsverfahren der Bundesnetzagentur ein Zuschlag erlangt wurde</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>VerknuepfteEinheit[]</td>
@@ -10357,13 +10385,6 @@ Diese Funktion ermöglicht das Abrufen einer Liste mit Einheiten, die der Suchan
 <td>SNB91234567890</td>
 </tr>
 <tr>
-<td>lokationMarktgebiet</td>
-<td>Eines der zugeordneten Marktgebiete</td>
-<td><a href="#marktgebietenum">MarktgebietEnum</a></td>
-<td>Nein</td>
-<td>Gaspool</td>
-</tr>
-<tr>
 <td>Registrierungsdatum</td>
 <td>Registrierungsdatum der Einheiten</td>
 <td>date</td>
@@ -10565,13 +10586,6 @@ Diese Funktion ermöglicht das Abrufen einer Liste mit Einheiten, die der Suchan
 <td><a href="#marktakteurmastrnummerid">MarktakteurMastrNummerId</a></td>
 <td>Nein</td>
 <td>SNB91234567890</td>
-</tr>
-<tr>
-<td>lokationMarktgebiet</td>
-<td>Eines der zugeordneten Marktgebiete</td>
-<td><a href="#marktgebietenum">MarktgebietEnum</a></td>
-<td>Nein</td>
-<td>Gaspool</td>
 </tr>
 <tr>
 <td>Registrierungsdatum</td>
@@ -11120,13 +11134,6 @@ Diese Funktion ermöglicht das Abrufen einer Liste mit Lokationen, die der Sucha
 <td>LGas</td>
 </tr>
 <tr>
-<td>netzMarktgebiet</td>
-<td>Marktgebiet des angeschlossenen Netzes</td>
-<td><a href="#marktgebietenum">MarktgebietEnum</a></td>
-<td>Nein</td>
-<td>NetConnectGermany</td>
-</tr>
-<tr>
 <td>netzanschlusspunktBezeichnung</td>
 <td>Bezeichnung des Netzanschlusspunktes</td>
 <td>string</td>
@@ -11279,13 +11286,6 @@ Diese Funktion ermöglicht das Abrufen einer Liste mit Lokationen, die der Sucha
 <td><a href="#gasqualitaetenum">GasqualitaetEnum</a></td>
 <td>Nein</td>
 <td>LGas</td>
-</tr>
-<tr>
-<td>netzMarktgebiet</td>
-<td>Marktgebiet des angeschlossenen Netzes</td>
-<td><a href="#marktgebietenum">MarktgebietEnum</a></td>
-<td>Nein</td>
-<td>NetConnectGermany</td>
 </tr>
 <tr>
 <td>netzanschlusspunktBezeichnung</td>
@@ -11538,7 +11538,7 @@ Diese Funktion ermöglicht das Auslösen einer neuen Netzbetreiberprüfung.
 
 ## VerschiebeEinheitZuAndererLokation
 
-Diese Funktion ermöglicht das Umhängen einer Einheit an eine bereits bestehende Lokation. Die Ziellokation wird durch eine Einheit identifiziert, die bereits mit der Lokation verknüpft ist. Die alte Lokation und deren mögliche Netzanschlusspunkte werden abschließend entfernt, wenn keine weitere Einheit an der Lokation hängt. Nur der zuständige Netzbetreiber ist in der Lage, diese Funktion aufzurufen.
+Diese Funktion ermöglicht das Umhängen einer Einheit an eine bereits bestehende Lokation. Die Ziellokation wird durch eine Einheit identifiziert, die bereits mit der Lokation verknüpft ist. Die alte Lokation und deren mögliche Netzanschlusspunkte werden abschließend entfernt, wenn keine weitere Einheit an der Lokation hängt. Nur der zuständige Netzbetreiber ist in der Lage, diese Funktion aufzurufen und kann Lokationen zuordnen, an denen der Netzbetreiber bereits mit mindestens einem Netzanschlusspunkt vertreten ist. Die Zuordnung ist nur sortenrein nach Einheitenart (Stromerzeuger, Stromverbraucher, Gaserzeuger, Gasverbraucher) möglich.
 
 ### Parameter
 
@@ -11978,9 +11978,9 @@ Diese Funktion ermöglicht die Angabe, dass der Netzbetreiber diese Prüfung dir
 </tr>
 <tr>
 <td>beschreibung</td>
-<td>Eine optionale Beschreibung</td>
+<td>Die Beschreibung ist verpflichtend anzugeben</td>
 <td>string</td>
-<td>Nein</td>
+<td>Ja</td>
 <td>Ihr Bearbeiter: Herr Max Mustermann -1234</td>
 </tr>
 <tr>
@@ -11989,6 +11989,426 @@ Diese Funktion ermöglicht die Angabe, dass der Netzbetreiber diese Prüfung dir
 <td><a href="#klaerungsgrundenum">KlaerungsGrundEnum</a></td>
 <td>Ja</td>
 <td>EinheitExistiertNicht</td>
+</tr>
+</table>
+
+### Antwort
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>Ergebniscode</td>
+<td>Als Ergebniscode wird angegeben, ob die Anfrage korrekt verarbeitet wurde oder ob Daten nicht gefunden werden können. Bei Listenabfragen wird ebenfalls angegeben, ob weitere Elemente der Liste vorhanden, aber nicht Bestandteil des aktuellen Abrufs sind.</td>
+<td><a href="#ergebniscodetyp">ErgebniscodeTyp</a></td>
+<td>Ja</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>AufrufVeraltet</td>
+<td>Zeichen, ob eine neue Version der Webdienste bereitgestellt wird und bereits auf dem Testsystem existiert.</td>
+<td>boolean</td>
+<td>Ja</td>
+<td>false</td>
+</tr>
+<tr>
+<td>AufrufLebenszeitEnde</td>
+<td>Datum, an dem diese Version des Webservice endet und durch eine neue ersetzt wird.</td>
+<td>dateTime</td>
+<td>Ja</td>
+<td>2018-08-25T00:00:00.0000000 oder NULL</td>
+</tr>
+<tr>
+<td>AufrufVersion</td>
+<td>Die Versionsnummer des Webdienstes.</td>
+<td>int</td>
+<td>Ja</td>
+<td>2</td>
+</tr>
+</table>
+
+
+
+## SetKorrekturBetriebsstatus
+
+Diese Funktion ermöglicht eine Aufforderung zur Betriebsstatuskorrektur zu erstellen. Die Korrektur kann bei Einheiten mit dem Status "In Betrieb" auf „In Planung“ oder „Endgültig stillgelegt“ erfolgen.
+
+### Parameter
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>apiKey</td>
+<td>Der Webdienst-Schlüssel für die Validierung.</td>
+<td>string</td>
+<td>Ja</td>
+<td>4fil24gnio2gno24g2…</td>
+</tr>
+<tr>
+<td>marktakteurMastrNummer</td>
+<td>Die MaStR-Nummer des vom Webdienst-Benutzer verwendeten Marktakteurs</td>
+<td><a href="#marktakteurmastrnummerid">MarktakteurMastrNummerId</a></td>
+<td>Ja</td>
+<td>SNB91234567890</td>
+</tr>
+<tr>
+<td>netzbetreiberpruefungId</td>
+<td>Die Ticketprozess-Id als eindeutige Id der Prüfung</td>
+<td><a href="#netzbetreiberpruefungid">NetzbetreiberpruefungId</a></td>
+<td>Ja</td>
+<td>124443</td>
+</tr>
+<tr>
+<td>letzteAenderung</td>
+<td>Originaldatum der letzten Änderung an diesem Objekt</td>
+<td>dateTime</td>
+<td>Ja</td>
+<td>2017-07-25T08:36:54.1004464</td>
+</tr>
+<tr>
+<td>beschreibung</td>
+<td>Eine Beschreibung für den Anlagenbetreiber</td>
+<td>string</td>
+<td>Ja</td>
+<td>Laut unseren Unterlagen ein abweichender Betriebsstatus</td>
+</tr>
+<tr>
+<td>korrekturBetriebsStatus</td>
+<td>Korrektur zum Betriebsstatus der Einheit</td>
+<td><a href="#korrekturbetriebsstatusenum">KorrekturBetriebsStatusEnum</a></td>
+<td>Ja</td>
+<td>EndgueltigStillgelegt</td>
+</tr>
+<tr>
+<td>geplantesInbetriebnahmedatum</td>
+<td>Geplantes Inbetriebnahmedatum der Einheit</td>
+<td>date</td>
+<td>Nein</td>
+<td> 	2023-01-01</td>
+</tr>
+<tr>
+<td>datumEndgueltigeStilllegung</td>
+<td>Datum der endgültigen Stilllegung</td>
+<td>date</td>
+<td>Nein</td>
+<td>2021-12-31</td>
+</tr>
+</table>
+
+### Antwort
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>Ergebniscode</td>
+<td>Als Ergebniscode wird angegeben, ob die Anfrage korrekt verarbeitet wurde oder ob Daten nicht gefunden werden können. Bei Listenabfragen wird ebenfalls angegeben, ob weitere Elemente der Liste vorhanden, aber nicht Bestandteil des aktuellen Abrufs sind.</td>
+<td><a href="#ergebniscodetyp">ErgebniscodeTyp</a></td>
+<td>Ja</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>AufrufVeraltet</td>
+<td>Zeichen, ob eine neue Version der Webdienste bereitgestellt wird und bereits auf dem Testsystem existiert.</td>
+<td>boolean</td>
+<td>Ja</td>
+<td>false</td>
+</tr>
+<tr>
+<td>AufrufLebenszeitEnde</td>
+<td>Datum, an dem diese Version des Webservice endet und durch eine neue ersetzt wird.</td>
+<td>dateTime</td>
+<td>Ja</td>
+<td>2018-08-25T00:00:00.0000000 oder NULL</td>
+</tr>
+<tr>
+<td>AufrufVersion</td>
+<td>Die Versionsnummer des Webdienstes.</td>
+<td>int</td>
+<td>Ja</td>
+<td>2</td>
+</tr>
+</table>
+
+
+
+## GetKorrekturVorschlagBetriebsstatus
+
+Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Betriebsstatuskorrektur. Die Funktion kann nur von dem Netzbetreiber ausgeführt werden, der den Vorschlag ursprünglich erstellt hat und der damit ein Teil der Netzbetreiberprüfung ist.
+
+### Parameter
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>apiKey</td>
+<td>Der Webdienst-Schlüssel für die Validierung.</td>
+<td>string</td>
+<td>Ja</td>
+<td>4fil24gnio2gno24g2…</td>
+</tr>
+<tr>
+<td>marktakteurMastrNummer</td>
+<td>Die MaStR-Nummer des vom Webdienst-Benutzer verwendeten Marktakteurs</td>
+<td><a href="#marktakteurmastrnummerid">MarktakteurMastrNummerId</a></td>
+<td>Ja</td>
+<td>SNB91234567890</td>
+</tr>
+<tr>
+<td>korrekturVorschlagId</td>
+<td>Die eindeutige Id des Korrekturvorschlags innerhalb einer Prüfung</td>
+<td>int</td>
+<td>Ja</td>
+<td>1323545</td>
+</tr>
+<tr>
+<td>netzbetreiberpruefungId</td>
+<td>Die Ticketprozess-Id als eindeutige Id der Prüfung</td>
+<td>int</td>
+<td>Nein</td>
+<td>124443</td>
+</tr>
+</table>
+
+### Antwort
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>Ergebniscode</td>
+<td>Als Ergebniscode wird angegeben, ob die Anfrage korrekt verarbeitet wurde oder ob Daten nicht gefunden werden können. Bei Listenabfragen wird ebenfalls angegeben, ob weitere Elemente der Liste vorhanden, aber nicht Bestandteil des aktuellen Abrufs sind.</td>
+<td><a href="#ergebniscodetyp">ErgebniscodeTyp</a></td>
+<td>Ja</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>AufrufVeraltet</td>
+<td>Zeichen, ob eine neue Version der Webdienste bereitgestellt wird und bereits auf dem Testsystem existiert.</td>
+<td>boolean</td>
+<td>Ja</td>
+<td>false</td>
+</tr>
+<tr>
+<td>AufrufLebenszeitEnde</td>
+<td>Datum, an dem diese Version des Webservice endet und durch eine neue ersetzt wird.</td>
+<td>dateTime</td>
+<td>Ja</td>
+<td>2018-08-25T00:00:00.0000000 oder NULL</td>
+</tr>
+<tr>
+<td>AufrufVersion</td>
+<td>Die Versionsnummer des Webdienstes.</td>
+<td>int</td>
+<td>Ja</td>
+<td>2</td>
+</tr>
+<tr>
+<td>korrekturVorschlagId</td>
+<td>Die ID des Korrekturvorschlags</td>
+<td>int</td>
+<td>Ja</td>
+<td>5975654</td>
+</tr>
+<tr>
+<td>netzbetreiberpruefungId</td>
+<td>Die Ticketprozess-Id als eindeutige Id der Prüfung</td>
+<td>int</td>
+<td>Ja</td>
+<td>124443</td>
+</tr>
+<tr>
+<td>beschreibung</td>
+<td>Eine Beschreibung für den Anlagenbetreiber</td>
+<td>string</td>
+<td>Nein</td>
+<td>Laut unseren Unterlagen ein abweichender Betriebsstatus</td>
+</tr>
+<tr>
+<td>korrekturBetriebsStatus</td>
+<td>Korrektur zum Betriebsstatus der Einheit</td>
+<td><a href="#korrekturbetriebsstatusenum">KorrekturBetriebsStatusEnum</a></td>
+<td>Nein</td>
+<td>EndgueltigStillgelegt</td>
+</tr>
+<tr>
+<td>korrekturBetriebsStatusZuPruefen</td>
+<td>Korrektur zum Betriebsstatus der Einheit (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>geplantesInbetriebnahmedatum</td>
+<td>Geplantes Inbetriebnahmedatum der Einheit</td>
+<td>date</td>
+<td>Nein</td>
+<td>01.01.2023</td>
+</tr>
+<tr>
+<td>geplantesInbetriebnahmedatumZuPruefen</td>
+<td>Geplantes Inbetriebnahmedatum der Einheit (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>datumEndgueltigeStilllegung</td>
+<td>Datum der endgültigen Stilllegung</td>
+<td>date</td>
+<td>Nein</td>
+<td>31.12.2021</td>
+</tr>
+<tr>
+<td>datumEndgueltigeStilllegungZuPruefen</td>
+<td>Datum der endgültigen Stilllegung (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+</table>
+
+
+
+## GetWiedervorlageVorschlagBetriebsstatus
+
+Diese Funktion ermöglicht das Abrufen der Antwort des Anlagenbetreibers zur Betriebsstatuskorrektur (Wiedervorlage). Die Funktion kann nur von dem Netzbetreiber ausgeführt werden, der den Vorschlag ursprünglich erstellt hat und der damit ein Teil der Netzbetreiberprüfung ist.
+
+### Parameter
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>apiKey</td>
+<td>Der Webdienst-Schlüssel für die Validierung.</td>
+<td>string</td>
+<td>Ja</td>
+<td>4fil24gnio2gno24g2…</td>
+</tr>
+<tr>
+<td>marktakteurMastrNummer</td>
+<td>Die MaStR-Nummer des vom Webdienst-Benutzer verwendeten Marktakteurs</td>
+<td><a href="#marktakteurmastrnummerid">MarktakteurMastrNummerId</a></td>
+<td>Ja</td>
+<td>SNB91234567890</td>
+</tr>
+<tr>
+<td>korrekturVorschlagId</td>
+<td>Die eindeutige Id des Korrekturvorschlags innerhalb einer Prüfung</td>
+<td>int</td>
+<td>Ja</td>
+<td>1323545</td>
+</tr>
+<tr>
+<td>netzbetreiberpruefungId</td>
+<td>Die Ticketprozess-Id als eindeutige Id der Prüfung</td>
+<td>int</td>
+<td>Nein</td>
+<td>124443</td>
+</tr>
+</table>
+
+### Antwort
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>Ergebniscode</td>
+<td>Als Ergebniscode wird angegeben, ob die Anfrage korrekt verarbeitet wurde oder ob Daten nicht gefunden werden können. Bei Listenabfragen wird ebenfalls angegeben, ob weitere Elemente der Liste vorhanden, aber nicht Bestandteil des aktuellen Abrufs sind.</td>
+<td><a href="#ergebniscodetyp">ErgebniscodeTyp</a></td>
+<td>Ja</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>AufrufVeraltet</td>
+<td>Zeichen, ob eine neue Version der Webdienste bereitgestellt wird und bereits auf dem Testsystem existiert.</td>
+<td>boolean</td>
+<td>Ja</td>
+<td>false</td>
+</tr>
+<tr>
+<td>AufrufLebenszeitEnde</td>
+<td>Datum, an dem diese Version des Webservice endet und durch eine neue ersetzt wird.</td>
+<td>dateTime</td>
+<td>Ja</td>
+<td>2018-08-25T00:00:00.0000000 oder NULL</td>
+</tr>
+<tr>
+<td>AufrufVersion</td>
+<td>Die Versionsnummer des Webdienstes.</td>
+<td>int</td>
+<td>Ja</td>
+<td>2</td>
+</tr>
+<tr>
+<td>korrekturVorschlagId</td>
+<td>Die ID des Korrekturvorschlags</td>
+<td>int</td>
+<td>Ja</td>
+<td>5975654</td>
+</tr>
+<tr>
+<td>netzbetreiberpruefungId</td>
+<td>Die Ticketprozess-Id als eindeutige Id der Prüfung</td>
+<td>int</td>
+<td>Ja</td>
+<td>124443</td>
+</tr>
+<tr>
+<td>beschreibung</td>
+<td>Eine Beschreibung für den Anlagenbetreiber</td>
+<td>string</td>
+<td>Nein</td>
+<td>Laut unseren Unterlagen ein abweichender Betriebsstatus</td>
+</tr>
+<tr>
+<td>korrekturBetriebsStatus</td>
+<td>Korrektur zum Betriebsstatus der Einheit</td>
+<td><a href="#korrekturbetriebsstatusenum">KorrekturBetriebsStatusEnum</a></td>
+<td>Nein</td>
+<td>EndgueltigStillgelegt</td>
+</tr>
+<tr>
+<td>geplantesInbetriebnahmedatum</td>
+<td>Geplantes Inbetriebnahmedatum der Einheit</td>
+<td>date</td>
+<td>Nein</td>
+<td>01.01.2023</td>
+</tr>
+<tr>
+<td>datumEndgueltigeStilllegung</td>
+<td>Datum der endgültigen Stilllegung</td>
+<td>date</td>
+<td>Nein</td>
+<td>31.12.2021</td>
+</tr>
+</table>
+
+
+
+## SetKorrekturBetriebsstatusAbgeschlossen
+
+Diese Funktion ermöglicht die Übernahme der Betriebsstatuskorrektur. Der Vorgang ist damit abgeschlossen.
+
+### Parameter
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>apiKey</td>
+<td>Der Webdienst-Schlüssel für die Validierung.</td>
+<td>string</td>
+<td>Ja</td>
+<td>4fil24gnio2gno24g2…</td>
+</tr>
+<tr>
+<td>marktakteurMastrNummer</td>
+<td>Die MaStR-Nummer des vom Webdienst-Benutzer verwendeten Marktakteurs</td>
+<td><a href="#marktakteurmastrnummerid">MarktakteurMastrNummerId</a></td>
+<td>Ja</td>
+<td>SNB91234567890</td>
+</tr>
+<tr>
+<td>netzbetreiberpruefungId</td>
+<td>Die Ticketprozess-Id als eindeutige Id der Prüfung</td>
+<td><a href="#netzbetreiberpruefungid">NetzbetreiberpruefungId</a></td>
+<td>Ja</td>
+<td>124443</td>
+</tr>
+<tr>
+<td>letzteAenderung</td>
+<td>Originaldatum der letzten Änderung an diesem Objekt</td>
+<td>dateTime</td>
+<td>Ja</td>
+<td>2017-07-25T08:36:54.1004464</td>
+</tr>
+<tr>
+<td>beschreibung</td>
+<td>Eine Beschreibung für den Anlagenbetreiber</td>
+<td>string</td>
+<td>Nein</td>
+<td>Laut unseren Unterlagen ein abweichender Betriebsstatus</td>
 </tr>
 </table>
 
@@ -12146,7 +12566,7 @@ Diese Funktion ermöglicht die Antragstellung auf Fristverlängerung
 </tr>
 <tr>
 <td>FristverlaengerungErlaeuterung</td>
-<td>Begründungstext (nur möglich bei Katalogwert technischer Fehler oder sonstiges)</td>
+<td>Begründungstext (nur möglich bei Katalogwert sonstiges)</td>
 <td>string</td>
 <td>Nein</td>
 <td>Bearbeitung nicht möglich</td>
@@ -12706,14 +13126,14 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -13180,6 +13600,34 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>Nein</td>
 <td>false</td>
 </tr>
+<tr>
+<td>Buergerenergie</td>
+<td>Bürgerenergieeigenschaft der Einheit</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>BuergerenergieZuPruefen</td>
+<td>Bürgerenergieeigenschaft der Einheit (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>Nachtkennzeichen</td>
+<td>Nachtkennzeichen der Einheit</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>NachtkennzeichenZuPruefen</td>
+<td>Nachtkennzeichen der Einheit (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
 </table>
 
 ### Antwort
@@ -13503,15 +13951,15 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>ZustelladresseVorhanden</td>
-<td>Angabe ob die Zustelladresse vorhanden ist</td>
+<td>AdresseIstZustelladresse</td>
+<td>Angabe ob an die angegebene Adresse Dokumente zugestellt werden können</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>true</td>
 </tr>
 <tr>
-<td>ZustelladresseVorhandenZuPruefen</td>
-<td>Angabe ob die Zustelladresse vorhanden ist(Prüfungskennzeichen)</td>
+<td>AdresseIstZustelladresseZuPruefen</td>
+<td>Angabe ob an die angegebene Adresse Dokumente zugestellt werden können(Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>true</td>
@@ -14337,14 +14785,14 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -14709,6 +15157,20 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <tr>
 <td>eegZugeordneteGebotsmengeZuPruefen</td>
 <td>Bezuschlagte Gebotsmenge, die der EEG-Anlage zugeordnet wurde (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>Buergerenergie</td>
+<td>Bürgerenergieeigenschaft der Einheit</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>BuergerenergieZuPruefen</td>
+<td>Bürgerenergieeigenschaft der Einheit (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -15212,14 +15674,14 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -15279,6 +15741,20 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>eegMastrNummer</td>
@@ -15477,14 +15953,14 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>eegBiogasHoechstbemessungsleistung</td>
+<td>eegHoechstbemessungsleistung</td>
 <td>Höchstbemessungsleistung der Anlage</td>
 <td>decimal</td>
 <td>Nein</td>
 <td>785.987</td>
 </tr>
 <tr>
-<td>eegBiogasHoechstbemessungsleistungZuPruefen</td>
+<td>eegHoechstbemessungsleistungZuPruefen</td>
 <td>Höchste Bemessungsleistung der Anlage (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
@@ -15503,6 +15979,20 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>kwkMastrNummer</td>
@@ -16087,14 +16577,14 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -16252,6 +16742,20 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>eegMastrNummer</td>
@@ -16822,14 +17326,14 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -16847,6 +17351,20 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>eegMastrNummer</td>
@@ -16917,6 +17435,20 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>kwkMastrNummer</td>
@@ -17501,14 +18033,14 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -17835,6 +18367,20 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>kwkMastrNummer</td>
@@ -18672,48 +19218,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <tr>
 <td>anzahlStromverbrauchseinheitenGroesser50MwZuPruefen</td>
 <td>Anzahl angeschlossener Stromverbrauchseinheiten größer 50 MW (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>praequalifizierteLeistungTeilnahmeAbschaltbareLast</td>
-<td>Päqualifizierung gemäß AbLaV?</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>praequalifizierteLeistungTeilnahmeAbschaltbareLastZuPruefen</td>
-<td>Päqualifizierung gemäß AbLaV? (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>anteilBeinflussbareLast</td>
-<td>Leistung, die als beeinflussbar angesehen werden kann.</td>
-<td>decimal</td>
-<td>Nein</td>
-<td>574.147</td>
-</tr>
-<tr>
-<td>anteilBeinflussbareLastZuPruefen</td>
-<td>Leistung, die als beeinflussbar angesehen werden kann. (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>artAbschaltbareLast</td>
-<td>Art der abschaltbaren Last gemäß AbLaV</td>
-<td><a href="#artabschaltbarelastenum">ArtAbschaltbareLastEnum</a></td>
-<td>Nein</td>
-<td>Schnell</td>
-</tr>
-<tr>
-<td>artAbschaltbareLastZuPruefen</td>
-<td>Art der abschaltbaren Last gemäß AbLaV (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -19945,14 +20449,14 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -20042,6 +20546,20 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
+<td>BestandteilEEGAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
 <td>eegInbetriebnahmedatum</td>
 <td>Inbetriebnahmedatum der EEG-Anlage</td>
 <td>date</td>
@@ -20051,6 +20569,48 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <tr>
 <td>eegInbetriebnahmedatumZuPruefen</td>
 <td>Inbetriebnahmedatum der EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eegAnlagenschluessel</td>
+<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage</td>
+<td><a href="#erweiterterstring">ErweiterterString</a></td>
+<td>Nein</td>
+<td>E2325426</td>
+</tr>
+<tr>
+<td>eegAnlagenschluesselZuPruefen</td>
+<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eegZuschlagsnummer</td>
+<td>Von der Bundesnetzagentur im Rahmen des Ausschreibungsverfahrens vergebene Nummern</td>
+<td>string</td>
+<td>Nein</td>
+<td>A15847</td>
+</tr>
+<tr>
+<td>eegZuschlagsnummerZuPruefen</td>
+<td>Von der Bundesnetzagentur im Rahmen des Ausschreibungsverfahrens vergebene Nummern (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eegAusschreibungZuschlag</td>
+<td>Angabe ob für die EEG-Anlage Im Rahmen des Ausschreibungsverfahren der Bundesnetzagentur ein Zuschlag erlangt wurde</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eegAusschreibungZuschlagZuPruefen</td>
+<td>Angabe ob für die EEG-Anlage Im Rahmen des Ausschreibungsverfahren der Bundesnetzagentur ein Zuschlag erlangt wurde (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -20691,14 +21251,14 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -21151,6 +21711,34 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>Nein</td>
 <td>false</td>
 </tr>
+<tr>
+<td>Buergerenergie</td>
+<td>Bürgerenergieeigenschaft der Einheit</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>BuergerenergieZuPruefen</td>
+<td>Bürgerenergieeigenschaft der Einheit (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>Nachtkennzeichen</td>
+<td>Nachtkennzeichen der Einheit</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>NachtkennzeichenZuPruefen</td>
+<td>Nachtkennzeichen der Einheit (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
 </table>
 
 
@@ -21488,15 +22076,15 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>false</td>
 </tr>
 <tr>
-<td>ZustelladresseVorhanden</td>
-<td>Angabe ob die Zustelladresse vorhanden ist</td>
+<td>AdresseIstZustelladresse</td>
+<td>Angabe ob an die angegebene Adresse Dokumente zugestellt werden können</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>true</td>
 </tr>
 <tr>
-<td>ZustelladresseVorhandenZuPruefen</td>
-<td>Angabe ob die Zustelladresse vorhanden ist(Prüfungskennzeichen)</td>
+<td>AdresseIstZustelladresseZuPruefen</td>
+<td>Angabe ob an die angegebene Adresse Dokumente zugestellt werden können(Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>true</td>
@@ -22434,14 +23022,14 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -22820,6 +23408,20 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <tr>
 <td>eegZugeordneteGebotsmengeZuPruefen</td>
 <td>Bezuschlagte Gebotsmenge, die der EEG-Anlage zugeordnet wurde (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>Buergerenergie</td>
+<td>Bürgerenergieeigenschaft der Einheit</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>BuergerenergieZuPruefen</td>
+<td>Bürgerenergieeigenschaft der Einheit (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -23421,14 +24023,14 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -23488,6 +24090,20 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>eegMastrNummer</td>
@@ -23686,14 +24302,14 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>false</td>
 </tr>
 <tr>
-<td>eegBiogasHoechstbemessungsleistung</td>
+<td>eegHoechstbemessungsleistung</td>
 <td>Höchstbemessungsleistung der Anlage</td>
 <td>decimal</td>
 <td>Nein</td>
 <td>785.987</td>
 </tr>
 <tr>
-<td>eegBiogasHoechstbemessungsleistungZuPruefen</td>
+<td>eegHoechstbemessungsleistungZuPruefen</td>
 <td>Höchstbemessungsleistung der Anlage (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
@@ -23712,6 +24328,20 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>kwkMastrNummer</td>
@@ -24394,14 +25024,14 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -24559,6 +25189,20 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>eegMastrNummer</td>
@@ -25227,14 +25871,14 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -25252,6 +25896,20 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>eegMastrNummer</td>
@@ -25322,6 +25980,20 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>kwkMastrNummer</td>
@@ -26004,14 +26676,14 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -26352,6 +27024,20 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilKWKAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 <tr>
 <td>kwkMastrNummer</td>
@@ -27392,48 +28078,6 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <tr>
 <td>anzahlStromverbrauchseinheitenGroesser50MwZuPruefen</td>
 <td>Anzahl angeschlossener Stromverbrauchseinheiten größer 50 MW (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>praequalifizierteLeistungTeilnahmeAbschaltbareLast</td>
-<td>Päqualifizierung gemäß AbLaV?</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>praequalifizierteLeistungTeilnahmeAbschaltbareLastZuPruefen</td>
-<td>Päqualifizierung gemäß AbLaV? (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>anteilBeinflussbareLast</td>
-<td>Leistung, die als beeinflussbar angesehen werden kann.</td>
-<td>decimal</td>
-<td>Nein</td>
-<td>574.147</td>
-</tr>
-<tr>
-<td>anteilBeinflussbareLastZuPruefen</td>
-<td>Leistung, die als beeinflussbar angesehen werden kann. (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>artAbschaltbareLast</td>
-<td>Art der abschaltbaren Last gemäß AbLaV</td>
-<td><a href="#artabschaltbarelastenum">ArtAbschaltbareLastEnum</a></td>
-<td>Nein</td>
-<td>Schnell</td>
-</tr>
-<tr>
-<td>artAbschaltbareLastZuPruefen</td>
-<td>Art der abschaltbaren Last gemäß AbLaV (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -28938,14 +29582,14 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 </tr>
 <tr>
 <td>einspeisungsart</td>
-<td>Volleinspeisung oder Teileinspeisung</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch</td>
 <td><a href="#einspeisungsartenum">EinspeisungsartEnum</a></td>
 <td>Nein</td>
 <td>Volleinspeisung</td>
 </tr>
 <tr>
 <td>einspeisungsartZuPruefen</td>
-<td>Volleinspeisung oder Teileinspeisung (Prüfungskennzeichen)</td>
+<td>Volleinspeisung oder TeileinspeisungEigenverbrauch (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -29030,6 +29674,76 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <tr>
 <td>nutzbareSpeicherkapazitaetZuPruefen</td>
 <td>Nutzbare Speicherkapazität (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlage</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>BestandteilEEGAnlageZuPruefen</td>
+<td>Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eegInbetriebnahmedatum</td>
+<td>Inbetriebnahmedatum der EEG-Anlage</td>
+<td>date</td>
+<td>Nein</td>
+<td>2012-12-31</td>
+</tr>
+<tr>
+<td>eegInbetriebnahmedatumZuPruefen</td>
+<td>Inbetriebnahmedatum der EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eegAnlagenschluessel</td>
+<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage</td>
+<td><a href="#erweiterterstring">ErweiterterString</a></td>
+<td>Nein</td>
+<td>E2325426</td>
+</tr>
+<tr>
+<td>eegAnlagenschluesselZuPruefen</td>
+<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eegZuschlagsnummer</td>
+<td>Von der Bundesnetzagentur im Rahmen des Ausschreibungsverfahrens vergebene Nummern</td>
+<td>string</td>
+<td>Nein</td>
+<td>A15847</td>
+</tr>
+<tr>
+<td>eegZuschlagsnummerZuPruefen</td>
+<td>Von der Bundesnetzagentur im Rahmen des Ausschreibungsverfahrens vergebene Nummern (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>eegAusschreibungZuschlag</td>
+<td>Angabe ob für die EEG-Anlage Im Rahmen des Ausschreibungsverfahren der Bundesnetzagentur ein Zuschlag erlangt wurde</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
+</tr>
+<tr>
+<td>eegAusschreibungZuschlagZuPruefen</td>
+<td>Angabe ob für die EEG-Anlage Im Rahmen des Ausschreibungsverfahren der Bundesnetzagentur ein Zuschlag erlangt wurde (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -30834,13 +31548,6 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>Nein</td>
 <td>14, 11YV00000007046U, Stromareal ABC, Amprion</td>
 </tr>
-<tr>
-<td>Marktgebiet</td>
-<td>Marktgebiet des Netzgebietes (bei Gasnetzbetreibern)</td>
-<td><a href="#marktgebietenum">MarktgebietEnum</a></td>
-<td>Nein</td>
-<td>Beide</td>
-</tr>
 </table>
 
 ## NetzanschlusspunktGas
@@ -30885,13 +31592,6 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>string</td>
 <td>Nein</td>
 <td>DE00056266802…</td>
-</tr>
-<tr>
-<td>Marktgebiet</td>
-<td>Marktgebiet des Netzanschlusspunktes</td>
-<td><a href="#marktgebietenum">MarktgebietEnum</a></td>
-<td>Nein</td>
-<td>Gaspool</td>
 </tr>
 <tr>
 <td>MaximaleEinspeiseleistung</td>
@@ -31066,13 +31766,6 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>decimal</td>
 <td>Nein</td>
 <td>2569.321</td>
-</tr>
-<tr>
-<td>Marktgebiet</td>
-<td>Marktgebiet des Netzanschlusspunktes</td>
-<td><a href="#marktgebietenum">MarktgebietEnum</a></td>
-<td>Nein</td>
-<td>Gaspool</td>
 </tr>
 <tr>
 <td>MaximaleEinspeiseleistung</td>
@@ -31253,13 +31946,6 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>WiedervorlageNetzbetreiberpruefung</td>
 </tr>
 <tr>
-<td>datenWurdenAmZuPruefendenObjektGeaendert</td>
-<td>Gibt an, ob sich Daten an dem zu prüfenden Objekt seit dem letzten Abruf geändert haben</td>
-<td>boolean</td>
-<td>Ja</td>
-<td>false</td>
-</tr>
-<tr>
 <td>klaerungsGrund</td>
 <td>Angabe des Grunds für die Klärung bei der BNetzA</td>
 <td><a href="#klaerungsgrundenum">KlaerungsGrundEnum</a></td>
@@ -31272,6 +31958,13 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>string</td>
 <td>Nein</td>
 <td></td>
+</tr>
+<tr>
+<td>aenderungsGrundArtDerStromerzeugung</td>
+<td>Angabe des Grunds zur Änderung der Art der Stromerzeugung</td>
+<td>string</td>
+<td>Nein</td>
+<td>Änderung auf Biomasse</td>
 </tr>
 <tr>
 <td>StartgrundNetzbetreiberpruefung</td>
@@ -31404,6 +32097,8 @@ Basistyp: `string`
 * `EegKwkSpeicherVerknuepfungGeaendert` Der Einheit wurde eine EEG/KWK/Speicher Anlage hinzugefügt/entfernt 
 * `ZustaendigkeitAbgelehnt` Der Netzbetreiber hat die Zuständigkeit abgelehnt 
 * `StilllegungAbgelehnt` Registrierung der endgültigen Stilllegung wurde abgelehnt 
+* `AenderungBetriebsstatusEinheit` Änderung des Betriebsstatus der Einheit 
+* `AenderungArtDerStromerzeugung` Änderung der Art der Stromerzeugung 
 
 ## AnlageErzeugungseinheitenEigenerzeugungEnum
 
@@ -31528,17 +32223,6 @@ Basistyp: `string`
 * `Stromverbrauchsanlage` Sonstige Anlage 
 * `Gasverbrauchsanlage` Verbrennungsanlage 
 
-## ArtAbschaltbareLastEnum
-
-Basistyp: `string`
-
-### Erlaubte Werte:
-
-* `None` None 
-* `Sofort` Sofort 
-* `Schnell` Schnell 
-* `Temporaerbefristet` Temporär befristet 
-
 ## ArtDerStilllegungEnum
 
 Basistyp: `string`
@@ -31620,41 +32304,33 @@ Basistyp: `string`
 ### Erlaubte Werte:
 
 * `None` None 
-* `AbfallFestReinBiogen` Abfall, fest, rein biogen 
-* `Altholz` Altholz 
-* `Blutmehl` Blutmehl 
-* `Brennholz` Brennholz 
-* `Brennlauge` Brennlauge 
-* `FesteBiogeneStoffe` Feste biogene Stoffe 
-* `Holz` Holz 
-* `Holzhackschnitzel` Holzhackschnitzel 
-* `HolzresteZbSchreinereien` Holzreste (z.B. Schreinereien) 
-* `HolzspaeneSaegemehl` Holzspäne, Sägemehl 
-* `Landschaftspflegeholz` Landschaftspflegeholz 
-* `PelletsHolz` Pellets (Holz) 
-* `Rauchspan` Rauchspan 
-* `Restholz` Restholz 
-* `Rinde` Rinde 
-* `SchleifstaubBiogen` Schleifstaub, biogen 
-* `Schwarzlauge` Schwarzlauge 
-* `StrohStrohpellets` Stroh, Strohpellets 
-* `Sulfitablauge` Sulfitablauge 
-* `Tierfett` Tierfett 
-* `Tiermehl` Tiermehl 
-* `WarmbrennstoffeBiogenerGewerbeabfall` Warmbrennstoffe (biogener Gewerbeabfall) 
-* `AbfallFluessigBiogen` Abfall, flüssig, biogen 
+* `FesteBiogeneStoffeUndAbfaelleOhneHolz` Feste biogene Stoffe und Abfälle (ohne Holz) 
+* `FluessigeBiogeneStoffeUndAbfaelle` Flüssige biogene Stoffe und Abfälle 
+* `AltholzGebrauchtholzHolzmuell` Altholz, Gebrauchtholz, Holz(sperr)müll 
 * `Biodiesel` Biodiesel 
-* `Biomethanol` Biomethanol 
-* `FluessigeBiogeneStoffe` Flüssige biogene Stoffe 
-* `Harzoel` Harzöl 
-* `IsoHexan` Iso-Hexan 
-* `Palmoel` Palmöl 
-* `Pflanzenoel` Pflanzenöl 
-* `Terpentin` Terpentin 
 * `Biogas` Biogas 
-* `Biomethan` Biomethan 
+* `BiomethanBioerdgas` Biomethan (Bioerdgas) 
+* `Biomethanol` Biomethanol 
+* `TierUndBlutmehl` Tier- und Blutmehl 
+* `BrennlaugeSchwarzlaugeSulfitablauge` Brennlauge, Schwarzlauge, Sulfitablauge 
 * `Deponiegas` Deponiegas 
+* `FesteBiogeneStoffe` Feste biogene Stoffe 
+* `Harzoel` Harzöl 
+* `WaldHolzhackschnitzelWaldScheitholzWaldKronenholz` Wald-Holzhackschnitzel, Wald-Scheitholz, -Kronenholz 
+* `Holzreste` Holzreste (z.B. aus Schreinereien, auch Spanholz) 
+* `HolzspaeneSaegemehl` Holzspäne, Sägemehl 
 * `Klaergas` Klärgas 
+* `RindeLandschaftspflegeholz` Rinde und Landschaftspflegeholz 
+* `PalmoelPflanzenoel` Palmöl u.a. Pflanzenöle 
+* `PelletsHolz` Holz-Pellets, Holz-Briketts 
+* `SchleifstaubBiogen` Schleifstaub, biogen 
+* `StrohStrohpellets` Stroh, Strohpellets 
+* `Terpentin` Terpentin 
+* `Tierfett` Tierfett 
+* `HolzgasGasBiomasse` Holzgas (Gas Biomasse) 
+* `Holzkohle` Holzkohle 
+* `WaldStammholzRundholz` Wald-Stammholz, Rundholz 
+* `EnergiepflanzenZurVerbrennung` Energiepflanzen zur Verbrennung (z.B. Kurzumtriebs-Holz) 
 
 ## BrennstoffLageEnum
 
@@ -32014,7 +32690,7 @@ Basistyp: `string`
 
 * `None` None 
 * `Volleinspeisung` Volleinspeisung 
-* `Teileinspeisung` Teileinspeisung 
+* `TeileinspeisungEigenverbrauch` Teileinspeisung (einschließlich Eigenverbrauch) 
 
 ## EnergietraegerEnum
 
@@ -32042,6 +32718,7 @@ Basistyp: `string`
 * `Wasser` Wasser 
 * `DruckAusGasleitungen` Druck aus Gasleitungen 
 * `DruckAusWasserleitungen` Druck aus Wasserleitungen 
+* `Wasserstoff` Wasserstoff 
 
 ## ErgebniscodeTyp
 
@@ -32081,7 +32758,7 @@ Basistyp: `string`
 * `Offen` Offen 
 * `Gewaehrt` Gewährt 
 * `Abgelehnt` Abgelehnt 
-* `Zurueckgezogen` Zurueckgezogen 
+* `Zurueckgezogen` Zurückgezogen 
 * `Storniert` Storniert 
 
 ## FristverlaengerungGrundEnum
@@ -32092,7 +32769,7 @@ Basistyp: `string`
 
 * `PruefungsrelevanteUnterlagenFehlen` Inbetriebnahmeprotokoll oder andere prüfungsrelevante Unterlagen liegen nicht vor 
 * `BetreiberwechselmeldungFehlt` Betreiberwechselmeldung liegt nicht vor 
-* `TechnischerFehler` Technischer Fehler im Marktstammdatenregister 
+* `LaufendeVerfahrenGerichtClearingstelle` Zu dieser Einheit läuft gerade ein Verfahren vor Gericht oder bei der Clearingstelle, das zu prüfenden Daten im MaStR tangiert. 
 * `Sonstiges` Sonstiges 
 
 ## GasSpeicherMastrNummerId
@@ -32164,11 +32841,24 @@ Basistyp: `string`
 
 ### Erlaubte Werte:
 
-* `BNetzaMussBeiKlaerungMitAnlagenbetreiberMitwirken` Die BNetzA muss bei der Klärung mit dem Anlagenbetreiber mitwirken 
-* `BNetzaMussBeiKlaerungMitNetzbetreiberMitwirken` Die BNetzA muss bei der Klärung mit dem Netzbetreiber mitwirken 
-* `EinheitExistiertNicht` Einheit existiert nicht 
-* `FalscherBetreiber` Falscher Betreiber 
+* `UneinigkeitBeiDenDaten` Uneinigkeit bei den Daten 
+* `UneinigkeitBeiDenDatenMitNetzbetreiber` Uneinigkeit mit dem Netzbetreiber bei den Daten 
+* `KlaerungRegistrierungspflicht` Klärung der Registrierungspflicht 
+* `BetreiberwechselNichtRegistriert` Betreiberwechsel wurde nicht registriert 
 * `EventuellesDuplikat` Eventuelles Duplikat 
+* `FragenZurBearbeitungKorrekturvorschlag` Fragen zur Bearbeitung des Korrekturvorschlages 
+* `LaufendesGerichtsverfahren` Laufendes Gerichtsverfahren 
+* `SystemfehlerFehlermeldung` Systemfehler - Fehlermeldung 
+
+## KorrekturBetriebsStatusEnum
+
+Basistyp: `string`
+
+### Erlaubte Werte:
+
+* `None` None 
+* `InPlanung` In Planung 
+* `EndgueltigStillgelegt` Endgültig stillgelegt 
 
 ## KorrekturVorschlagId
 
@@ -32542,16 +33232,6 @@ Basistyp: `string`
 
 * `Aktiviert` aktiv 
 * `Deaktiviert` inaktiv 
-
-## MarktgebietEnum
-
-Basistyp: `string`
-
-### Erlaubte Werte:
-
-* `NetConnectGermany` NetConnect Germany 
-* `Gaspool` GASPOOL 
-* `Beide` Beide 
 
 ## MarktrolleMastrNummerId
 
@@ -33030,6 +33710,9 @@ Basistyp: `string`
 * `RueckmeldungBundesnetzagentur`  
 * `WiedervorlageNachKlaerung`  
 * `WiedervorlageNetzbetreiberpruefung`  
+* `Betriebsstatuskorrektur`  
+* `BetriebsstatuskorrekturNachKlaerung`  
+* `WiedervorlageBetriebsstatuskorrektur`  
 
 ## NetzbetreiberpruefungsStatusEnum
 
@@ -33292,6 +33975,8 @@ Basistyp: `string`
 * `StilllegungAbgelehnt` Registrierung der endgültigen Stilllegung wurde abgelehnt 
 * `DatenaenderungGepruefteEinheitNachMaStRQSProzess` An der Einheit wurden auf Grund einer MaStR-QS Datenkorrekturaufforderung NBP-relevante Daten verändert 
 * `DatenaenderungGepruefterABRNachMaStRQSProzess` Am Anlagenbetreiber wurden auf Grund einer MaStR-QS Datenkorrekturaufforderung NBP-relevante Daten verändert 
+* `AenderungBetriebsstatusEinheit` Änderung des Betriebsstatus der Einheit 
+* `AenderungArtDerStromerzeugung` Änderung der Art der Stromerzeugung 
 
 ## StromSpeicherMastrNummerId
 
@@ -33434,16 +34119,16 @@ Basistyp: `string`
 * `Raffineriegas` Raffineriegas 
 * `AndereMineraloelprodukte` Andere Mineralölprodukte 
 * `ErdgasErdoelgas` Erdgas, Erdölgas 
-* `GrubengasVerbrennung` Erdgas, Erdölgas 
+* `GrubengasVerbrennung` Grubengas 
 * `HochofengasKonvertergas` Hochofengas, Konvertergas 
 * `Kokereigas` Kokereigas 
 * `AndereGase` Andere Gase 
 * `SonstigeHergestellteGase` Sonstige hergestellte Gase 
-* `NichtBiogenerIndustrieabfall` nicht biogener Industrieabfall 
-* `NichtBiogenerAbfallHausmuellSiedlungsabfaelle` nicht biogener Abfall (Hausmüll, Siedlungsabfälle) 
-* `Prozessdampf` Prozessdampf 
-* `DampfFremdbezogen` Dampf (fremdbezogen) 
-* `SonstigeWaerme` Sonstige Wärme 
+* `Industrieabfall` Industrieabfall 
+* `AbfallHausmuellSiedlungsabfaelle` Abfall (Hausmüll, Siedl.abf.) 
+* `Dampf` Dampf (zum Beispiel Prozesswärme) 
+* `Waerme` Wärme 
+* `Wasserstoff` Wasserstoff 
 
 ## WechselrichterEnum
 
@@ -33463,26 +34148,25 @@ Basistyp: `string`
 ### Erlaubte Werte:
 
 * `None` None 
-* `AbfallFestReinBiogen` Abfall, fest, rein biogen 
-* `AbfallFluessigBiogen` Abfall, flüssig, biogen 
-* `Altholz` Altholz 
+* `AbfallHausmuellSiedlungsabfaelle` Abfall (Hausmüll, Siedl.abf.) 
+* `AltholzGebrauchtholzHolzmuell` Altholz, Gebrauchtholz, Holz(sperr)müll 
 * `AndereGase` Andere Gase 
 * `AndereMineraloelprodukte` Andere Mineralölprodukte 
 * `Biodiesel` Biodiesel 
 * `Biogas` Biogas 
-* `Biomethan` Biomethan 
+* `BiomethanBioerdgas` Biomethan (Bioerdgas) 
 * `Biomethanol` Biomethanol 
-* `Blutmehl` Blutmehl 
 * `Braunkohlenbriketts` Braunkohlenbriketts 
 * `Braunkohlenkoks` Braunkohlenkoks 
-* `Brennholz` Brennholz 
-* `Brennlauge` Brennlauge 
-* `DampfFremdbezogen` Dampf (fremdbezogen) 
+* `BrennlaugeSchwarzlaugeSulfitablauge` Brennlauge, Schwarzlauge, Sulfitablauge 
+* `Dampf` Dampf (zum Beispiel Prozesswärme) 
 * `Deponiegas` Deponiegas 
 * `Dieselkraftstoff` Dieselkraftstoff 
+* `EnergiepflanzenZurVerbrennung` Energiepflanzen zur Verbrennung (z.B. Kurzumtriebs-Holz) 
 * `ErdgasErdoelgas` Erdgas, Erdölgas 
 * `FesteBiogeneStoffe` Feste biogene Stoffe 
-* `FluessigeBiogeneStoffe` Flüssige biogene Stoffe 
+* `FesteBiogeneStoffeUndAbfaelleOhneHolz` Feste biogene Stoffe und Abfälle (ohne Holz) 
+* `FluessigeBiogeneStoffeUndAbfaelle` Flüssige biogene Stoffe und Abfälle 
 * `Fluessiggas` Flüssiggas 
 * `GrubengasVerbrennung` Grubengas 
 * `Hartbraunkohlen` Hartbraunkohlen 
@@ -33490,41 +34174,34 @@ Basistyp: `string`
 * `HeizoelLeicht` Heizöl, leicht 
 * `HeizoelSchwer` Heizöl, schwer 
 * `HochofengasKonvertergas` Hochofengas, Konvertergas 
-* `Holz` Holz 
-* `Holzhackschnitzel` Holzhackschnitzel 
-* `HolzresteZbSchreinereien` Holzreste (z.B. Schreinereien) 
+* `HolzgasGasBiomasse` Holzgas (Gas Biomasse) 
+* `Holzkohle` Holzkohle 
+* `Holzreste` Holzreste (z.B. aus Schreinereien, auch Spanholz) 
 * `HolzspaeneSaegemehl` Holzspäne, Sägemehl 
-* `IsoHexan` Iso-Hexan 
-* `Klaergas`  
+* `Industrieabfall` Industrieabfall 
+* `Klaergas` Klärgas 
 * `KohlenwertstoffeAusSteinkohle` Kohlenwertstoffe aus Steinkohle 
 * `Kokereigas` Kokereigas 
-* `Landschaftspflegeholz` Landschaftspflegeholz 
-* `NichtBiogenerAbfallHausmuellSiedlungsabfaelle` nicht biogener Abfall (Hausmüll, Siedlungsabfälle) 
-* `NichtBiogenerIndustrieabfall` nicht biogener Industrieabfall 
-* `Palmoel` Palmöl 
-* `PelletsHolz` Pellets (Holz 
+* `PalmoelPflanzenoel` Palmöl u.a. Pflanzenöle 
+* `PelletsHolz` Holz-Pellets, Holz-Briketts 
 * `Petrolkoks` Petrolkoks 
-* `Pflanzenoel` Pflanzenöl 
-* `Prozessdampf` Prozessdampf 
 * `Raffineriegas` Raffineriegas 
-* `Rauchspan` Rauchspan 
-* `Restholz` Restholz 
-* `Rinde` Rinde 
+* `RindeLandschaftspflegeholz` Rinde und Landschaftspflegeholz 
 * `Rohbraunkohlen` Rohbraunkohlen 
 * `SchleifstaubBiogen` Schleifstaub, biogen 
-* `Schwarzlauge` Schwarzlauge 
 * `SonstigeHergestellteGase` Sonstige hergestellte Gase 
-* `SonstigeWaerme` Sonstige Wärme 
 * `StaubUndTrockenkohle` Staub- und Trockenkohle 
 * `Steinkohlen` Steinkohlen 
 * `Steinkohlenbriketts` Steinkohlenbriketts 
 * `Steinkohlenkoks` Steinkohlenkoks 
 * `StrohStrohpellets` Stroh, Strohpellets 
-* `Sulfitablauge` Sulfitablauge 
 * `Terpentin` Terpentin 
 * `Tierfett` Tierfett 
-* `Tiermehl` Tiermehl 
-* `WarmbrennstoffeBiogenerGewerbeabfall` Warmbrennstoffe (biogener Gewerbeabfall) 
+* `TierUndBlutmehl` Tier- und Blutmehl 
+* `Waerme` Wärme 
+* `WaldHolzhackschnitzelWaldScheitholzWaldKronenholz` Wald-Holzhackschnitzel, Wald-Scheitholz, -Kronenholz 
+* `WaldStammholzRundholz` Wald-Stammholz, Rundholz 
+* `Wasserstoff` Wasserstoff 
 * `Wirbelschichtkohle` Wirbelschichtkohle 
 
 ## WindLageEnum

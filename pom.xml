@@ -76,17 +76,14 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <schemaLanguage>WSDL</schemaLanguage>
                     <generatePackage>dev.yasp.mastrfetcher.wsdl</generatePackage>
-                    <schemas>
-                        <schema>
-                            <!-- TODO??? Absolut als Web URL lassen oder absolut im Projekt ablegen?-->
-                            <!--https://www.marktstammdatenregister.de/MaStRHilfe/subpages/webdienst.html-->
-                            <url>https://www.marktstammdatenregister.de/MaStRAPI/wsdl/mastr.wsdl</url>
-                        </schema>
-                    </schemas>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <schemaDirectory>src/main/resources/MaStRWebserviceSchema/wsdl</schemaDirectory>
+                    <schemaIncludes>
+                        <include>*.wsdl</include>
+                    </schemaIncludes>
                     <!-- Bindings ergänzen/konfigurieren den Java-XML-Bind Prozess -->
-                    <bindingDirectory>${basedir}/src/main/resources</bindingDirectory>
+                    <bindingDirectory>${basedir}/src/main/resources/MaStRWebserviceSchema</bindingDirectory>
                     <bindingIncludes>
                         <include>*.xjb</include>
                     </bindingIncludes>

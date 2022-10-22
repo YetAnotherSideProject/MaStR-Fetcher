@@ -858,17 +858,6 @@
           </documentation>
         </annotation>
       </element>
-      <element
-        name="Marktgebiet"
-        type="mastr:MarktgebietEnum"
-        minOccurs="0">
-        <annotation>
-          <documentation>
-            Marktgebiet des Netzgebietes (bei Gasnetzbetreibern)
-            <m-ex>Beide</m-ex>
-          </documentation>
-        </annotation>
-      </element>
     </sequence>
   </complexType>
   <complexType name="NetzanschlusspunktStromUndGas">
@@ -990,17 +979,6 @@
           <documentation>
             Kapazität des Netzanschlusspunktes
             <m-ex>2569.321</m-ex>
-          </documentation>
-        </annotation>
-      </element>
-      <element
-        name="Marktgebiet"
-        type="mastr:MarktgebietEnum"
-        minOccurs="0">
-        <annotation>
-          <documentation>
-            Marktgebiet des Netzanschlusspunktes
-            <m-ex>Gaspool</m-ex>
           </documentation>
         </annotation>
       </element>
@@ -1249,17 +1227,6 @@
           <documentation>
             Messlokation gemäß Metering Code, VDE-AR-N 4400
             <m-ex>DE00056266802…</m-ex>
-          </documentation>
-        </annotation>
-      </element>
-      <element
-        name="Marktgebiet"
-        type="mastr:MarktgebietEnum"
-        minOccurs="0">
-        <annotation>
-          <documentation>
-            Marktgebiet des Netzanschlusspunktes
-            <m-ex>Gaspool</m-ex>
           </documentation>
         </annotation>
       </element>
@@ -1623,16 +1590,6 @@
         </annotation>
       </element>
 	  <element
-        name="datenWurdenAmZuPruefendenObjektGeaendert"
-        type="boolean">
-        <annotation>
-          <documentation>
-            Gibt an, ob sich Daten an dem zu prüfenden Objekt seit dem letzten Abruf geändert haben
-            <m-ex>false</m-ex>
-          </documentation>
-        </annotation>
-      </element>
-	  <element
         name="klaerungsGrund"
         type="mastr:KlaerungsGrundEnum"
         minOccurs="0">
@@ -1651,6 +1608,17 @@
 		  <documentation>
 			Der Grund des Neustarts einer Netzbetreiberprüfung
 			<m-ex></m-ex>
+		  </documentation>
+		</annotation>
+	  </element>
+	  <element
+		name="aenderungsGrundArtDerStromerzeugung"
+		type="string"
+		minOccurs="0">
+		<annotation>
+		  <documentation>
+			Angabe des Grunds zur Änderung der Art der Stromerzeugung
+			<m-ex>Änderung auf Biomasse</m-ex>
 		  </documentation>
 		</annotation>
 	  </element>
@@ -2572,7 +2540,7 @@
   <!--6.5 Marktakteur-Funktionen -->
   <complexType name="GetListeAlleMarktakteureParameter">
     <complexContent>
-      <extension base="mastr:AuthentifizierteAnfrageBasis">
+      <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
         <sequence>
           <element
             name="startAb"
@@ -3235,12 +3203,12 @@
             </annotation>
           </element>
 		  <element
-            name="ZustelladresseVorhanden"
+            name="AdresseIstZustelladresse"
             type="boolean"
             minOccurs="0">
             <annotation>
               <documentation>
-                Angabe ob die Zustelladresse vorhanden ist
+                Angabe ob an die angegebene Adresse Dokumente zugestellt werden können
                 <m-ex>true</m-ex>
               </documentation>
             </annotation>
@@ -4095,10 +4063,10 @@
           <element
             name="Einspeisungsart"
             type="mastr:EinspeisungsartEnum"
-            minOccurs="0">
+            minOccurs="1">
             <annotation>
               <documentation>
-                Volleinspeisung oder Teileinspeisung
+                Volleinspeisung oder TeileinspeisungEigenverbrauch
                 <m-ex>Volleinspeisung</m-ex>
               </documentation>
             </annotation>
@@ -4807,6 +4775,28 @@
                 <m-ex>147.254</m-ex>
               </documentation>
             </annotation>
+          </element>		  
+		  <element
+            name="Buergerenergie"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Bürgerenergieeigenschaft der Einheit
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>		  		  
+		  <element
+            name="Nachtkennzeichen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Nachtkennzeichen der Einheit
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
           </element>
           <element
             name="EegMastrNummer"
@@ -4984,6 +4974,17 @@
               <documentation>
                 Vorrangige Nutzung des in Anspruch genommenen Gebäudes
                 <m-ex>Industrie</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="Buergerenergie"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Bürgerenergieeigenschaft der Einheit
+                <m-ex>false</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -6098,39 +6099,6 @@
             </annotation>
           </element>
           <element
-            name="PraequalifiziertGemaessAblav"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Liegt eine Päqualifizierung gemäß AbLaV vor?
-                <m-ex>true</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="AnteilBeinflussbareLast"
-            type="decimal"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Leistung, die als beeinflussbar angesehen werden kann.
-                <m-ex>574.147</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="ArtAbschaltbareLast"
-            type="mastr:ArtAbschaltbareLastEnum"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Art der abschaltbaren Last gemäß AbLaV
-                <m-ex>Schnell</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-		  <element
             name="GenMastrNummer"
             type="mastr:GenMastrNummerId"
             minOccurs="0">
@@ -6972,6 +6940,43 @@
             </annotation>
           </element>
 		  <element
+            name="eegAnlagenschluessel"
+            type="string"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Vom Netzbetreiber vergebene Kennziffer zur
+                Identifikation der EEG-Anlage
+                <m-ex>E2325426</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="eegZuschlagsnummer"
+            type="string"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Von der Bundesnetzagentur im Rahmen des
+                Ausschreibungsverfahrens vergebene Nummern
+                <m-ex>A15847</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="eegAusschreibungZuschlag"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Angabe ob für die EEG-Anlage Im Rahmen des
+                Ausschreibungsverfahren der Bundesnetzagentur ein
+                Zuschlag erlangt wurde
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
             name="VerknuepfteEinheit"
             type="mastr:VerknuepfteEinheit"
             maxOccurs="unbounded"
@@ -7354,7 +7359,7 @@
             </annotation>
           </element>
           <element
-            name="BiogasHoechstbemessungsleistung"
+            name="Hoechstbemessungsleistung"
             type="decimal"
             minOccurs="0">
             <annotation>
@@ -9208,10 +9213,10 @@
           <element
             name="beschreibung"
             type="string"
-            minOccurs="0">
+            minOccurs="1">
             <annotation>
               <documentation>
-                Eine optionale Beschreibung
+                Die Beschreibung ist verpflichtend anzugeben
                 <m-ex>Ihr Bearbeiter: Herr Max Mustermann -1234</m-ex>
               </documentation>
             </annotation>
@@ -9233,6 +9238,390 @@
     </complexContent>
   </complexType>
   <complexType name="SetKlaerungErforderlichAntwort">
+    <complexContent>
+      <extension base="mastr:AntwortBasis">
+        <sequence />
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SetKorrekturBetriebsstatusParameter">
+    <complexContent>
+      <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
+        <sequence>
+          <element
+            name="netzbetreiberpruefungId"
+            type="mastr:NetzbetreiberpruefungId"
+            minOccurs="1"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Die Ticketprozess-Id als eindeutige Id der Prüfung
+                <m-ex>124443</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="letzteAenderung"
+            type="dateTime"
+            minOccurs="1"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Originaldatum der letzten Änderung an diesem Objekt
+                <m-ex>2017-07-25T08:36:54.1004464</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="beschreibung"
+            type="string"
+            minOccurs="1">
+            <annotation>
+              <documentation>
+                Eine Beschreibung für den Anlagenbetreiber
+                <m-ex>Laut unseren Unterlagen ein abweichender Betriebsstatus</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="korrekturBetriebsStatus"
+            type="mastr:KorrekturBetriebsStatusEnum"
+            minOccurs="1"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Korrektur zum Betriebsstatus der Einheit
+                <m-ex>EndgueltigStillgelegt</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="geplantesInbetriebnahmedatum"
+            type="date"
+            minOccurs="0"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Geplantes Inbetriebnahmedatum der Einheit
+                <m-ex> 	2023-01-01</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="datumEndgueltigeStilllegung"
+            type="date"
+            minOccurs="0"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                 	Datum der endgültigen Stilllegung
+                <m-ex>2021-12-31</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SetKorrekturBetriebsstatusAntwort">
+    <complexContent>
+      <extension base="mastr:AntwortBasis">
+        <sequence />
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GetKorrekturVorschlagBetriebsstatusParameter">
+    <complexContent>
+      <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
+        <sequence>
+          <element
+            name="korrekturVorschlagId"
+            type="int"
+            minOccurs="1"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Die eindeutige Id des Korrekturvorschlags innerhalb
+                einer Prüfung
+                <m-ex>1323545</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="netzbetreiberpruefungId"
+            type="int"
+            minOccurs="0"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Die Ticketprozess-Id als eindeutige Id der Prüfung
+                <m-ex>124443</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GetKorrekturVorschlagBetriebsstatusAntwort">
+    <complexContent>
+      <extension base="mastr:AntwortBasis">
+        <sequence>
+		  <element
+            name="korrekturVorschlagId"
+            type="int"
+            maxOccurs="1"
+            minOccurs="1">
+            <annotation>
+              <documentation>
+                Die ID des Korrekturvorschlags
+                <m-ex>5975654</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="netzbetreiberpruefungId"
+            type="int">
+            <annotation>
+              <documentation>
+                Die Ticketprozess-Id als eindeutige Id der Prüfung
+                <m-ex>124443</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="beschreibung"
+            type="string"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Eine Beschreibung für den Anlagenbetreiber
+                <m-ex>Laut unseren Unterlagen ein abweichender Betriebsstatus</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="korrekturBetriebsStatus"
+            type="mastr:KorrekturBetriebsStatusEnum"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Korrektur zum Betriebsstatus der Einheit
+                <m-ex>EndgueltigStillgelegt</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="korrekturBetriebsStatusZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Korrektur zum Betriebsstatus der Einheit (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="geplantesInbetriebnahmedatum"
+            type="date"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Geplantes Inbetriebnahmedatum der Einheit
+                <m-ex>01.01.2023</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="geplantesInbetriebnahmedatumZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Geplantes Inbetriebnahmedatum der Einheit (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="datumEndgueltigeStilllegung"
+            type="date"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Datum der endgültigen Stilllegung
+                <m-ex>31.12.2021</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="datumEndgueltigeStilllegungZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Datum der endgültigen Stilllegung (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GetWiedervorlageVorschlagBetriebsstatusParameter">
+    <complexContent>
+      <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
+        <sequence>
+          <element
+            name="korrekturVorschlagId"
+            type="int"
+            minOccurs="1"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Die eindeutige Id des Korrekturvorschlags innerhalb
+                einer Prüfung
+                <m-ex>1323545</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="netzbetreiberpruefungId"
+            type="int"
+            minOccurs="0"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Die Ticketprozess-Id als eindeutige Id der Prüfung
+                <m-ex>124443</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GetWiedervorlageVorschlagBetriebsstatusAntwort">
+    <complexContent>
+      <extension base="mastr:AntwortBasis">
+        <sequence>
+		  <element
+            name="korrekturVorschlagId"
+            type="int"
+            maxOccurs="1"
+            minOccurs="1">
+            <annotation>
+              <documentation>
+                Die ID des Korrekturvorschlags
+                <m-ex>5975654</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="netzbetreiberpruefungId"
+            type="int">
+            <annotation>
+              <documentation>
+                Die Ticketprozess-Id als eindeutige Id der Prüfung
+                <m-ex>124443</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="beschreibung"
+            type="string"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Eine Beschreibung für den Anlagenbetreiber
+                <m-ex>Laut unseren Unterlagen ein abweichender Betriebsstatus</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="korrekturBetriebsStatus"
+            type="mastr:KorrekturBetriebsStatusEnum"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Korrektur zum Betriebsstatus der Einheit
+                <m-ex>EndgueltigStillgelegt</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="geplantesInbetriebnahmedatum"
+            type="date"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Geplantes Inbetriebnahmedatum der Einheit
+                <m-ex>01.01.2023</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="datumEndgueltigeStilllegung"
+            type="date"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Datum der endgültigen Stilllegung
+                <m-ex>31.12.2021</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SetKorrekturBetriebsstatusAbgeschlossenParameter">
+    <complexContent>
+      <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
+        <sequence>
+          <element
+            name="netzbetreiberpruefungId"
+            type="mastr:NetzbetreiberpruefungId"
+            minOccurs="1"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Die Ticketprozess-Id als eindeutige Id der Prüfung
+                <m-ex>124443</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="letzteAenderung"
+            type="dateTime"
+            minOccurs="1"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Originaldatum der letzten Änderung an diesem Objekt
+                <m-ex>2017-07-25T08:36:54.1004464</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="beschreibung"
+            type="string"
+            minOccurs="0"
+            maxOccurs="1">
+            <annotation>
+              <documentation>
+                Eine Beschreibung für den Anlagenbetreiber
+                <m-ex>Laut unseren Unterlagen ein abweichender Betriebsstatus</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SetKorrekturBetriebsstatusAbgeschlossenAntwort">
     <complexContent>
       <extension base="mastr:AntwortBasis">
         <sequence />
@@ -9333,7 +9722,7 @@
 			minOccurs="0">
 			<annotation>
 			  <documentation>
-				Begründungstext (nur möglich bei Katalogwert technischer Fehler oder sonstiges)
+				Begründungstext (nur möglich bei Katalogwert sonstiges)
 				<m-ex>Bearbeitung nicht möglich</m-ex>
 			  </documentation>
 			</annotation>
@@ -10108,7 +10497,7 @@
             minOccurs="0">
             <annotation>
               <documentation>
-                Volleinspeisung oder Teileinspeisung
+                Volleinspeisung oder TeileinspeisungEigenverbrauch
                 <m-ex>Volleinspeisung</m-ex>
               </documentation>
             </annotation>
@@ -10120,7 +10509,7 @@
             <annotation>
               <documentation>
                 Volleinspeisung oder
-                Teileinspeisung (Prüfungskennzeichen)
+                TeileinspeisungEigenverbrauch (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -10387,6 +10776,28 @@
                 Welche Art von Zufluss wird zur Stromerzeugung verwendet
                 (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="BestandteilEEGAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilEEGAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -11163,6 +11574,28 @@
               </documentation>
             </annotation>
           </element>
+		  <element
+            name="BestandteilKWKAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilKWKAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
           <element
             name="kwkMastrNummer"
             type="mastr:KwkMastrNummerId"
@@ -11446,74 +11879,7 @@
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
-          </element>
-          <element
-            name="praequalifizierteLeistungTeilnahmeAbschaltbareLast"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Päqualifizierung gemäß AbLaV?
-                <m-ex>true</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="praequalifizierteLeistungTeilnahmeAbschaltbareLastZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Päqualifizierung gemäß AbLaV? (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anteilBeinflussbareLast"
-            type="decimal"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Leistung, die als beeinflussbar angesehen werden kann.
-                <m-ex>574.147</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anteilBeinflussbareLastZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Leistung, die als beeinflussbar angesehen werden kann. (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="artAbschaltbareLast"
-            type="mastr:ArtAbschaltbareLastEnum"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Art der abschaltbaren Last gemäß AbLaV
-                <m-ex>Schnell</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="artAbschaltbareLastZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Art der abschaltbaren Last gemäß
-                AbLaV (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
+          </element>          
         </sequence>
       </extension>
     </complexContent>
@@ -11859,7 +12225,7 @@
             minOccurs="0">
             <annotation>
               <documentation>
-                Volleinspeisung oder Teileinspeisung
+                Volleinspeisung oder TeileinspeisungEigenverbrauch
                 <m-ex>Volleinspeisung</m-ex>
               </documentation>
             </annotation>
@@ -11871,7 +12237,7 @@
             <annotation>
               <documentation>
                 Volleinspeisung oder
-                Teileinspeisung (Prüfungskennzeichen)
+                TeileinspeisungEigenverbrauch (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -12492,6 +12858,28 @@
               </documentation>
             </annotation>
           </element>
+		  <element
+            name="Buergerenergie"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Bürgerenergieeigenschaft der Einheit
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>		  
+          <element
+            name="BuergerenergieZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Bürgerenergieeigenschaft der Einheit (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -12591,6 +12979,28 @@
                 Technologie der
                 Stromerzeugungseinheit (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilEEGAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilEEGAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -12933,7 +13343,7 @@
             </annotation>
           </element>
           <element
-            name="eegBiogasHoechstbemessungsleistung"
+            name="eegHoechstbemessungsleistung"
             type="decimal"
             minOccurs="0">
             <annotation>
@@ -12944,7 +13354,7 @@
             </annotation>
           </element>
           <element
-            name="eegBiogasHoechstbemessungsleistungZuPruefen"
+            name="eegHoechstbemessungsleistungZuPruefen"
             type="boolean"
             minOccurs="0">
             <annotation>
@@ -12976,6 +13386,28 @@
                 Datum des erstmaligen ausschließlichen Einsatzes von
                 Biomethan (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="BestandteilKWKAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilKWKAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -14002,6 +14434,50 @@
               </documentation>
             </annotation>
           </element>
+		  <element
+            name="Buergerenergie"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Bürgerenergieeigenschaft der Einheit
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>		  
+          <element
+            name="BuergerenergieZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Bürgerenergieeigenschaft der Einheit (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="Nachtkennzeichen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Nachtkennzeichen der Einheit
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>		  
+          <element
+            name="NachtkennzeichenZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Nachtkennzeichen der Einheit (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -14494,23 +14970,23 @@
             </annotation>
           </element>
 		  <element
-            name="ZustelladresseVorhanden"
+            name="AdresseIstZustelladresse"
             type="boolean"
             minOccurs="0">
             <annotation>
               <documentation>
-                Angabe ob die Zustelladresse vorhanden ist
+                Angabe ob an die angegebene Adresse Dokumente zugestellt werden können
                 <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
 		  <element
-            name="ZustelladresseVorhandenZuPruefen"
+            name="AdresseIstZustelladresseZuPruefen"
             type="boolean"
             minOccurs="0">
             <annotation>
               <documentation>
-                Angabe ob die Zustelladresse vorhanden ist(Prüfungskennzeichen)
+                Angabe ob an die angegebene Adresse Dokumente zugestellt werden können(Prüfungskennzeichen)
                 <m-ex>true</m-ex>
               </documentation>
             </annotation>
@@ -15087,6 +15563,28 @@
               </documentation>
             </annotation>
           </element>
+		  <element
+            name="BestandteilEEGAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilEEGAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
           <element
             name="eegMastrNummer"
             type="mastr:EegMastrNummerId"
@@ -15200,6 +15698,28 @@
               <documentation>
                 Inbetriebnahmedatum der EEG-Anlage (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="BestandteilKWKAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilKWKAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -16075,7 +16595,7 @@
             minOccurs="0">
             <annotation>
               <documentation>
-                Volleinspeisung oder Teileinspeisung
+                Volleinspeisung oder TeileinspeisungEigenverbrauch
                 <m-ex>Volleinspeisung</m-ex>
               </documentation>
             </annotation>
@@ -16087,7 +16607,7 @@
             <annotation>
               <documentation>
                 Volleinspeisung oder
-                Teileinspeisung (Prüfungskennzeichen)
+                TeileinspeisungEigenverbrauch (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -16235,6 +16755,28 @@
             </annotation>
           </element>
 		  <element
+            name="BestandteilEEGAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilEEGAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
             name="eegInbetriebnahmedatum"
             type="date"
             minOccurs="0">
@@ -16252,6 +16794,81 @@
             <annotation>
               <documentation>
                 Inbetriebnahmedatum der EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="eegAnlagenschluessel"
+            type="mastr:ErweiterterString"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Vom Netzbetreiber vergebene Kennziffer zur
+                Identifikation der EEG-Anlage
+                <m-ex>E2325426</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="eegAnlagenschluesselZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Vom Netzbetreiber vergebene Kennziffer zur
+                Identifikation der EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="eegZuschlagsnummer"
+            type="string"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Von der Bundesnetzagentur im Rahmen des
+                Ausschreibungsverfahrens vergebene Nummern
+                <m-ex>A15847</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="eegZuschlagsnummerZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Von der Bundesnetzagentur im Rahmen des
+                Ausschreibungsverfahrens vergebene Nummern
+                (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="eegAusschreibungZuschlag"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Angabe ob für die EEG-Anlage Im Rahmen des
+                Ausschreibungsverfahren der Bundesnetzagentur ein
+                Zuschlag erlangt wurde
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="eegAusschreibungZuschlagZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Angabe ob für die EEG-Anlage Im Rahmen des
+                Ausschreibungsverfahren der Bundesnetzagentur ein
+                Zuschlag erlangt wurde (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -16965,6 +17582,28 @@
               </documentation>
             </annotation>
           </element>
+		  <element
+            name="Buergerenergie"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Bürgerenergieeigenschaft der Einheit
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>		  
+          <element
+            name="BuergerenergieZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Bürgerenergieeigenschaft der Einheit (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -17209,73 +17848,6 @@
               </documentation>
             </annotation>
           </element>
-          <element
-            name="praequalifizierteLeistungTeilnahmeAbschaltbareLast"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Päqualifizierung gemäß AbLaV?
-                <m-ex>true</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="praequalifizierteLeistungTeilnahmeAbschaltbareLastZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Päqualifizierung gemäß AbLaV? (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anteilBeinflussbareLast"
-            type="decimal"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Leistung, die als beeinflussbar angesehen werden kann.
-                <m-ex>574.147</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anteilBeinflussbareLastZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Leistung, die als beeinflussbar angesehen werden kann. (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="artAbschaltbareLast"
-            type="mastr:ArtAbschaltbareLastEnum"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Art der abschaltbaren Last gemäß AbLaV
-                <m-ex>Schnell</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="artAbschaltbareLastZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Art der abschaltbaren Last gemäß
-                AbLaV (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -17326,6 +17898,28 @@
                 Technologie der
                 Stromerzeugungseinheit (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="BestandteilEEGAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilEEGAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -17442,6 +18036,28 @@
               <documentation>
                 Inbetriebnahmedatum der EEG-Anlage (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="BestandteilKWKAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilKWKAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -18651,7 +19267,7 @@
             minOccurs="0">
             <annotation>
               <documentation>
-                Volleinspeisung oder Teileinspeisung
+                Volleinspeisung oder TeileinspeisungEigenverbrauch
                 <m-ex>Volleinspeisung</m-ex>
               </documentation>
             </annotation>
@@ -18663,7 +19279,7 @@
             <annotation>
               <documentation>
                 Volleinspeisung oder
-                Teileinspeisung (Prüfungskennzeichen)
+                TeileinspeisungEigenverbrauch (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -18767,6 +19383,28 @@
                 Technologie der
                 Stromerzeugungseinheit (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="BestandteilEEGAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilEEGAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -19109,7 +19747,7 @@
             </annotation>
           </element>
           <element
-            name="eegBiogasHoechstbemessungsleistung"
+            name="eegHoechstbemessungsleistung"
             type="decimal"
             minOccurs="0">
             <annotation>
@@ -19120,7 +19758,7 @@
             </annotation>
           </element>
           <element
-            name="eegBiogasHoechstbemessungsleistungZuPruefen"
+            name="eegHoechstbemessungsleistungZuPruefen"
             type="boolean"
             minOccurs="0">
             <annotation>
@@ -19152,6 +19790,28 @@
                 Datum des erstmaligen ausschließlichen Einsatzes von
                 Biomethan (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="BestandteilKWKAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilKWKAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -19994,6 +20654,28 @@
               </documentation>
             </annotation>
           </element>
+		  <element
+            name="BestandteilKWKAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilKWKAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer KWK-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
           <element
             name="kwkMastrNummer"
             type="mastr:KwkMastrNummerId"
@@ -20605,7 +21287,7 @@
             minOccurs="0">
             <annotation>
               <documentation>
-                Volleinspeisung oder Teileinspeisung
+                Volleinspeisung oder TeileinspeisungEigenverbrauch
                 <m-ex>Volleinspeisung</m-ex>
               </documentation>
             </annotation>
@@ -20617,7 +21299,7 @@
             <annotation>
               <documentation>
                 Volleinspeisung oder
-                Teileinspeisung (Prüfungskennzeichen)
+                TeileinspeisungEigenverbrauch (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -20763,6 +21445,125 @@
             <annotation>
               <documentation>
                 Nutzbare Speicherkapazität (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="BestandteilEEGAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilEEGAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="eegInbetriebnahmedatum"
+            type="date"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Inbetriebnahmedatum der EEG-Anlage
+                <m-ex>2012-12-31</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="eegInbetriebnahmedatumZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Inbetriebnahmedatum der EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="eegAnlagenschluessel"
+            type="mastr:ErweiterterString"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Vom Netzbetreiber vergebene Kennziffer zur
+                Identifikation der EEG-Anlage
+                <m-ex>E2325426</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="eegAnlagenschluesselZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Vom Netzbetreiber vergebene Kennziffer zur
+                Identifikation der EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="eegZuschlagsnummer"
+            type="string"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Von der Bundesnetzagentur im Rahmen des
+                Ausschreibungsverfahrens vergebene Nummern
+                <m-ex>A15847</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="eegZuschlagsnummerZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Von der Bundesnetzagentur im Rahmen des
+                Ausschreibungsverfahrens vergebene Nummern
+                (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="eegAusschreibungZuschlag"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Angabe ob für die EEG-Anlage Im Rahmen des
+                Ausschreibungsverfahren der Bundesnetzagentur ein
+                Zuschlag erlangt wurde
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="eegAusschreibungZuschlagZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Angabe ob für die EEG-Anlage Im Rahmen des
+                Ausschreibungsverfahren der Bundesnetzagentur ein
+                Zuschlag erlangt wurde (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -21516,6 +22317,50 @@
               </documentation>
             </annotation>
           </element>
+		  <element
+            name="Buergerenergie"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Bürgerenergieeigenschaft der Einheit
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>		  
+          <element
+            name="BuergerenergieZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Bürgerenergieeigenschaft der Einheit (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="Nachtkennzeichen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Nachtkennzeichen der Einheit
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>		  
+          <element
+            name="NachtkennzeichenZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Nachtkennzeichen der Einheit (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -21957,23 +22802,23 @@
             </annotation>
           </element>
 		  <element
-            name="ZustelladresseVorhanden"
+            name="AdresseIstZustelladresse"
             type="boolean"
             minOccurs="0">
             <annotation>
               <documentation>
-                Angabe ob die Zustelladresse vorhanden ist
+                Angabe ob an die angegebene Adresse Dokumente zugestellt werden können
                 <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
 		  <element
-            name="ZustelladresseVorhandenZuPruefen"
+            name="AdresseIstZustelladresseZuPruefen"
             type="boolean"
             minOccurs="0">
             <annotation>
               <documentation>
-                Angabe ob die Zustelladresse vorhanden ist(Prüfungskennzeichen)
+                Angabe ob an die angegebene Adresse Dokumente zugestellt werden können(Prüfungskennzeichen)
                 <m-ex>true</m-ex>
               </documentation>
             </annotation>
@@ -22820,6 +23665,28 @@
                 Welche Art von Zufluss wird zur Stromerzeugung verwendet
                 (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+		  <element
+            name="BestandteilEEGAnlage"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="BestandteilEEGAnlageZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Die Stromerzeugungseinheit ist Bestandteil einer EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -23931,18 +24798,6 @@
             </annotation>
           </element>
           <element
-            name="lokationMarktgebiet"
-            type="mastr:MarktgebietEnum"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Eines der zugeordneten Marktgebiete
-                <m-logik>ist gleich</m-logik>
-                <m-ex>Gaspool</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
             name="Registrierungsdatum"
             type="date"
             minOccurs="0">
@@ -24168,18 +25023,6 @@
                 Einer der zugeordneter Netzbetreiber
                 <m-logik>ist gleich</m-logik>
                 <m-ex>SNB91234567890</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="lokationMarktgebiet"
-            type="mastr:MarktgebietEnum"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Eines der zugeordneten Marktgebiete
-                <m-logik>ist gleich</m-logik>
-                <m-ex>Gaspool</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -24764,18 +25607,6 @@
             </annotation>
           </element>
           <element
-            name="netzMarktgebiet"
-            type="mastr:MarktgebietEnum"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Marktgebiet des angeschlossenen Netzes
-                <m-logik>ist gleich</m-logik>
-                <m-ex>NetConnectGermany</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
             name="netzanschlusspunktBezeichnung"
             type="string"
             minOccurs="0">
@@ -24921,18 +25752,6 @@
                 Gasqualität am Netzanschlusspunkt
                 <m-logik>ist gleich</m-logik>
                 <m-ex>LGas</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="netzMarktgebiet"
-            type="mastr:MarktgebietEnum"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Marktgebiet des angeschlossenen Netzes
-                <m-logik>ist gleich</m-logik>
-                <m-ex>NetConnectGermany</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -26535,30 +27354,6 @@
       </enumeration>
     </restriction>
   </simpleType>
-  <!-- Enumeration: MarktgebietEnum" -->
-  <simpleType name="MarktgebietEnum">
-    <restriction base="string">
-      <enumeration value="NetConnectGermany">
-        <annotation>
-          <documentation>NetConnect Germany
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Gaspool">
-        <annotation>
-          <documentation>GASPOOL
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Beide">
-        <annotation>
-          <documentation>Beide
-          </documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
-  <!-- Enumeration: NaceGruppeEnum" -->
   <!-- Enumeration: RegelzoneEnum" -->
   <simpleType name="RegelzoneEnum">
     <restriction base="string">
@@ -26997,35 +27792,6 @@
       </enumeration>
     </restriction>
   </simpleType>
-  <!-- Enumeration: ArtAbschaltbareLastEnum" -->
-  <simpleType name="ArtAbschaltbareLastEnum">
-    <restriction base="string">
-      <enumeration value="None">
-        <annotation>
-          <documentation>None
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Sofort">
-        <annotation>
-          <documentation>Sofort
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Schnell">
-        <annotation>
-          <documentation>Schnell
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Temporaerbefristet">
-        <annotation>
-          <documentation>Temporär befristet
-          </documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
   <!-- Enumeration: ArtDerStilllegungEnum" -->
   <simpleType name="ArtDerStilllegungEnum">
     <restriction base="string">
@@ -27226,224 +27992,148 @@
   </simpleType>
   <!-- Enumeration: BiomasseBrennstoffEnum" -->
   <simpleType name="BiomasseBrennstoffEnum">
-    <restriction base="string">
-      <enumeration value="None">
-        <annotation>
-          <documentation>None
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="AbfallFestReinBiogen">
-        <annotation>
-          <documentation>Abfall, fest, rein biogen
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Altholz">
-        <annotation>
-          <documentation>Altholz
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Blutmehl">
-        <annotation>
-          <documentation>Blutmehl
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Brennholz">
-        <annotation>
-          <documentation>Brennholz
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Brennlauge">
-        <annotation>
-          <documentation>Brennlauge
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="FesteBiogeneStoffe">
-        <annotation>
-          <documentation>Feste biogene Stoffe
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Holz">
-        <annotation>
-          <documentation>Holz
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Holzhackschnitzel">
-        <annotation>
-          <documentation>Holzhackschnitzel
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="HolzresteZbSchreinereien">
-        <annotation>
-          <documentation>Holzreste (z.B. Schreinereien)
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="HolzspaeneSaegemehl">
-        <annotation>
-          <documentation>Holzspäne, Sägemehl
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Landschaftspflegeholz">
-        <annotation>
-          <documentation>Landschaftspflegeholz
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="PelletsHolz">
-        <annotation>
-          <documentation>Pellets (Holz)
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Rauchspan">
-        <annotation>
-          <documentation>Rauchspan
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Restholz">
-        <annotation>
-          <documentation>Restholz
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Rinde">
-        <annotation>
-          <documentation>Rinde
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="SchleifstaubBiogen">
-        <annotation>
-          <documentation>Schleifstaub, biogen
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Schwarzlauge">
-        <annotation>
-          <documentation>Schwarzlauge
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="StrohStrohpellets">
-        <annotation>
-          <documentation>Stroh, Strohpellets
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Sulfitablauge">
-        <annotation>
-          <documentation>Sulfitablauge
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Tierfett">
-        <annotation>
-          <documentation>Tierfett
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Tiermehl">
-        <annotation>
-          <documentation>Tiermehl
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="WarmbrennstoffeBiogenerGewerbeabfall">
-        <annotation>
-          <documentation>Warmbrennstoffe (biogener Gewerbeabfall)
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="AbfallFluessigBiogen">
-        <annotation>
-          <documentation>Abfall, flüssig, biogen
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Biodiesel">
-        <annotation>
-          <documentation>Biodiesel
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Biomethanol">
-        <annotation>
-          <documentation>Biomethanol
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="FluessigeBiogeneStoffe">
-        <annotation>
-          <documentation>Flüssige biogene Stoffe
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Harzoel">
-        <annotation>
-          <documentation>Harzöl
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="IsoHexan">
-        <annotation>
-          <documentation>Iso-Hexan
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Palmoel">
-        <annotation>
-          <documentation>Palmöl
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Pflanzenoel">
-        <annotation>
-          <documentation>Pflanzenöl
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Terpentin">
-        <annotation>
-          <documentation>Terpentin
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Biogas">
-        <annotation>
-          <documentation>Biogas
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Biomethan">
-        <annotation>
-          <documentation>Biomethan
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Deponiegas">
-        <annotation>
-          <documentation>Deponiegas
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Klaergas">
-        <annotation>
-          <documentation>Klärgas
-          </documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
+  <restriction base="string">
+    <enumeration value="None">
+      <annotation>
+        <documentation>None</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="FesteBiogeneStoffeUndAbfaelleOhneHolz">
+      <annotation>
+        <documentation>Feste biogene Stoffe und Abfälle (ohne Holz)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="FluessigeBiogeneStoffeUndAbfaelle">
+      <annotation>
+        <documentation>Flüssige biogene Stoffe und Abfälle</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="AltholzGebrauchtholzHolzmuell">
+      <annotation>
+        <documentation>Altholz, Gebrauchtholz, Holz(sperr)müll</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Biodiesel">
+      <annotation>
+        <documentation>Biodiesel</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Biogas">
+      <annotation>
+        <documentation>Biogas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="BiomethanBioerdgas">
+      <annotation>
+        <documentation>Biomethan (Bioerdgas)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Biomethanol">
+      <annotation>
+        <documentation>Biomethanol</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="TierUndBlutmehl">
+      <annotation>
+        <documentation>Tier- und Blutmehl</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="BrennlaugeSchwarzlaugeSulfitablauge">
+      <annotation>
+        <documentation>Brennlauge, Schwarzlauge, Sulfitablauge</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Deponiegas">
+      <annotation>
+        <documentation>Deponiegas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="FesteBiogeneStoffe">
+      <annotation>
+        <documentation>Feste biogene Stoffe</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Harzoel">
+      <annotation>
+        <documentation>Harzöl</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="WaldHolzhackschnitzelWaldScheitholzWaldKronenholz">
+      <annotation>
+        <documentation>Wald-Holzhackschnitzel, Wald-Scheitholz, -Kronenholz</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Holzreste">
+      <annotation>
+        <documentation>Holzreste (z.B. aus Schreinereien, auch Spanholz)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="HolzspaeneSaegemehl">
+      <annotation>
+        <documentation>Holzspäne, Sägemehl</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Klaergas">
+      <annotation>
+        <documentation>Klärgas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="RindeLandschaftspflegeholz">
+      <annotation>
+        <documentation>Rinde und Landschaftspflegeholz</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="PalmoelPflanzenoel">
+      <annotation>
+        <documentation>Palmöl u.a. Pflanzenöle</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="PelletsHolz">
+      <annotation>
+        <documentation>Holz-Pellets, Holz-Briketts</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="SchleifstaubBiogen">
+      <annotation>
+        <documentation>Schleifstaub, biogen</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="StrohStrohpellets">
+      <annotation>
+        <documentation>Stroh, Strohpellets</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Terpentin">
+      <annotation>
+        <documentation>Terpentin</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Tierfett">
+      <annotation>
+        <documentation>Tierfett</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="HolzgasGasBiomasse">
+      <annotation>
+        <documentation>Holzgas (Gas Biomasse)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Holzkohle">
+      <annotation>
+        <documentation>Holzkohle </documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="WaldStammholzRundholz">
+      <annotation>
+        <documentation>Wald-Stammholz, Rundholz</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="EnergiepflanzenZurVerbrennung">
+      <annotation>
+        <documentation>Energiepflanzen zur Verbrennung (z.B. Kurzumtriebs-Holz)</documentation>
+      </annotation>
+    </enumeration>
+  </restriction>
   </simpleType>
   <!-- Enumeration: BrennstoffeVerbrennungsanlagenEnum" -->
   <simpleType name="BrennstoffeVerbrennungsanlagenEnum">
@@ -28887,9 +29577,9 @@
           </documentation>
         </annotation>
       </enumeration>
-      <enumeration value="Teileinspeisung">
+      <enumeration value="TeileinspeisungEigenverbrauch">
         <annotation>
-          <documentation>Teileinspeisung
+          <documentation>Teileinspeisung (einschließlich Eigenverbrauch)
           </documentation>
         </annotation>
       </enumeration>
@@ -29015,6 +29705,12 @@
 	  <enumeration value="DruckAusWasserleitungen">
         <annotation>
           <documentation>Druck aus Wasserleitungen 
+          </documentation>
+        </annotation>
+      </enumeration>
+	  <enumeration value="Wasserstoff">
+        <annotation>
+          <documentation>Wasserstoff 
           </documentation>
         </annotation>
       </enumeration>
@@ -29269,39 +29965,78 @@
         </annotation>
       </enumeration>
     </restriction>
+  </simpleType>  
+  <!-- Enumeration: KorrekturBetriebsStatusEnum" -->
+  <simpleType name="KorrekturBetriebsStatusEnum">
+    <restriction base="string">
+      <enumeration value="None">
+        <annotation>
+          <documentation>None
+		  </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="InPlanung">
+        <annotation>
+          <documentation>In Planung
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="EndgueltigStillgelegt">
+        <annotation>
+          <documentation>Endgültig stillgelegt
+          </documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
   </simpleType>
   <!-- Enumeration: KlaerungsGrundEnum" -->
   <simpleType name="KlaerungsGrundEnum">
     <restriction base="string">
-      <enumeration value="BNetzaMussBeiKlaerungMitAnlagenbetreiberMitwirken">
+      <enumeration value="UneinigkeitBeiDenDaten">
         <annotation>
-          <documentation>Die BNetzA muss bei der Klärung mit dem
-            Anlagenbetreiber mitwirken
+          <documentation>Uneinigkeit bei den Daten
           </documentation>
         </annotation>
       </enumeration>
-      <enumeration value="BNetzaMussBeiKlaerungMitNetzbetreiberMitwirken">
+      <enumeration value="UneinigkeitBeiDenDatenMitNetzbetreiber">
         <annotation>
-          <documentation>Die BNetzA muss bei der Klärung mit dem
-            Netzbetreiber mitwirken
+          <documentation>Uneinigkeit mit dem Netzbetreiber bei den Daten
           </documentation>
         </annotation>
       </enumeration>
-      <enumeration value="EinheitExistiertNicht">
+      <enumeration value="KlaerungRegistrierungspflicht">
         <annotation>
-          <documentation>Einheit existiert nicht
+          <documentation>Klärung der Registrierungspflicht
           </documentation>
         </annotation>
       </enumeration>
-      <enumeration value="FalscherBetreiber">
+      <enumeration value="BetreiberwechselNichtRegistriert">
         <annotation>
-          <documentation>Falscher Betreiber
+          <documentation>Betreiberwechsel wurde nicht registriert
           </documentation>
         </annotation>
       </enumeration>
       <enumeration value="EventuellesDuplikat">
         <annotation>
           <documentation>Eventuelles Duplikat
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="FragenZurBearbeitungKorrekturvorschlag">
+        <annotation>
+          <documentation>Fragen zur Bearbeitung des Korrekturvorschlages
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="LaufendesGerichtsverfahren">
+        <annotation>
+          <documentation>Laufendes Gerichtsverfahren
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="SystemfehlerFehlermeldung">
+        <annotation>
+          <documentation>Systemfehler - Fehlermeldung
           </documentation>
         </annotation>
       </enumeration>
@@ -32277,6 +33012,18 @@
           </documentation>
         </annotation>
       </enumeration>
+	  <enumeration value="AenderungBetriebsstatusEinheit">
+        <annotation>
+          <documentation>Änderung des Betriebsstatus der Einheit
+          </documentation>
+        </annotation>
+      </enumeration>
+	  <enumeration value="AenderungArtDerStromerzeugung">
+        <annotation>
+          <documentation>Änderung der Art der Stromerzeugung
+          </documentation>
+        </annotation>
+      </enumeration>
     </restriction>
   </simpleType>
   <!-- Enumeration: AbbruchgrundNetzbetreiberpruefung" -->
@@ -32342,6 +33089,18 @@
           </documentation>
         </annotation>
       </enumeration>
+	  <enumeration value="AenderungBetriebsstatusEinheit">
+        <annotation>
+          <documentation>Änderung des Betriebsstatus der Einheit
+          </documentation>
+        </annotation>
+      </enumeration>	  
+	  <enumeration value="AenderungArtDerStromerzeugung">
+        <annotation>
+          <documentation>Änderung der Art der Stromerzeugung
+          </documentation>
+        </annotation>
+      </enumeration>
     </restriction>
   </simpleType>
   <!-- Enumeration: NetzbetreiberpruefungsKategorieEnum" -->
@@ -32395,6 +33154,24 @@
           </documentation>
         </annotation>
       </enumeration>
+	  <enumeration value="Betriebsstatuskorrektur">
+        <annotation>
+          <documentation>
+          </documentation>
+        </annotation>
+      </enumeration>
+	  <enumeration value="BetriebsstatuskorrekturNachKlaerung">
+        <annotation>
+          <documentation>
+          </documentation>
+        </annotation>
+      </enumeration>
+	  <enumeration value="WiedervorlageBetriebsstatuskorrektur">
+        <annotation>
+          <documentation>
+          </documentation>
+        </annotation>
+      </enumeration>
     </restriction>
   </simpleType>
   <!-- Enumeration: FristverlaengerungGrundEnum" -->
@@ -32412,9 +33189,9 @@
           </documentation>
         </annotation>
       </enumeration>
-      <enumeration value="TechnischerFehler">
+      <enumeration value="LaufendeVerfahrenGerichtClearingstelle">
         <annotation>
-          <documentation>Technischer Fehler im Marktstammdatenregister
+          <documentation>Zu dieser Einheit läuft gerade ein Verfahren vor Gericht oder bei der Clearingstelle, das zu prüfenden Daten im MaStR tangiert.
           </documentation>
         </annotation>
       </enumeration>
@@ -32449,7 +33226,7 @@
       </enumeration>
 	  <enumeration value="Zurueckgezogen">
         <annotation>
-          <documentation>Zurueckgezogen
+          <documentation>Zurückgezogen
           </documentation>
         </annotation>
       </enumeration>
@@ -33573,509 +34350,438 @@
   </simpleType>
   <!-- Enumeration: VerbrennungBrennstoffEnum" -->
   <simpleType name="VerbrennungBrennstoffEnum">
-    <restriction base="string">
-      <enumeration value="None">
-        <annotation>
-          <documentation>None
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="KohlenwertstoffeAusSteinkohle">
-        <annotation>
-          <documentation>Kohlenwertstoffe aus Steinkohle
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Steinkohlen">
-        <annotation>
-          <documentation>Steinkohlen
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Steinkohlenbriketts">
-        <annotation>
-          <documentation>Steinkohlenbriketts
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Steinkohlenkoks">
-        <annotation>
-          <documentation>Steinkohlenkoks
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Braunkohlenbriketts">
-        <annotation>
-          <documentation>Braunkohlenbriketts
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Braunkohlenkoks">
-        <annotation>
-          <documentation>Braunkohlenkoks
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Hartbraunkohlen">
-        <annotation>
-          <documentation>Hartbraunkohlen
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Rohbraunkohlen">
-        <annotation>
-          <documentation>Rohbraunkohlen
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="StaubUndTrockenkohle">
-        <annotation>
-          <documentation>Staub- und Trockenkohle
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Wirbelschichtkohle">
-        <annotation>
-          <documentation>Wirbelschichtkohle
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Dieselkraftstoff">
-        <annotation>
-          <documentation>Dieselkraftstoff
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="HeizoelLeicht">
-        <annotation>
-          <documentation>Heizöl, leicht
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="HeizoelSchwer">
-        <annotation>
-          <documentation>Heizöl, schwer
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Fluessiggas">
-        <annotation>
-          <documentation>Flüssiggas
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Petrolkoks">
-        <annotation>
-          <documentation>Petrolkoks
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Raffineriegas">
-        <annotation>
-          <documentation>Raffineriegas
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="AndereMineraloelprodukte">
-        <annotation>
-          <documentation>Andere Mineralölprodukte
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="ErdgasErdoelgas">
-        <annotation>
-          <documentation>Erdgas, Erdölgas
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="GrubengasVerbrennung">
-        <annotation>
-          <documentation>Erdgas, Erdölgas
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="HochofengasKonvertergas">
-        <annotation>
-          <documentation>Hochofengas, Konvertergas
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Kokereigas">
-        <annotation>
-          <documentation>Kokereigas
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="AndereGase">
-        <annotation>
-          <documentation>Andere Gase
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="SonstigeHergestellteGase">
-        <annotation>
-          <documentation>Sonstige hergestellte Gase
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="NichtBiogenerIndustrieabfall">
-        <annotation>
-          <documentation>nicht biogener Industrieabfall
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="NichtBiogenerAbfallHausmuellSiedlungsabfaelle">
-        <annotation>
-          <documentation>nicht biogener Abfall (Hausmüll,
-            Siedlungsabfälle)
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Prozessdampf">
-        <annotation>
-          <documentation>Prozessdampf
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="DampfFremdbezogen">
-        <annotation>
-          <documentation>Dampf (fremdbezogen)
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="SonstigeWaerme">
-        <annotation>
-          <documentation>Sonstige Wärme
-          </documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
-    
+  <restriction base="string">
+    <enumeration value="None">
+      <annotation>
+        <documentation>None</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="KohlenwertstoffeAusSteinkohle">
+      <annotation>
+        <documentation>Kohlenwertstoffe aus Steinkohle</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Steinkohlen">
+      <annotation>
+        <documentation>Steinkohlen</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Steinkohlenbriketts">
+      <annotation>
+        <documentation>Steinkohlenbriketts</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Steinkohlenkoks">
+      <annotation>
+        <documentation>Steinkohlenkoks</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Braunkohlenbriketts">
+      <annotation>
+        <documentation>Braunkohlenbriketts</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Braunkohlenkoks">
+      <annotation>
+        <documentation>Braunkohlenkoks</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Hartbraunkohlen">
+      <annotation>
+        <documentation>Hartbraunkohlen</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Rohbraunkohlen">
+      <annotation>
+        <documentation>Rohbraunkohlen</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="StaubUndTrockenkohle">
+      <annotation>
+        <documentation>Staub- und Trockenkohle</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Wirbelschichtkohle">
+      <annotation>
+        <documentation>Wirbelschichtkohle</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Dieselkraftstoff">
+      <annotation>
+        <documentation>Dieselkraftstoff</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="HeizoelLeicht">
+      <annotation>
+        <documentation>Heizöl, leicht</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="HeizoelSchwer">
+      <annotation>
+        <documentation>Heizöl, schwer</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Fluessiggas">
+      <annotation>
+        <documentation>Flüssiggas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Petrolkoks">
+      <annotation>
+        <documentation>Petrolkoks</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Raffineriegas">
+      <annotation>
+        <documentation>Raffineriegas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="AndereMineraloelprodukte">
+      <annotation>
+        <documentation>Andere Mineralölprodukte</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="ErdgasErdoelgas">
+      <annotation>
+        <documentation>Erdgas, Erdölgas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="GrubengasVerbrennung">
+      <annotation>
+        <documentation>Grubengas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="HochofengasKonvertergas">
+      <annotation>
+        <documentation>Hochofengas, Konvertergas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Kokereigas">
+      <annotation>
+        <documentation>Kokereigas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="AndereGase">
+      <annotation>
+        <documentation>Andere Gase</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="SonstigeHergestellteGase">
+      <annotation>
+        <documentation>Sonstige hergestellte Gase</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Industrieabfall">
+      <annotation>
+        <documentation>Industrieabfall</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="AbfallHausmuellSiedlungsabfaelle">
+      <annotation>
+        <documentation>Abfall (Hausmüll, Siedl.abf.)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Dampf">
+      <annotation>
+        <documentation>Dampf (zum Beispiel Prozesswärme)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Waerme">
+      <annotation>
+        <documentation>Wärme</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Wasserstoff">
+      <annotation>
+        <documentation>Wasserstoff</documentation>
+      </annotation>
+    </enumeration>
+  </restriction>
+  </simpleType>    
 <!-- Enumeration: WeitererBrennstoffEnum" -->
   <simpleType name="WeitereBrennstoffeEnum">
-    <restriction base="string">
-      <enumeration value="None">
-          <annotation>
-              <documentation>None</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="AbfallFestReinBiogen">
-        <annotation>
-              <documentation>Abfall, fest, rein biogen</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="AbfallFluessigBiogen">
-          <annotation>
-              <documentation>Abfall, flüssig, biogen</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Altholz">
-          <annotation>
-              <documentation>Altholz</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="AndereGase">
-          <annotation>
-            <documentation>Andere Gase</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="AndereMineraloelprodukte">
-          <annotation>
-              <documentation>Andere Mineralölprodukte</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Biodiesel">
-          <annotation>
-              <documentation>Biodiesel</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Biogas">
-          <annotation>
-              <documentation>Biogas</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Biomethan">
-          <annotation>
-              <documentation>Biomethan</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Biomethanol">
-          <annotation>
-              <documentation>Biomethanol</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Blutmehl">
-          <annotation>
-              <documentation>Blutmehl</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Braunkohlenbriketts">
-          <annotation>
-              <documentation>Braunkohlenbriketts</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Braunkohlenkoks">
-          <annotation>
-              <documentation>Braunkohlenkoks</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Brennholz">
-          <annotation>
-              <documentation>Brennholz</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Brennlauge">
-          <annotation>
-              <documentation>Brennlauge</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="DampfFremdbezogen">
-          <annotation>
-              <documentation>Dampf (fremdbezogen)</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Deponiegas">
-          <annotation>
-              <documentation>Deponiegas</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Dieselkraftstoff">
-          <annotation>
-              <documentation>Dieselkraftstoff</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="ErdgasErdoelgas">
-          <annotation>
-              <documentation>Erdgas, Erdölgas</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="FesteBiogeneStoffe">
-          <annotation>
-              <documentation>Feste biogene Stoffe</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="FluessigeBiogeneStoffe">
-          <annotation>
-              <documentation>Flüssige biogene Stoffe</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Fluessiggas">
-          <annotation>
-              <documentation>Flüssiggas</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="GrubengasVerbrennung">
-          <annotation>
-              <documentation>Grubengas</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Hartbraunkohlen">
-          <annotation>
-              <documentation>Hartbraunkohlen</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Harzoel">
-          <annotation>
-              <documentation>Harzöl</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="HeizoelLeicht">
-          <annotation>
-              <documentation>Heizöl, leicht</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="HeizoelSchwer">
-          <annotation>
-              <documentation>Heizöl, schwer</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="HochofengasKonvertergas">
-          <annotation>
-              <documentation>Hochofengas, Konvertergas</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Holz">
-          <annotation>
-              <documentation>Holz</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Holzhackschnitzel">
-          <annotation>
-              <documentation>Holzhackschnitzel</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="HolzresteZbSchreinereien">
-          <annotation>
-              <documentation>Holzreste (z.B. Schreinereien)</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="HolzspaeneSaegemehl">
-          <annotation>
-              <documentation>Holzspäne, Sägemehl</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="IsoHexan">
-          <annotation>
-              <documentation>Iso-Hexan</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Klaergas">
-          <annotation>
-              <documentation></documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="KohlenwertstoffeAusSteinkohle">
-          <annotation>
-              <documentation>Kohlenwertstoffe aus Steinkohle</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Kokereigas">
-          <annotation>
-              <documentation>Kokereigas</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Landschaftspflegeholz">
-          <annotation>
-              <documentation>Landschaftspflegeholz</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="NichtBiogenerAbfallHausmuellSiedlungsabfaelle">
-          <annotation>
-              <documentation>nicht biogener Abfall (Hausmüll, Siedlungsabfälle)</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="NichtBiogenerIndustrieabfall">
-          <annotation>
-              <documentation>nicht biogener Industrieabfall</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Palmoel">
-          <annotation>
-              <documentation>Palmöl</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="PelletsHolz">
-          <annotation>
-              <documentation>Pellets (Holz</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Petrolkoks">
-          <annotation>
-              <documentation>Petrolkoks</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Pflanzenoel">
-          <annotation>
-              <documentation>Pflanzenöl</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Prozessdampf">
-          <annotation>
-              <documentation>Prozessdampf</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Raffineriegas">
-          <annotation>
-              <documentation>Raffineriegas</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Rauchspan">
-          <annotation>
-              <documentation>Rauchspan</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Restholz">
-          <annotation>
-              <documentation>Restholz</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Rinde">
-          <annotation>
-              <documentation>Rinde</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Rohbraunkohlen">
-          <annotation>
-              <documentation>Rohbraunkohlen</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="SchleifstaubBiogen">
-          <annotation>
-              <documentation>Schleifstaub, biogen</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Schwarzlauge">
-          <annotation>
-              <documentation>Schwarzlauge</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="SonstigeHergestellteGase">
-          <annotation>
-              <documentation>Sonstige hergestellte Gase</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="SonstigeWaerme">
-          <annotation>
-              <documentation>Sonstige Wärme</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="StaubUndTrockenkohle">
-          <annotation>
-              <documentation>Staub- und Trockenkohle</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Steinkohlen">
-          <annotation>
-              <documentation>Steinkohlen</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Steinkohlenbriketts">
-          <annotation>
-              <documentation>Steinkohlenbriketts</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Steinkohlenkoks">
-          <annotation>
-              <documentation>Steinkohlenkoks</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="StrohStrohpellets">
-          <annotation>
-              <documentation>Stroh, Strohpellets</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Sulfitablauge">
-          <annotation>
-              <documentation>Sulfitablauge</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Terpentin">
-          <annotation>
-              <documentation>Terpentin</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Tierfett">
-          <annotation>
-              <documentation>Tierfett</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Tiermehl">
-          <annotation>
-              <documentation>Tiermehl</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="WarmbrennstoffeBiogenerGewerbeabfall">
-          <annotation>
-              <documentation>Warmbrennstoffe (biogener Gewerbeabfall)</documentation>
-          </annotation>
-      </enumeration>
-      <enumeration value="Wirbelschichtkohle">
-          <annotation>
-              <documentation>Wirbelschichtkohle</documentation>
-          </annotation>
-      </enumeration>
-    </restriction>
+  <restriction base="string">
+    <enumeration value="None">
+      <annotation>
+        <documentation>None</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="AbfallHausmuellSiedlungsabfaelle">
+      <annotation>
+        <documentation>Abfall (Hausmüll, Siedl.abf.)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="AltholzGebrauchtholzHolzmuell">
+      <annotation>
+        <documentation>Altholz, Gebrauchtholz, Holz(sperr)müll</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="AndereGase">
+      <annotation>
+        <documentation>Andere Gase</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="AndereMineraloelprodukte">
+      <annotation>
+        <documentation>Andere Mineralölprodukte</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Biodiesel">
+      <annotation>
+        <documentation>Biodiesel</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Biogas">
+      <annotation>
+        <documentation>Biogas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="BiomethanBioerdgas">
+      <annotation>
+        <documentation>Biomethan (Bioerdgas)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Biomethanol">
+      <annotation>
+        <documentation>Biomethanol</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Braunkohlenbriketts">
+      <annotation>
+        <documentation>Braunkohlenbriketts</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Braunkohlenkoks">
+      <annotation>
+        <documentation>Braunkohlenkoks</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="BrennlaugeSchwarzlaugeSulfitablauge">
+      <annotation>
+        <documentation>Brennlauge, Schwarzlauge, Sulfitablauge</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Dampf">
+      <annotation>
+        <documentation>Dampf (zum Beispiel Prozesswärme)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Deponiegas">
+      <annotation>
+        <documentation>Deponiegas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Dieselkraftstoff">
+      <annotation>
+        <documentation>Dieselkraftstoff</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="EnergiepflanzenZurVerbrennung">
+      <annotation>
+        <documentation>Energiepflanzen zur Verbrennung (z.B. Kurzumtriebs-Holz)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="ErdgasErdoelgas">
+      <annotation>
+        <documentation>Erdgas, Erdölgas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="FesteBiogeneStoffe">
+      <annotation>
+        <documentation>Feste biogene Stoffe</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="FesteBiogeneStoffeUndAbfaelleOhneHolz">
+      <annotation>
+        <documentation>Feste biogene Stoffe und Abfälle (ohne Holz)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="FluessigeBiogeneStoffeUndAbfaelle">
+      <annotation>
+        <documentation>Flüssige biogene Stoffe und Abfälle</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Fluessiggas">
+      <annotation>
+        <documentation>Flüssiggas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="GrubengasVerbrennung">
+      <annotation>
+        <documentation>Grubengas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Hartbraunkohlen">
+      <annotation>
+        <documentation>Hartbraunkohlen</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Harzoel">
+      <annotation>
+        <documentation>Harzöl</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="HeizoelLeicht">
+      <annotation>
+        <documentation>Heizöl, leicht</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="HeizoelSchwer">
+      <annotation>
+        <documentation>Heizöl, schwer</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="HochofengasKonvertergas">
+      <annotation>
+        <documentation>Hochofengas, Konvertergas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="HolzgasGasBiomasse">
+      <annotation>
+        <documentation>Holzgas (Gas Biomasse)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Holzkohle">
+      <annotation>
+        <documentation>Holzkohle </documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Holzreste">
+      <annotation>
+        <documentation>Holzreste (z.B. aus Schreinereien, auch Spanholz)</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="HolzspaeneSaegemehl">
+      <annotation>
+        <documentation>Holzspäne, Sägemehl</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Industrieabfall">
+      <annotation>
+        <documentation>Industrieabfall</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Klaergas">
+      <annotation>
+        <documentation>Klärgas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="KohlenwertstoffeAusSteinkohle">
+      <annotation>
+        <documentation>Kohlenwertstoffe aus Steinkohle</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Kokereigas">
+      <annotation>
+        <documentation>Kokereigas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="PalmoelPflanzenoel">
+      <annotation>
+        <documentation>Palmöl u.a. Pflanzenöle</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="PelletsHolz">
+      <annotation>
+        <documentation>Holz-Pellets, Holz-Briketts</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Petrolkoks">
+      <annotation>
+        <documentation>Petrolkoks</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Raffineriegas">
+      <annotation>
+        <documentation>Raffineriegas</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="RindeLandschaftspflegeholz">
+      <annotation>
+        <documentation>Rinde und Landschaftspflegeholz</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Rohbraunkohlen">
+      <annotation>
+        <documentation>Rohbraunkohlen</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="SchleifstaubBiogen">
+      <annotation>
+        <documentation>Schleifstaub, biogen</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="SonstigeHergestellteGase">
+      <annotation>
+        <documentation>Sonstige hergestellte Gase</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="StaubUndTrockenkohle">
+      <annotation>
+        <documentation>Staub- und Trockenkohle</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Steinkohlen">
+      <annotation>
+        <documentation>Steinkohlen</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Steinkohlenbriketts">
+      <annotation>
+        <documentation>Steinkohlenbriketts</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Steinkohlenkoks">
+      <annotation>
+        <documentation>Steinkohlenkoks</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="StrohStrohpellets">
+      <annotation>
+        <documentation>Stroh, Strohpellets</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Terpentin">
+      <annotation>
+        <documentation>Terpentin</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Tierfett">
+      <annotation>
+        <documentation>Tierfett</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="TierUndBlutmehl">
+      <annotation>
+        <documentation>Tier- und Blutmehl</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Waerme">
+      <annotation>
+        <documentation>Wärme</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="WaldHolzhackschnitzelWaldScheitholzWaldKronenholz">
+      <annotation>
+        <documentation>Wald-Holzhackschnitzel, Wald-Scheitholz, -Kronenholz</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="WaldStammholzRundholz">
+      <annotation>
+        <documentation>Wald-Stammholz, Rundholz</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Wasserstoff">
+      <annotation>
+        <documentation>Wasserstoff</documentation>
+      </annotation>
+    </enumeration>
+    <enumeration value="Wirbelschichtkohle">
+      <annotation>
+        <documentation>Wirbelschichtkohle</documentation>
+      </annotation>
+    </enumeration>
+  </restriction>
   </simpleType>
   <!-- Enumeration: WechselrichterEnum" -->
   <simpleType name="WechselrichterEnum">
