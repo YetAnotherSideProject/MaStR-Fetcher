@@ -78,7 +78,7 @@
                 <configuration>
                     <generatePackage>dev.yasp.mastrfetcher.wsdl</generatePackage>
                     <schemaLanguage>WSDL</schemaLanguage>
-                    <schemaDirectory>src/main/resources/MaStRWebserviceSchema/wsdl</schemaDirectory>
+                    <schemaDirectory>${basedir}/src/main/resources/MaStRWebserviceSchema/wsdl</schemaDirectory>
                     <schemaIncludes>
                         <include>*.wsdl</include>
                     </schemaIncludes>
