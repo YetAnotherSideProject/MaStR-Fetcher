@@ -1,4 +1,4 @@
-package dev.yasp.mastrfetcher.client;
+package dev.yasp.mastrfetcher.soapclient;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
