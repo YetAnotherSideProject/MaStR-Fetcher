@@ -1,14 +1,15 @@
 package dev.yasp.mastrfetcher;
 
-import dev.yasp.mastrfetcher.dao.AnlagenMonatsBestandRepository;
-import dev.yasp.mastrfetcher.model.AnlagenMonatsBestand;
-import dev.yasp.mastrfetcher.model.EinheitDTO;
-import dev.yasp.mastrfetcher.soapclient.StromerzeugerClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+
+import dev.yasp.mastrfetcher.dao.AnlagenBestandRepository;
+import dev.yasp.mastrfetcher.model.AnlagenBestand;
+import dev.yasp.mastrfetcher.soapclient.EinheitDTO;
+import dev.yasp.mastrfetcher.soapclient.StromerzeugerClient;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,15 +22,15 @@ import java.util.List;
 public class MaStRFetcherService {
     private static final Logger LOG = LoggerFactory.getLogger(MaStRFetcherService.class);
     private final StromerzeugerClient client;
-    private final AnlagenMonatsBestandRepository repository;
+    private final AnlagenBestandRepository repository;
 
-    public MaStRFetcherService(StromerzeugerClient client, AnlagenMonatsBestandRepository repository) {
+    public MaStRFetcherService(StromerzeugerClient client, AnlagenBestandRepository repository) {
         this.client = client;
         this.repository = repository;
     }
 
     public void fetchData(int gemeindeSchluessel, boolean completeFetch) {
-        // TODO complete Fetch evalurieren ob NICHT überhaupt sinnvoll ist
+        // TODO complete Fetch evaluieren ob NICHT überhaupt sinnvoll ist
         LOG.info("Anlagen Daten abfragen: Gemeindeschlüssel={}, completeFetch={}", gemeindeSchluessel, completeFetch);
         List<Pair<YearMonth, List<EinheitDTO>>> monatsRohDaten = new ArrayList<>();
 
@@ -65,7 +66,7 @@ public class MaStRFetcherService {
         monatsRohDaten.sort(Comparator.comparing(Pair::getFirst));
 
         // Daten aggregieren und in Persistenz Objekte überführen
-        List<AnlagenMonatsBestand> monatsDaten = new ArrayList<>();
+        List<AnlagenBestand> monatsDaten = new ArrayList<>();
         for(Pair<YearMonth, List<EinheitDTO>> currentMonthData : monatsRohDaten) {
             int zubauAnlagen = currentMonthData.getSecond().size();
             BigDecimal zubauLeistung = currentMonthData.getSecond().stream()
@@ -73,7 +74,7 @@ public class MaStRFetcherService {
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
             if(monatsDaten.isEmpty()) {
                 // 1. Monat, keine Vormonatsaggregation
-                monatsDaten.add(new AnlagenMonatsBestand(
+                monatsDaten.add(new AnlagenBestand(
                         gemeindeSchluessel,
                         currentMonthData.getFirst().toString(),
                         baseAnlagenAnz + zubauAnlagen,
@@ -84,7 +85,7 @@ public class MaStRFetcherService {
                 // Aggregieren Summen über Vormonat - Durch if Abfrage kein Null pointer möglich
                 int anzAnlagen = CollectionUtils.lastElement(monatsDaten).getAnzahlAnlagen() + zubauAnlagen;
                 BigDecimal bruttoLeistung = CollectionUtils.lastElement(monatsDaten).getBruttoleistung().add(zubauLeistung);
-                monatsDaten.add(new AnlagenMonatsBestand(
+                monatsDaten.add(new AnlagenBestand(
                         gemeindeSchluessel,
                         currentMonthData.getFirst().toString(),
                         anzAnlagen,

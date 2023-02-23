@@ -1,11 +1,11 @@
 package dev.yasp.mastrfetcher.soapclient;
 
-import dev.yasp.mastrfetcher.model.EinheitDTO;
-import dev.yasp.mastrfetcher.wsdl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
+
+import dev.yasp.mastrfetcher.wsdl.*;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -25,7 +25,7 @@ public class StromerzeugerClient extends WebServiceGatewaySupport {
                 after,
                 before);
 
-        if(response.getErgebniscode() != ErgebniscodeTyp.OK) {
+        if (response.getErgebniscode() != ErgebniscodeTyp.OK) {
             log.error("PV Einheiten Abfrage nicht erfolgreich, Ergebniscode: " + response.getErgebniscode());
             return Collections.emptyList();
         }
@@ -45,10 +45,10 @@ public class StromerzeugerClient extends WebServiceGatewaySupport {
         request.setPostleitzahl(postleitzahl);
         request.setEinheitBetriebsstatus(AnlagenBetriebsStatusEnum.IN_BETRIEB);
         try {
-            if(after != LocalDate.MIN) {
+            if (after != LocalDate.MIN) {
                 request.setInbetriebnahmedatumGroesser(DatatypeFactory.newInstance().newXMLGregorianCalendar(after.toString()));
             }
-            if(before != LocalDate.MAX) {
+            if (before != LocalDate.MAX) {
                 request.setInbetriebnahmedatumKleiner(DatatypeFactory.newInstance().newXMLGregorianCalendar(before.toString()));
             }
         } catch (DatatypeConfigurationException e) {

@@ -6,13 +6,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
+        <version>3.0.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>dev.yasp</groupId>
     <artifactId>mastrfetcher</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>MaStR-Fetcher</name>
     <description>MaStR-Fetcher</description>
 
@@ -62,7 +62,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
             <plugin>
                 <!-- Generiert Domain Klassen des SOAP Endpoints entsprechend der wsdl bzw. xsd + xjb Dateien -->
                 <groupId>com.helger.maven</groupId>
@@ -91,5 +90,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

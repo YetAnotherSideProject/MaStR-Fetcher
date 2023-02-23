@@ -8,25 +8,24 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "anlagenmonatsbestand", schema = "public")
-@IdClass(AnlagenMonatsBestandId.class)
-public class AnlagenMonatsBestand {
+@Table(name = "anlagen_bestand", schema = "public")
+@IdClass(AnlagenBestandId.class)
+public class AnlagenBestand {
     @Id
     private int gemeindeSchluessel;
     @Id
     private String monat;
-
     private int anzahlAnlagen, zubauAnzahl;
     private BigDecimal bruttoleistung, zubauLeistung;
 
-    public AnlagenMonatsBestand() {
+    public AnlagenBestand() {
         this.anzahlAnlagen = 0;
         this.zubauAnzahl = 0;
         this.bruttoleistung = BigDecimal.ZERO;
         this.zubauLeistung = BigDecimal.ZERO;
     }
 
-    public AnlagenMonatsBestand(int gemeindeSchluessel, String monat, int anzahlAnlagen, int zubauAnzahl, BigDecimal bruttoleistung, BigDecimal zubauLeistung) {
+    public AnlagenBestand(int gemeindeSchluessel, String monat, int anzahlAnlagen, int zubauAnzahl, BigDecimal bruttoleistung, BigDecimal zubauLeistung) {
         this.gemeindeSchluessel = gemeindeSchluessel;
         this.monat = monat;
         this.anzahlAnlagen = anzahlAnlagen;
