@@ -1,0 +1,9 @@
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb"
+          xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc">
+    <!-- Wird benötigt um von den XML/XSD Definitionen benötigte RootElemente anzulegen,
+    max. Anzahl Enum Members muss über Default 256 gesetzt werden
+    wird vom maven-jax-plugin beim Kompilieren/generieren der Sourcen verwendet -->
+    <globalBindings typesafeEnumMaxMembers="300">
+        <xjc:simple/>
+    </globalBindings>
+</bindings>

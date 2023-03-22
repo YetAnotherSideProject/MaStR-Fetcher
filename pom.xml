@@ -71,16 +71,15 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <generatePackage>dev.yasp.mastrfetcher.wsdl</generatePackage>
-                    <schemaLanguage>WSDL</schemaLanguage>
-                    <schemaDirectory>${basedir}/src/main/resources/MaStRWebserviceSchema/wsdl</schemaDirectory>
+                    <generatePackage>dev.yasp.mastrfetcher.webservice</generatePackage>
+                    <schemaDirectory>${basedir}/src/main/resources/MaStRWebserviceSchema/xsd</schemaDirectory>
                     <schemaIncludes>
-                        <include>*.wsdl</include>
+                        <include>*.xsd</include>
                     </schemaIncludes>
                     <!-- Bindings ergänzen/konfigurieren den Java-XML-Bind Prozess -->
                     <bindingDirectory>${basedir}/src/main/resources/MaStRWebserviceSchema</bindingDirectory>
                     <bindingIncludes>
-                        <include>*.xjb</include>
+                        <include>BindingConfiguration.xjb</include>
                     </bindingIncludes>
                 </configuration>
             </plugin>
