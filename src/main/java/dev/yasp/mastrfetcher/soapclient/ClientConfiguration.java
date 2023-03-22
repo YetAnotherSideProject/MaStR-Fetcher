@@ -12,6 +12,7 @@ import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 public class ClientConfiguration {
 
     private final Environment env;
+
     public ClientConfiguration(Environment env) {
         this.env = env;
     }
@@ -20,7 +21,7 @@ public class ClientConfiguration {
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         // this package must match the package in the <generatePackage> specified in pom.xml
-        marshaller.setContextPath("dev.yasp.mastrfetcher.wsdl");
+        marshaller.setContextPath("dev.yasp.mastrfetcher.webservice");
         return marshaller;
     }
 
@@ -28,8 +29,7 @@ public class ClientConfiguration {
     SOAP Version auf 12 (1.2) setzen, default ist 11 (1.1)
      */
     @Bean
-    WebServiceMessageFactory messageFactory()
-    {
+    WebServiceMessageFactory messageFactory() {
         SaajSoapMessageFactory messageFactory = new SaajSoapMessageFactory();
         messageFactory.setSoapVersion(SoapVersion.SOAP_12);
         return messageFactory;
