@@ -42,7 +42,7 @@ public class MaStRFetcherService {
         List<EinheitDTO> before = this.fetchData(gemeindeSchluessel, LocalDate.MIN, month.atDay(1));
         // Abfrage aller Monate ab Startmonat bis zum letzten
         // TODO Abfragen parallelisieren, API Limits prüfen
-        while(month.isBefore(YearMonth.now())) {
+        while (month.isBefore(YearMonth.now())) {
             monatsRohDaten.add(Pair.of(
                     month,
                     this.fetchData(
@@ -67,12 +67,12 @@ public class MaStRFetcherService {
 
         // Daten aggregieren und in Persistenz Objekte überführen
         List<AnlagenBestand> monatsDaten = new ArrayList<>();
-        for(Pair<YearMonth, List<EinheitDTO>> currentMonthData : monatsRohDaten) {
+        for (Pair<YearMonth, List<EinheitDTO>> currentMonthData : monatsRohDaten) {
             int zubauAnlagen = currentMonthData.getSecond().size();
             BigDecimal zubauLeistung = currentMonthData.getSecond().stream()
                     .map(EinheitDTO::bruttoleistung)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
-            if(monatsDaten.isEmpty()) {
+            if (monatsDaten.isEmpty()) {
                 // 1. Monat, keine Vormonatsaggregation
                 monatsDaten.add(new AnlagenBestand(
                         gemeindeSchluessel,
