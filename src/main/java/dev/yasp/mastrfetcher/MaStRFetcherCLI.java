@@ -7,6 +7,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.YearMonth;
 import java.util.Set;
 
 @SpringBootApplication
@@ -26,7 +27,7 @@ public class MaStRFetcherCLI implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         // Parse & validate arguments
         Set<String> optionArgs = args.getOptionNames();
-        if(!optionArgs.contains("gemeindeSchluessel")) {
+        if (!optionArgs.contains("gemeindeSchluessel")) {
             throw new IllegalArgumentException("Required Argument --gemeindeSchluessel=<gemeindeSchluessel> missing");
         }
         int gemeindeSchluessel = Integer.parseInt(args.getOptionValues("gemeindeSchluessel").get(0));
@@ -36,6 +37,6 @@ public class MaStRFetcherCLI implements ApplicationRunner {
         LOG.info("Optional Argument parsed completeFetch: " + completeFetch);
 
         // TODO vorher fetch Gemeinde daten
-        this.fetchService.fetchData(gemeindeSchluessel, completeFetch);
+        this.fetchService.fetchData(YearMonth.of(2010, 1), YearMonth.now().minusMonths(1), gemeindeSchluessel, completeFetch);
     }
 }

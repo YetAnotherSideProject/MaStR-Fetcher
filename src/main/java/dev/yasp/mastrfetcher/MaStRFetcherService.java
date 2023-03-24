@@ -29,7 +29,7 @@ public class MaStRFetcherService {
         this.repository = repository;
     }
 
-    public void fetchData(int gemeindeSchluessel, boolean completeFetch) {
+    public void fetchData(YearMonth startMonth, YearMonth endMonth, int gemeindeSchluessel, boolean completeFetch) {
         // TODO complete Fetch evaluieren ob NICHT überhaupt sinnvoll ist
         LOG.info("Anlagen Daten abfragen: Gemeindeschlüssel={}, completeFetch={}", gemeindeSchluessel, completeFetch);
         List<Pair<YearMonth, List<EinheitDTO>>> monatsRohDaten = new ArrayList<>();
@@ -37,21 +37,21 @@ public class MaStRFetcherService {
         // Start zur Jahrtausendwende, davor nur minimale Daten
         // TODO konfigurierbar machen
         // TODO Zusätzlich zu den reinen MOnatsdaten alle PV Anlagen > 30 KW rausfiltern und mit Standort speichern für Karten Anzeige
-        YearMonth month = YearMonth.of(2010, 1);
+        YearMonth currentMonth = startMonth;
         // Abfrage der Daten vor dem Startmonat (bis 1. Tag des Monats) für Aggregation
-        List<EinheitDTO> before = this.fetchData(gemeindeSchluessel, LocalDate.MIN, month.atDay(1));
+        List<EinheitDTO> before = this.fetchData(gemeindeSchluessel, LocalDate.MIN, currentMonth.atDay(1));
         // Abfrage aller Monate ab Startmonat bis zum letzten
         // TODO Abfragen parallelisieren, API Limits prüfen
-        while (month.isBefore(YearMonth.now())) {
+        while (currentMonth.isBefore(endMonth.plusMonths(1))) {
             monatsRohDaten.add(Pair.of(
-                    month,
+                    currentMonth,
                     this.fetchData(
                             gemeindeSchluessel,
                             // Nach dem letzten Tag des Vormonats
-                            month.atDay(1).minusDays(1),
+                            currentMonth.atDay(1).minusDays(1),
                             // Vor dem ersten Tag des Folgemonats
-                            month.atEndOfMonth().plusDays(1))));
-            month = month.plusMonths(1);
+                            currentMonth.atEndOfMonth().plusDays(1))));
+            currentMonth = currentMonth.plusMonths(1);
         }
 
         this.aggregateAndSaveMonthData(
