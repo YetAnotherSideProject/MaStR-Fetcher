@@ -30,18 +30,18 @@ public class MaStRFetcherService {
     }
 
     public void fetchData(YearMonth startMonth, YearMonth endMonth, int gemeindeSchluessel, boolean completeFetch) {
-        // TODO complete Fetch evaluieren ob NICHT überhaupt sinnvoll ist
+        //TODO complete Fetch evaluieren ob NICHT überhaupt sinnvoll ist
         LOG.info("Anlagen Daten abfragen: Gemeindeschlüssel={}, completeFetch={}", gemeindeSchluessel, completeFetch);
         List<Pair<YearMonth, List<EinheitDTO>>> monatsRohDaten = new ArrayList<>();
 
         // Start zur Jahrtausendwende, davor nur minimale Daten
-        // TODO konfigurierbar machen
-        // TODO Zusätzlich zu den reinen MOnatsdaten alle PV Anlagen > 30 KW rausfiltern und mit Standort speichern für Karten Anzeige
+        //TODO konfigurierbar machen
+        //  Zusätzlich zu den reinen Monatsdaten alle PV Anlagen > 30 KW rausfiltern und mit Standort speichern für Karten Anzeige
         YearMonth currentMonth = startMonth;
         // Abfrage der Daten vor dem Startmonat (bis 1. Tag des Monats) für Aggregation
         List<EinheitDTO> before = this.fetchData(gemeindeSchluessel, LocalDate.MIN, currentMonth.atDay(1));
         // Abfrage aller Monate ab Startmonat bis zum letzten
-        // TODO Abfragen parallelisieren, API Limits prüfen
+        //TODO Abfragen parallelisieren, API Limits prüfen
         while (currentMonth.isBefore(endMonth.plusMonths(1))) {
             monatsRohDaten.add(Pair.of(
                     currentMonth,
@@ -101,7 +101,7 @@ public class MaStRFetcherService {
 
     private List<EinheitDTO> fetchData(int gemeindeschluessel, LocalDate after, LocalDate before) {
         LOG.info("Daten abfragen für Gemeindeschlüssel {}, Zeitraum nach {} bis {}", gemeindeschluessel, after, before);
-        // TODO Mapping Gemeindeschlüssel auf PLZ (möglicherweise mehrere, manuelles abspeichern in DB?)
+        //TODO Mapping Gemeindeschlüssel auf PLZ (möglicherweise mehrere, manuelles abspeichern in DB?)
         return this.client.requestPVEinheiten(48268, after, before);
     }
 }

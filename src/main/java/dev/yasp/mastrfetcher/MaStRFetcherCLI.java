@@ -36,7 +36,7 @@ public class MaStRFetcherCLI implements ApplicationRunner {
         boolean completeFetch = optionArgs.contains("completeFetch");
         LOG.info("Optional Argument parsed completeFetch: " + completeFetch);
 
-        // TODO vorher fetch Gemeinde daten
+        //TODO vorher fetch Gemeinde daten
         this.fetchService.fetchData(YearMonth.of(2010, 1), YearMonth.now().minusMonths(1), gemeindeSchluessel, completeFetch);
     }
 }
