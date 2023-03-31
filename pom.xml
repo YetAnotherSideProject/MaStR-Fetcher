@@ -17,7 +17,8 @@
     <description>MaStR-Fetcher</description>
 
     <properties>
-        <java.version>19</java.version>
+        <!-- java.version is a Spring Boot property, Maven standalone uses compiler plugin configuration -->
+        <java.version>20</java.version>
     </properties>
 
     <dependencies>
