@@ -1,4 +1,4 @@
-package dev.yasp.mastrfetcher.soapclient;
+package dev.yasp.mastrfetcher.client;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +36,8 @@ public class ClientConfiguration {
     }
 
     @Bean
-    public StromerzeugerClient stromerzeugerClient(Jaxb2Marshaller marshaller, WebServiceMessageFactory messageFactory) {
+    public StromerzeugerClient stromerzeugerClient(Jaxb2Marshaller marshaller,
+                                                   WebServiceMessageFactory messageFactory) {
         StromerzeugerClient client = new StromerzeugerClient();
         client.setApiKey(env.getProperty("mastr.webservice.apikey"));
         client.setMarktakteurMastrNummer(env.getProperty("mastr.marktakteurmastrnummer"));
