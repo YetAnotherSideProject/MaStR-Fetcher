@@ -28,6 +28,18 @@
     name="GetListeFreigegebeneEinheitenResponse"
     type="mastr:GetListeFreigegebeneEinheitenAntwort" />
   <element
+    name="GetMeineEinheitenRequest"
+    type="mastr:GetMeineEinheitenParameter" />
+  <element
+    name="GetMeineEinheitenResponse"
+    type="mastr:GetMeineEinheitenAntwort" />
+  <element
+    name="GetListeEinheitenInMeinemNetzRequest"
+    type="mastr:GetListeEinheitenInMeinemNetzParameter" />
+  <element
+    name="GetListeEinheitenInMeinemNetzResponse"
+    type="mastr:GetListeEinheitenInMeinemNetzAntwort" />
+  <element
     name="GetListeGeloeschteUndDeaktivierteEinheitenRequest"
     type="mastr:GetListeGeloeschteUndDeaktivierteEinheitenParameter" />
   <element
@@ -58,11 +70,11 @@
     name="GetEinheitWasserResponse"
     type="mastr:GetEinheitWasserAntwort" />
   <element
-    name="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest"
-    type="mastr:GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungParameter" />
+    name="GetEinheitGeothermieGrubengasDruckentspannungRequest"
+    type="mastr:GetEinheitGeothermieGrubengasDruckentspannungParameter" />
   <element
-    name="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse"
-    type="mastr:GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungAntwort" />
+    name="GetEinheitGeothermieGrubengasDruckentspannungResponse"
+    type="mastr:GetEinheitGeothermieGrubengasDruckentspannungAntwort" />
   <element
     name="GetEinheitVerbrennungRequest"
     type="mastr:GetEinheitVerbrennungParameter" />
@@ -155,11 +167,11 @@
     name="GetAnlageEegSpeicherResponse"
     type="mastr:GetAnlageEegSpeicherAntwort" />
   <element
-    name="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest"
-    type="mastr:GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungParameter" />
+    name="GetAnlageEegGeothermieGrubengasDruckentspannungRequest"
+    type="mastr:GetAnlageEegGeothermieGrubengasDruckentspannungParameter" />
   <element
-    name="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse"
-    type="mastr:GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungAntwort" />
+    name="GetAnlageEegGeothermieGrubengasDruckentspannungResponse"
+    type="mastr:GetAnlageEegGeothermieGrubengasDruckentspannungAntwort" />
   <element
     name="GetAnlageKwkRequest"
     type="mastr:GetAnlageKwkParameter" />

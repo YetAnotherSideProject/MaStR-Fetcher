@@ -81,6 +81,12 @@
     name="SetKorrekturBetriebsstatusAbgeschlossenResponse"
     type="mastr:SetKorrekturBetriebsstatusAbgeschlossenAntwort" />
   <element
+    name="SetEegAnlagenschluesselRequest"
+    type="mastr:SetEegAnlagenschluesselParameter" />
+  <element
+    name="SetEegAnlagenschluesselResponse"
+    type="mastr:SetEegAnlagenschluesselAntwort" />
+  <element
     name="SetStilllegungAbgelehntRequest"
     type="mastr:SetStilllegungAbgelehntParameter" />
   <element
@@ -129,11 +135,11 @@
     name="SetKorrekturVorschlagEinheitWasserResponse"
     type="mastr:SetKorrekturVorschlagEinheitWasserAntwort" />
   <element
-    name="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest"
-    type="mastr:SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungParameter" />
+    name="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungRequest"
+    type="mastr:SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungParameter" />
   <element
-    name="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse"
-    type="mastr:SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungAntwort" />
+    name="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungResponse"
+    type="mastr:SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungAntwort" />
   <element
     name="SetKorrekturVorschlagEinheitVerbrennungRequest"
     type="mastr:SetKorrekturVorschlagEinheitVerbrennungParameter" />
@@ -201,11 +207,11 @@
     name="GetKorrekturVorschlagEinheitWasserResponse"
     type="mastr:GetKorrekturVorschlagEinheitWasserAntwort" />
   <element
-    name="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest"
-    type="mastr:GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungParameter" />
+    name="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungRequest"
+    type="mastr:GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungParameter" />
   <element
-    name="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse"
-    type="mastr:GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungAntwort" />
+    name="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungResponse"
+    type="mastr:GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungAntwort" />
   <element
     name="GetKorrekturVorschlagEinheitVerbrennungRequest"
     type="mastr:GetKorrekturVorschlagEinheitVerbrennungParameter" />

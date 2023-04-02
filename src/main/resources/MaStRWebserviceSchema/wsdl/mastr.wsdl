@@ -162,6 +162,26 @@
       name="parametersO"
       element="mastranlage:GetListeFreigegebeneEinheitenResponse" />
   </wsdl:message>
+  <wsdl:message name="GetMeineEinheitenRequest">
+    <wsdl:part
+      name="parametersI"
+      element="mastranlage:GetMeineEinheitenRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetMeineEinheitenResponse">
+    <wsdl:part
+      name="parametersO"
+      element="mastranlage:GetMeineEinheitenResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListeEinheitenInMeinemNetzRequest">
+    <wsdl:part
+      name="parametersI"
+      element="mastranlage:GetListeEinheitenInMeinemNetzRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetListeEinheitenInMeinemNetzResponse">
+    <wsdl:part
+      name="parametersO"
+      element="mastranlage:GetListeEinheitenInMeinemNetzResponse" />
+  </wsdl:message>
   <wsdl:message name="GetListeGeloeschteUndDeaktivierteEinheitenRequest">
     <wsdl:part
       name="parametersI"
@@ -212,15 +232,15 @@
       name="parametersO"
       element="mastranlage:GetEinheitWasserResponse" />
   </wsdl:message>
-  <wsdl:message name="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest">
+  <wsdl:message name="GetEinheitGeothermieGrubengasDruckentspannungRequest">
     <wsdl:part
       name="parametersI"
-      element="mastranlage:GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest" />
+      element="mastranlage:GetEinheitGeothermieGrubengasDruckentspannungRequest" />
   </wsdl:message>
-  <wsdl:message name="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse">
+  <wsdl:message name="GetEinheitGeothermieGrubengasDruckentspannungResponse">
     <wsdl:part
       name="parametersO"
-      element="mastranlage:GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse" />
+      element="mastranlage:GetEinheitGeothermieGrubengasDruckentspannungResponse" />
   </wsdl:message>
   <wsdl:message name="GetEinheitVerbrennungRequest">
     <wsdl:part
@@ -373,15 +393,15 @@
       name="parametersO"
       element="mastranlage:GetAnlageEegSpeicherResponse" />
   </wsdl:message>
-  <wsdl:message name="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest">
+  <wsdl:message name="GetAnlageEegGeothermieGrubengasDruckentspannungRequest">
     <wsdl:part
       name="parametersI"
-      element="mastranlage:GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest" />
+      element="mastranlage:GetAnlageEegGeothermieGrubengasDruckentspannungRequest" />
   </wsdl:message>
-  <wsdl:message name="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse">
+  <wsdl:message name="GetAnlageEegGeothermieGrubengasDruckentspannungResponse">
     <wsdl:part
       name="parametersO"
-      element="mastranlage:GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse" />
+      element="mastranlage:GetAnlageEegGeothermieGrubengasDruckentspannungResponse" />
   </wsdl:message>
   <wsdl:message name="GetAnlageKwkRequest">
     <wsdl:part
@@ -645,6 +665,16 @@
       name="parametersO"
       element="mastrnetzbetreiberpruefung:SetKorrekturBetriebsstatusAbgeschlossenResponse" />
   </wsdl:message>
+  <wsdl:message name="SetEegAnlagenschluesselRequest">
+    <wsdl:part
+      name="parametersI"
+      element="mastrnetzbetreiberpruefung:SetEegAnlagenschluesselRequest" />
+  </wsdl:message>
+  <wsdl:message name="SetEegAnlagenschluesselResponse">
+    <wsdl:part
+      name="parametersO"
+      element="mastrnetzbetreiberpruefung:SetEegAnlagenschluesselResponse" />
+  </wsdl:message>
   <wsdl:message name="SetStilllegungAbgelehntRequest">
     <wsdl:part
       name="parametersI"
@@ -726,16 +756,16 @@
       element="mastrnetzbetreiberpruefung:SetKorrekturVorschlagEinheitWasserResponse" />
   </wsdl:message>
   <wsdl:message
-    name="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest">
+    name="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungRequest">
     <wsdl:part
       name="parametersI"
-      element="mastrnetzbetreiberpruefung:SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest" />
+      element="mastrnetzbetreiberpruefung:SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungRequest" />
   </wsdl:message>
   <wsdl:message
-    name="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse">
+    name="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungResponse">
     <wsdl:part
       name="parametersO"
-      element="mastrnetzbetreiberpruefung:SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse" />
+      element="mastrnetzbetreiberpruefung:SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungResponse" />
   </wsdl:message>
   <wsdl:message name="SetKorrekturVorschlagEinheitVerbrennungRequest">
     <wsdl:part
@@ -848,16 +878,16 @@
       element="mastrnetzbetreiberpruefung:GetKorrekturVorschlagEinheitWasserResponse" />
   </wsdl:message>
   <wsdl:message
-    name="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest">
+    name="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungRequest">
     <wsdl:part
       name="parametersI"
-      element="mastrnetzbetreiberpruefung:GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest" />
+      element="mastrnetzbetreiberpruefung:GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungRequest" />
   </wsdl:message>
   <wsdl:message
-    name="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse">
+    name="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungResponse">
     <wsdl:part
       name="parametersO"
-      element="mastrnetzbetreiberpruefung:GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse" />
+      element="mastrnetzbetreiberpruefung:GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungResponse" />
   </wsdl:message>
   <wsdl:message name="GetKorrekturVorschlagEinheitVerbrennungRequest">
     <wsdl:part
@@ -1143,14 +1173,33 @@
       <wsdl:output message="mastr:GetListeAlleEinheitenResponse" />
     </wsdl:operation>
     <wsdl:operation name="GetListeFreigegebeneEinheiten">
+      <wsdl:documentation>Diese Funktion ermöglicht 
+	  das Abrufen einer Liste mit allen Einheiten, bei denen der 
+	  abrufende Marktakteur auf Grund von Datenfreigaben eine 
+	  Leseberechtigung besitzt. Dies ist gegeben, wenn ihm mindestens 
+	  eines der Geheimnisfelder der Einheit über eine Datenfreigabe 
+	  freigegeben wurde.
+      </wsdl:documentation>
+      <wsdl:input message="mastr:GetListeFreigegebeneEinheitenRequest" />
+      <wsdl:output message="mastr:GetListeFreigegebeneEinheitenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMeineEinheiten">
+      <wsdl:documentation>Diese Funktion ermöglicht das Abrufen einer
+	  Liste mit allen Einheiten, bei denen der Marktakteur Anlagenbetreiber
+	  ist. Die Ausgabe von Daten einer gelöschten Einheit erfolgt eingeschränkt.
+      </wsdl:documentation>
+      <wsdl:input message="mastr:GetMeineEinheitenRequest" />
+      <wsdl:output message="mastr:GetMeineEinheitenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListeEinheitenInMeinemNetz">
       <wsdl:documentation>Diese Funktion ermöglicht das Abrufen
 	  einer Liste mit allen Einheiten, bei denen der Netzbetreiber
 	  auf Grund von Datenfreigaben eine Leseberechtigung besitzt.
 	  Dies ist gegeben, wenn ihm mindestens eines der Geheimnisfelder
 	  der Einheit über eine Datenfreigabe freigegeben wurde.
       </wsdl:documentation>
-      <wsdl:input message="mastr:GetListeFreigegebeneEinheitenRequest" />
-      <wsdl:output message="mastr:GetListeFreigegebeneEinheitenResponse" />
+      <wsdl:input message="mastr:GetListeEinheitenInMeinemNetzRequest" />
+      <wsdl:output message="mastr:GetListeEinheitenInMeinemNetzResponse" />
     </wsdl:operation>
 	<wsdl:operation name="GetListeGeloeschteUndDeaktivierteEinheiten">
       <wsdl:documentation>Diese Funktion ermöglicht das Abrufen einer
@@ -1199,7 +1248,7 @@
       <wsdl:input message="mastr:GetEinheitWasserRequest" />
       <wsdl:output message="mastr:GetEinheitWasserResponse" />
     </wsdl:operation>
-    <wsdl:operation name="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung">
+    <wsdl:operation name="GetEinheitGeothermieGrubengasDruckentspannung">
       <wsdl:documentation>Diese Funktion ermöglicht das Abrufen der
         Daten für eine Einheit der Art „Geo-, Solarthermie, Grubengas,
         Klärschlamm“. Es können alle öffentlichen Felder einer Einheit
@@ -1207,9 +1256,9 @@
         Datenfelder bedarf es einer separaten Datenfreigabe.
       </wsdl:documentation>
       <wsdl:input
-        message="mastr:GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest" />
+        message="mastr:GetEinheitGeothermieGrubengasDruckentspannungRequest" />
       <wsdl:output
-        message="mastr:GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse" />
+        message="mastr:GetEinheitGeothermieGrubengasDruckentspannungResponse" />
     </wsdl:operation>
     <wsdl:operation name="GetEinheitVerbrennung">
       <wsdl:documentation>Diese Funktion ermöglicht das Abrufen der
@@ -1364,7 +1413,7 @@
       <wsdl:input message="mastr:GetAnlageEegSpeicherRequest" />
       <wsdl:output message="mastr:GetAnlageEegSpeicherResponse" />
     </wsdl:operation>
-    <wsdl:operation name="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannung">
+    <wsdl:operation name="GetAnlageEegGeothermieGrubengasDruckentspannung">
       <wsdl:documentation>Diese Funktion ermöglicht das Abrufen der
         Daten für eine EEG-Anlage des Typs „Geo-, Solarthermie –
         Gruben-, Klärschlamm“. Eine EEG Geo-, Solarthermie – Gruben-,
@@ -1374,9 +1423,9 @@
         Datenfelder bedarf es einer separaten Datenfreigabe.
       </wsdl:documentation>
       <wsdl:input
-        message="mastr:GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest" />
+        message="mastr:GetAnlageEegGeothermieGrubengasDruckentspannungRequest" />
       <wsdl:output
-        message="mastr:GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse" />
+        message="mastr:GetAnlageEegGeothermieGrubengasDruckentspannungResponse" />
     </wsdl:operation>
     <wsdl:operation name="GetAnlageKwk">
       <wsdl:documentation>Diese Funktion ermöglicht das Abrufen der
@@ -1621,6 +1670,12 @@
       <wsdl:input message="mastr:SetKorrekturBetriebsstatusAbgeschlossenRequest" />
       <wsdl:output message="mastr:SetKorrekturBetriebsstatusAbgeschlossenResponse" />
     </wsdl:operation>
+    <wsdl:operation name="SetEegAnlagenschluessel">
+      <wsdl:documentation>Diese Funktion ermöglicht Netzbetreibenden das Setzen eines EEG-Anlagenschlüssels für eine EEG-Anlage in ihrem Netz
+      </wsdl:documentation>
+      <wsdl:input message="mastr:SetEegAnlagenschluesselRequest" />
+      <wsdl:output message="mastr:SetEegAnlagenschluesselResponse" />
+    </wsdl:operation>
     <wsdl:operation name="SetStilllegungAbgelehnt">
       <wsdl:documentation>Diese Funktion ermöglicht die Angabe, dass der
         Netzbetreiber die Registrierung der Stilllegung einer Einheit ablehnt
@@ -1706,7 +1761,7 @@
       <wsdl:output message="mastr:SetKorrekturVorschlagEinheitWasserResponse" />
     </wsdl:operation>
     <wsdl:operation
-      name="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung">
+      name="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung">
       <wsdl:documentation>Diese Funktion ermöglicht dem Netzbetreiber
         einen Vorschlag zur Datenänderung, im Rahmen einer
         Datenkorrekturaufforderung, an den Anlagenbetreiber zu
@@ -1717,9 +1772,9 @@
         übermittelt werden.
       </wsdl:documentation>
       <wsdl:input
-        message="mastr:SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest" />
+        message="mastr:SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungRequest" />
       <wsdl:output
-        message="mastr:SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse" />
+        message="mastr:SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungResponse" />
     </wsdl:operation>
     <wsdl:operation name="SetKorrekturVorschlagEinheitVerbrennung">
       <wsdl:documentation>Diese Funktion ermöglicht dem Netzbetreiber
@@ -1860,7 +1915,7 @@
       <wsdl:output message="mastr:GetKorrekturVorschlagEinheitWasserResponse" />
     </wsdl:operation>
     <wsdl:operation
-      name="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung">
+      name="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung">
       <wsdl:documentation>Diese Funktion ermöglicht das Abrufen eines
         Vorschlags zur Datenänderung. Die Funktion kann nur von dem
         Netzbetreiber ausgeführt werden, der den Vorschlag ursprünglich
@@ -1868,9 +1923,9 @@
         ist.
       </wsdl:documentation>
       <wsdl:input
-        message="mastr:GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungRequest" />
+        message="mastr:GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungRequest" />
       <wsdl:output
-        message="mastr:GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungResponse" />
+        message="mastr:GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungResponse" />
     </wsdl:operation>
     <wsdl:operation name="GetKorrekturVorschlagEinheitVerbrennung">
       <wsdl:documentation>Diese Funktion ermöglicht das Abrufen eines
@@ -2395,6 +2450,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetEegAnlagenschluessel">
+      <soap:operation soapAction="SetEegAnlagenschluessel" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SetKorrekturVorschlagEinheitWind">
       <soap:operation soapAction="SetKorrekturVorschlagEinheitWind" />
       <wsdl:input>
@@ -2441,9 +2505,9 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation
-      name="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung">
+      name="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung">
       <soap:operation
-        soapAction="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung" />
+        soapAction="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2551,9 +2615,9 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation
-      name="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung">
+      name="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung">
       <soap:operation
-        soapAction="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung" />
+        soapAction="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2766,6 +2830,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetEegAnlagenschluessel">
+      <soap12:operation soapAction="SetEegAnlagenschluessel" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SetKorrekturVorschlagEinheitWind">
       <soap12:operation soapAction="SetKorrekturVorschlagEinheitWind" />
       <wsdl:input>
@@ -2812,9 +2885,9 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation
-      name="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung">
+      name="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung">
       <soap12:operation
-        soapAction="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung" />
+        soapAction="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2922,9 +2995,9 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation
-      name="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung">
+      name="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung">
       <soap12:operation
-        soapAction="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung" />
+        soapAction="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3029,6 +3102,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetMeineEinheiten">
+      <soap:operation soapAction="GetMeineEinheiten" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListeEinheitenInMeinemNetz">
+      <soap:operation soapAction="GetListeEinheitenInMeinemNetz" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
 	<wsdl:operation name="GetListeGeloeschteUndDeaktivierteEinheiten">
       <soap:operation soapAction="GetListeGeloeschteUndDeaktivierteEinheiten" />
       <wsdl:input>
@@ -3065,8 +3156,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung">
-      <soap:operation soapAction="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung" />
+    <wsdl:operation name="GetEinheitGeothermieGrubengasDruckentspannung">
+      <soap:operation soapAction="GetEinheitGeothermieGrubengasDruckentspannung" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3290,8 +3381,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannung">
-      <soap:operation soapAction="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannung" />
+    <wsdl:operation name="GetAnlageEegGeothermieGrubengasDruckentspannung">
+      <soap:operation soapAction="GetAnlageEegGeothermieGrubengasDruckentspannung" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3396,6 +3487,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetMeineEinheiten">
+      <soap12:operation soapAction="GetMeineEinheiten" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListeEinheitenInMeinemNetz">
+      <soap12:operation soapAction="GetListeEinheitenInMeinemNetz" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
 	<wsdl:operation name="GetListeGeloeschteUndDeaktivierteEinheiten">
       <soap12:operation soapAction="GetListeGeloeschteUndDeaktivierteEinheiten" />
       <wsdl:input>
@@ -3432,8 +3541,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung">
-      <soap12:operation soapAction="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung" />
+    <wsdl:operation name="GetEinheitGeothermieGrubengasDruckentspannung">
+      <soap12:operation soapAction="GetEinheitGeothermieGrubengasDruckentspannung" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3657,8 +3766,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannung">
-      <soap12:operation soapAction="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannung" />
+    <wsdl:operation name="GetAnlageEegGeothermieGrubengasDruckentspannung">
+      <soap12:operation soapAction="GetAnlageEegGeothermieGrubengasDruckentspannung" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

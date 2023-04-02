@@ -1521,6 +1521,174 @@ Diese Funktion ermöglicht das Abrufen einer Liste mit allen aktiven, öffentlic
 
 ## GetListeFreigegebeneEinheiten
 
+Diese Funktion ermöglicht das Abrufen einer Liste mit allen Einheiten, bei denen der abrufende Marktakteur auf Grund von Datenfreigaben eine Leseberechtigung besitzt. Dies ist gegeben, wenn ihm mindestens eines der Geheimnisfelder der Einheit über eine Datenfreigabe freigegeben wurde.
+
+### Parameter
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>apiKey</td>
+<td>Der Webdienst-Schlüssel für die Validierung.</td>
+<td>string</td>
+<td>Ja</td>
+<td>4fil24gnio2gno24g2…</td>
+</tr>
+<tr>
+<td>marktakteurMastrNummer</td>
+<td>Die MaStR-Nummer des vom Webdienst-Benutzer verwendeten Marktakteurs</td>
+<td><a href="#marktakteurmastrnummerid">MarktakteurMastrNummerId</a></td>
+<td>Ja</td>
+<td>SNB91234567890</td>
+</tr>
+<tr>
+<td>startAb</td>
+<td>Setzt den Beginn der zu liefernden Datensätze [Standardwert: 1].</td>
+<td>int</td>
+<td>Nein</td>
+<td>100</td>
+</tr>
+<tr>
+<td>datumAb</td>
+<td>Einschränkung der abzurufenden Datenmenge auf geänderte Daten ab dem angegebenen Datum [Standardwert: NULL]</td>
+<td>dateTime</td>
+<td>Nein</td>
+<td>2018-08-25T00:00:00.0000000</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Limit der maximal zu liefernden Datensätze [Standard-/Maximalwert: Maximum des eigenen Limits]</td>
+<td>int</td>
+<td>Nein</td>
+<td>200</td>
+</tr>
+</table>
+
+### Antwort
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>Ergebniscode</td>
+<td>Als Ergebniscode wird angegeben, ob die Anfrage korrekt verarbeitet wurde oder ob Daten nicht gefunden werden können. Bei Listenabfragen wird ebenfalls angegeben, ob weitere Elemente der Liste vorhanden, aber nicht Bestandteil des aktuellen Abrufs sind.</td>
+<td><a href="#ergebniscodetyp">ErgebniscodeTyp</a></td>
+<td>Ja</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>AufrufVeraltet</td>
+<td>Zeichen, ob eine neue Version der Webdienste bereitgestellt wird und bereits auf dem Testsystem existiert.</td>
+<td>boolean</td>
+<td>Ja</td>
+<td>false</td>
+</tr>
+<tr>
+<td>AufrufLebenszeitEnde</td>
+<td>Datum, an dem diese Version des Webservice endet und durch eine neue ersetzt wird.</td>
+<td>dateTime</td>
+<td>Ja</td>
+<td>2018-08-25T00:00:00.0000000 oder NULL</td>
+</tr>
+<tr>
+<td>AufrufVersion</td>
+<td>Die Versionsnummer des Webdienstes.</td>
+<td>int</td>
+<td>Ja</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Einheiten[]</td>
+<td></td>
+<td><a href="#einheit">Einheit</a></td>
+<td>Nein</td>
+<td></td>
+</tr>
+</table>
+
+
+
+## GetMeineEinheiten
+
+Diese Funktion ermöglicht das Abrufen einer Liste mit allen Einheiten, bei denen der Marktakteur Anlagenbetreiber ist. Die Ausgabe von Daten einer gelöschten Einheit erfolgt eingeschränkt.
+
+### Parameter
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>apiKey</td>
+<td>Der Webdienst-Schlüssel für die Validierung.</td>
+<td>string</td>
+<td>Ja</td>
+<td>4fil24gnio2gno24g2…</td>
+</tr>
+<tr>
+<td>marktakteurMastrNummer</td>
+<td>Die MaStR-Nummer des vom Webdienst-Benutzer verwendeten Marktakteurs</td>
+<td><a href="#marktakteurmastrnummerid">MarktakteurMastrNummerId</a></td>
+<td>Ja</td>
+<td>SNB91234567890</td>
+</tr>
+<tr>
+<td>startAb</td>
+<td>Setzt den Beginn der zu liefernden Datensätze [Standardwert: 1].</td>
+<td>int</td>
+<td>Nein</td>
+<td>100</td>
+</tr>
+<tr>
+<td>datumAb</td>
+<td>Einschränkung der abzurufenden Datenmenge auf geänderte Daten ab dem angegebenen Datum [Standardwert: NULL]</td>
+<td>dateTime</td>
+<td>Nein</td>
+<td>2018-08-25T00:00:00.0000000</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Limit der maximal zu liefernden Datensätze [Standard-/Maximalwert: Maximum des eigenen Limits]</td>
+<td>int</td>
+<td>Nein</td>
+<td>200</td>
+</tr>
+</table>
+
+### Antwort
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>Ergebniscode</td>
+<td>Als Ergebniscode wird angegeben, ob die Anfrage korrekt verarbeitet wurde oder ob Daten nicht gefunden werden können. Bei Listenabfragen wird ebenfalls angegeben, ob weitere Elemente der Liste vorhanden, aber nicht Bestandteil des aktuellen Abrufs sind.</td>
+<td><a href="#ergebniscodetyp">ErgebniscodeTyp</a></td>
+<td>Ja</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>AufrufVeraltet</td>
+<td>Zeichen, ob eine neue Version der Webdienste bereitgestellt wird und bereits auf dem Testsystem existiert.</td>
+<td>boolean</td>
+<td>Ja</td>
+<td>false</td>
+</tr>
+<tr>
+<td>AufrufLebenszeitEnde</td>
+<td>Datum, an dem diese Version des Webservice endet und durch eine neue ersetzt wird.</td>
+<td>dateTime</td>
+<td>Ja</td>
+<td>2018-08-25T00:00:00.0000000 oder NULL</td>
+</tr>
+<tr>
+<td>AufrufVersion</td>
+<td>Die Versionsnummer des Webdienstes.</td>
+<td>int</td>
+<td>Ja</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Einheiten[]</td>
+<td></td>
+<td><a href="#einheit">Einheit</a></td>
+<td>Nein</td>
+<td></td>
+</tr>
+</table>
+
+
+
+## GetListeEinheitenInMeinemNetz
+
 Diese Funktion ermöglicht das Abrufen einer Liste mit allen Einheiten, bei denen der Netzbetreiber auf Grund von Datenfreigaben eine Leseberechtigung besitzt. Dies ist gegeben, wenn ihm mindestens eines der Geheimnisfelder der Einheit über eine Datenfreigabe freigegeben wurde.
 
 ### Parameter
@@ -1786,7 +1954,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wi
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -1795,6 +1963,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wi
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -2103,13 +2278,6 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wi
 <td>decimal</td>
 <td>Ja</td>
 <td>148.987</td>
-</tr>
-<tr>
-<td>AnschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
 </tr>
 <tr>
 <td>Schwarzstartfaehigkeit</td>
@@ -2332,7 +2500,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wi
 <td>EegMastrNummer</td>
 <td>MaStR-Nummer der zugeordneten EEG-Anlage</td>
 <td><a href="#eegmastrnummerid">EegMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>EEG91234567890</td>
 </tr>
 </table>
@@ -2417,7 +2585,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „So
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -2426,6 +2594,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „So
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -2734,13 +2909,6 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „So
 <td>decimal</td>
 <td>Ja</td>
 <td>148.987</td>
-</tr>
-<tr>
-<td>AnschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
 </tr>
 <tr>
 <td>Schwarzstartfaehigkeit</td>
@@ -2914,7 +3082,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „So
 <td>EegMastrNummer</td>
 <td>MaStR-Nummer der zugeordneten EEG-Anlage</td>
 <td><a href="#eegmastrnummerid">EegMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>EEG91234567890</td>
 </tr>
 </table>
@@ -2999,7 +3167,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Bi
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -3008,6 +3176,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Bi
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -3316,13 +3491,6 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Bi
 <td>decimal</td>
 <td>Ja</td>
 <td>148.987</td>
-</tr>
-<tr>
-<td>AnschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
 </tr>
 <tr>
 <td>Schwarzstartfaehigkeit</td>
@@ -3504,7 +3672,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wa
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -3513,6 +3681,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wa
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -3821,13 +3996,6 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wa
 <td>decimal</td>
 <td>Ja</td>
 <td>148.987</td>
-</tr>
-<tr>
-<td>AnschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
 </tr>
 <tr>
 <td>Schwarzstartfaehigkeit</td>
@@ -3973,7 +4141,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Wa
 
 
 
-## GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung
+## GetEinheitGeothermieGrubengasDruckentspannung
 
 Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Geo-, Solarthermie, Grubengas, Klärschlamm“. Es können alle öffentlichen Felder einer Einheit abgerufen werden. Für die nichtöffentlichen Einheiten oder Datenfelder bedarf es einer separaten Datenfreigabe.
 
@@ -4051,7 +4219,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ge
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -4060,6 +4228,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ge
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -4368,13 +4543,6 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ge
 <td>decimal</td>
 <td>Ja</td>
 <td>148.987</td>
-</tr>
-<tr>
-<td>AnschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
 </tr>
 <tr>
 <td>Schwarzstartfaehigkeit</td>
@@ -4542,7 +4710,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ve
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -4551,6 +4719,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ve
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -4859,13 +5034,6 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ve
 <td>decimal</td>
 <td>Ja</td>
 <td>148.987</td>
-</tr>
-<tr>
-<td>AnschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
 </tr>
 <tr>
 <td>Schwarzstartfaehigkeit</td>
@@ -5093,6 +5261,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ve
 <td>Nein</td>
 <td>Vertikallaeufer</td>
 </tr>
+<tr>
+<td>AusschliesslicheVerwendungImKombibetrieb</td>
+<td>Angabe, dass die Einheit ausschließlich im Kombibetrieb betrieben wird</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
 </table>
 
 
@@ -5175,7 +5350,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ke
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -5184,6 +5359,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ke
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -5492,13 +5674,6 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Ke
 <td>decimal</td>
 <td>Ja</td>
 <td>148.987</td>
-</tr>
-<tr>
-<td>AnschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
 </tr>
 <tr>
 <td>Schwarzstartfaehigkeit</td>
@@ -5666,7 +5841,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Sp
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -5675,6 +5850,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Sp
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -5983,13 +6165,6 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „Sp
 <td>decimal</td>
 <td>Ja</td>
 <td>148.987</td>
-</tr>
-<tr>
-<td>AnschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
 </tr>
 <tr>
 <td>Schwarzstartfaehigkeit</td>
@@ -6241,7 +6416,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „St
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -6250,6 +6425,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit der Art „St
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -6628,7 +6810,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit des Typs „G
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -6637,6 +6819,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit des Typs „G
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -7015,7 +7204,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit des Typs „G
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -7024,6 +7213,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit des Typs „G
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -7430,7 +7626,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit des Typs „G
 <td>LokationMastrNummer</td>
 <td>MaStR-Nummer der Lokation</td>
 <td><a href="#lokationmastrnummerid">LokationMastrNummerId</a></td>
-<td>Ja</td>
+<td>Nein</td>
 <td>SEL91234567890</td>
 </tr>
 <tr>
@@ -7439,6 +7635,13 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine Einheit des Typs „G
 <td><a href="#netzbetreiberpruefungsstatusenum">NetzbetreiberpruefungsStatusEnum</a></td>
 <td>Ja</td>
 <td>Geprueft</td>
+</tr>
+<tr>
+<td>Netzbetreiberzuordnungen[]</td>
+<td>Eine Liste von Netzbetreiberzuordnungen</td>
+<td><a href="#netzbetreiberzuordnung">Netzbetreiberzuordnung</a></td>
+<td>Nein</td>
+<td>SNB91234567890 - 2017-08-02 - Geprueft</td>
 </tr>
 <tr>
 <td>NetzbetreiberpruefungDatum</td>
@@ -8915,7 +9118,7 @@ Diese Funktion ermöglicht das Abrufen der Daten für eine EEG-Anlage des Typs �
 
 
 
-## GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannung
+## GetAnlageEegGeothermieGrubengasDruckentspannung
 
 Diese Funktion ermöglicht das Abrufen der Daten für eine EEG-Anlage des Typs „Geo-, Solarthermie – Gruben-, Klärschlamm“. Eine EEG Geo-, Solarthermie – Gruben-, Klärschlamm Anlage ist im Verhältnis 1:n mit Einheiten verknüpft. Es können alle öffentlichen Felder einer Anlage abgerufen werden. Für die nichtöffentlichen Anlagen oder Datenfelder bedarf es einer separaten Datenfreigabe.
 
@@ -11822,13 +12025,6 @@ Diese Funktion ermöglicht die Statussetzung einer Netzbetreiberprüfung, für d
 <td>Ja</td>
 <td>2017-07-25T08:36:54.1004464</td>
 </tr>
-<tr>
-<td>beschreibung</td>
-<td>Eine optionale Beschreibung</td>
-<td>string</td>
-<td>Nein</td>
-<td>Ihr Bearbeiter: Herr Max Mustermann -1234</td>
-</tr>
 </table>
 
 ### Antwort
@@ -12409,6 +12605,76 @@ Diese Funktion ermöglicht die Übernahme der Betriebsstatuskorrektur. Der Vorga
 <td>string</td>
 <td>Nein</td>
 <td>Laut unseren Unterlagen ein abweichender Betriebsstatus</td>
+</tr>
+</table>
+
+### Antwort
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>Ergebniscode</td>
+<td>Als Ergebniscode wird angegeben, ob die Anfrage korrekt verarbeitet wurde oder ob Daten nicht gefunden werden können. Bei Listenabfragen wird ebenfalls angegeben, ob weitere Elemente der Liste vorhanden, aber nicht Bestandteil des aktuellen Abrufs sind.</td>
+<td><a href="#ergebniscodetyp">ErgebniscodeTyp</a></td>
+<td>Ja</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>AufrufVeraltet</td>
+<td>Zeichen, ob eine neue Version der Webdienste bereitgestellt wird und bereits auf dem Testsystem existiert.</td>
+<td>boolean</td>
+<td>Ja</td>
+<td>false</td>
+</tr>
+<tr>
+<td>AufrufLebenszeitEnde</td>
+<td>Datum, an dem diese Version des Webservice endet und durch eine neue ersetzt wird.</td>
+<td>dateTime</td>
+<td>Ja</td>
+<td>2018-08-25T00:00:00.0000000 oder NULL</td>
+</tr>
+<tr>
+<td>AufrufVersion</td>
+<td>Die Versionsnummer des Webdienstes.</td>
+<td>int</td>
+<td>Ja</td>
+<td>2</td>
+</tr>
+</table>
+
+
+
+## SetEegAnlagenschluessel
+
+Diese Funktion ermöglicht Netzbetreibenden das Setzen eines EEG-Anlagenschlüssels für eine EEG-Anlage in ihrem Netz
+
+### Parameter
+
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>apiKey</td>
+<td>Der Webdienst-Schlüssel für die Validierung.</td>
+<td>string</td>
+<td>Ja</td>
+<td>4fil24gnio2gno24g2…</td>
+</tr>
+<tr>
+<td>marktakteurMastrNummer</td>
+<td>Die MaStR-Nummer des vom Webdienst-Benutzer verwendeten Marktakteurs</td>
+<td><a href="#marktakteurmastrnummerid">MarktakteurMastrNummerId</a></td>
+<td>Ja</td>
+<td>SNB91234567890</td>
+</tr>
+<tr>
+<td>eegMastrNummer</td>
+<td>MaStR-Nummer der betroffenen Anlage</td>
+<td><a href="#eegmastrnummerid">EegMastrNummerId</a></td>
+<td>Ja</td>
+<td>EEG91234567890</td>
+</tr>
+<tr>
+<td>eegAnlagenschluessel</td>
+<td>Anlagenschlüssel der EEG-Anlage</td>
+<td><a href="#erweiterterstring">ErweiterterString</a></td>
+<td>Ja</td>
+<td>E1004701000ZE000000513535VS000001</td>
 </tr>
 </table>
 
@@ -13027,20 +13293,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Einheit ist für die Vorhaltung und Erbringung von Regelenergie präqualifiziert</td>
 <td>boolean</td>
@@ -13433,20 +13685,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>eegAnlagenschluessel</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage</td>
-<td><a href="#erweiterterstring">ErweiterterString</a></td>
-<td>Nein</td>
-<td>E2325426</td>
-</tr>
-<tr>
-<td>eegAnlagenschluesselZuPruefen</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>eegMastrNummer</td>
 <td>MaStR-Nummer der zugeordneten EEG-Anlage</td>
 <td><a href="#eegmastrnummerid">EegMastrNummerId</a></td>
@@ -13711,6 +13949,13 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>dateTime</td>
 <td>Nein</td>
 <td>2017-07-25T08:36:54.1004464</td>
+</tr>
+<tr>
+<td>beschreibung</td>
+<td>Eine Beschreibung für den Anlagenbetreiber</td>
+<td>string</td>
+<td>Nein</td>
+<td>Ihre Daten unterscheiden sich</td>
 </tr>
 <tr>
 <td>Personenart</td>
@@ -14686,20 +14931,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Einheit ist für die Vorhaltung und Erbringung von Regelenergie präqualifiziert</td>
 <td>boolean</td>
@@ -15003,20 +15234,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <tr>
 <td>eegInanspruchnahmeZahlungNachEegZuPruefen</td>
 <td>Werden oder wurden für die Solaranlage Zahlungen des Netzbetreibers in Anspruch genommen? (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>eegAnlagenschluessel</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage</td>
-<td><a href="#erweiterterstring">ErweiterterString</a></td>
-<td>Nein</td>
-<td>E2325426</td>
-</tr>
-<tr>
-<td>eegAnlagenschluesselZuPruefen</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -15575,20 +15792,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Einheit ist für die Vorhaltung und Erbringung von Regelenergie präqualifiziert</td>
 <td>boolean</td>
@@ -15766,20 +15969,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <tr>
 <td>eegMastrNummerZuPruefen</td>
 <td>MaStR-Nummer der verknüpften EEG-Anlage (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>eegAnlagenschluessel</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage</td>
-<td><a href="#erweiterterstring">ErweiterterString</a></td>
-<td>Nein</td>
-<td>E2325426</td>
-</tr>
-<tr>
-<td>eegAnlagenschluesselZuPruefen</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -16478,20 +16667,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Einheit ist für die Vorhaltung und Erbringung von Regelenergie präqualifiziert</td>
 <td>boolean</td>
@@ -16772,20 +16947,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>eegAnlagenschluessel</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage</td>
-<td><a href="#erweiterterstring">ErweiterterString</a></td>
-<td>Nein</td>
-<td>E2325426</td>
-</tr>
-<tr>
-<td>eegAnlagenschluesselZuPruefen</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>eegAnlagenkennzifferAnlagenregister</td>
 <td>Anlagenkennziffer aus der Registrierungsbestätigung des Anlagenregisters</td>
 <td><a href="#erweiterterstring">ErweiterterString</a></td>
@@ -16870,7 +17031,7 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 
 
 
-## SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung
+## SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung
 
 Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung, im Rahmen einer Datenkorrekturaufforderung, an den Anlagenbetreiber zu übermitteln. Der Netzbetreiber ändert die Werte in dem Objekt ab, welche nach seiner Kenntnis fehlerhaft sind, und sendet das Objekt als Antwort über diese Funktion. Der Vorschlag muss anschließend mit der Funktion „SetDatenkorrekturErforderlich“ übermittelt werden.
 
@@ -17227,20 +17388,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Einheit ist für die Vorhaltung und Erbringung von Regelenergie präqualifiziert</td>
 <td>boolean</td>
@@ -17376,20 +17523,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <tr>
 <td>eegMastrNummerZuPruefen</td>
 <td>MaStR-Nummer der verknüpften EEG-Anlage (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>eegAnlagenschluessel</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage</td>
-<td><a href="#erweiterterstring">ErweiterterString</a></td>
-<td>Nein</td>
-<td>E2325426</td>
-</tr>
-<tr>
-<td>eegAnlagenschluesselZuPruefen</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -17934,20 +18067,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Einheit ist für die Vorhaltung und Erbringung von Regelenergie präqualifiziert</td>
 <td>boolean</td>
@@ -18465,6 +18584,20 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>AusschliesslicheVerwendungImKombibetrieb</td>
+<td>Angabe, dass die Einheit ausschließlich im Kombibetrieb betrieben wird</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>AusschliesslicheVerwendungImKombibetriebZuPruefen</td>
+<td>Angabe, dass die Einheit ausschließlich im Kombibetrieb betrieben wird (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 </table>
 
@@ -20378,20 +20511,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Präqualifiziert für Regelenergie?</td>
 <td>boolean</td>
@@ -20569,20 +20688,6 @@ Diese Funktion ermöglicht dem Netzbetreiber einen Vorschlag zur Datenänderung,
 <tr>
 <td>eegInbetriebnahmedatumZuPruefen</td>
 <td>Inbetriebnahmedatum der EEG-Anlage (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>eegAnlagenschluessel</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage</td>
-<td><a href="#erweiterterstring">ErweiterterString</a></td>
-<td>Nein</td>
-<td>E2325426</td>
-</tr>
-<tr>
-<td>eegAnlagenschluesselZuPruefen</td>
-<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -21152,20 +21257,6 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Präqualifiziert für Regelenergie?</td>
 <td>boolean</td>
@@ -21558,6 +21649,20 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>false</td>
 </tr>
 <tr>
+<td>eegAnlagenschluessel</td>
+<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage</td>
+<td><a href="#erweiterterstring">ErweiterterString</a></td>
+<td>Nein</td>
+<td>E2325426</td>
+</tr>
+<tr>
+<td>eegAnlagenschluesselZuPruefen</td>
+<td>Vom Netzbetreiber vergebene Kennziffer zur Identifikation der EEG-Anlage (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
 <td>eegMastrNummer</td>
 <td>MaStR-Nummer der zugeordneten EEG-Anlage</td>
 <td><a href="#eegmastrnummerid">EegMastrNummerId</a></td>
@@ -21836,6 +21941,13 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>dateTime</td>
 <td>Nein</td>
 <td>2017-07-25T08:36:54.1004464</td>
+</tr>
+<tr>
+<td>beschreibung</td>
+<td>Eine Beschreibung für den Anlagenbetreiber</td>
+<td>string</td>
+<td>Nein</td>
+<td>Ihre Daten unterscheiden sich</td>
 </tr>
 <tr>
 <td>Personenart</td>
@@ -22923,20 +23035,6 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Präqualifiziert für Regelenergie?</td>
 <td>boolean</td>
@@ -23919,20 +24017,6 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <tr>
 <td>nettonennleistungZuPruefen</td>
 <td>Nettoleistung in kW (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -24925,20 +25009,6 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Präqualifiziert für Regelenergie?</td>
 <td>boolean</td>
@@ -25278,7 +25348,7 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 
 
 
-## GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannung
+## GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannung
 
 Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die Funktion kann nur von dem Netzbetreiber ausgeführt werden, der den Vorschlag ursprünglich erstellt hat und der damit ein Teil der Netzbetreiberprüfung ist.
 
@@ -25767,20 +25837,6 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <tr>
 <td>nettonennleistungZuPruefen</td>
 <td>Nettoleistung in kW (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
@@ -26577,20 +26633,6 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Präqualifiziert für Regelenergie?</td>
 <td>boolean</td>
@@ -27122,6 +27164,20 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>boolean</td>
 <td>Nein</td>
 <td>false</td>
+</tr>
+<tr>
+<td>AusschliesslicheVerwendungImKombibetrieb</td>
+<td>Angabe, dass die Einheit ausschließlich im Kombibetrieb betrieben wird</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>false</td>
+</tr>
+<tr>
+<td>AusschliesslicheVerwendungImKombibetriebZuPruefen</td>
+<td>Angabe, dass die Einheit ausschließlich im Kombibetrieb betrieben wird (Prüfungskennzeichen)</td>
+<td>boolean</td>
+<td>Nein</td>
+<td>true</td>
 </tr>
 </table>
 
@@ -29511,20 +29567,6 @@ Diese Funktion ermöglicht das Abrufen eines Vorschlags zur Datenänderung. Die 
 <td>false</td>
 </tr>
 <tr>
-<td>anschlussAnHoechstOderHochSpannung</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>true</td>
-</tr>
-<tr>
-<td>anschlussAnHoechstOderHochSpannungZuPruefen</td>
-<td>Die Stromerzeugungseinheit ist an ein Höchst- oder Hochspannungsnetz angeschlossen (Prüfungskennzeichen)</td>
-<td>boolean</td>
-<td>Nein</td>
-<td>false</td>
-</tr>
-<tr>
 <td>praequalifiziertFuerRegelenergie</td>
 <td>Präqualifiziert für Regelenergie?</td>
 <td>boolean</td>
@@ -30599,11 +30641,18 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>25000.002</td>
 </tr>
 <tr>
+<td>EinheitSystemstatus</td>
+<td>Systemstatus der Einheit</td>
+<td><a href="#anlagensystemstatusenum">AnlagenSystemStatusEnum</a></td>
+<td>Nein</td>
+<td>Deaktiviert</td>
+</tr>
+<tr>
 <td>EinheitBetriebsstatus</td>
-<td></td>
+<td>Betriebsstatus der Einheit</td>
 <td><a href="#anlagenbetriebsstatusenum">AnlagenBetriebsStatusEnum</a></td>
-<td>Ja</td>
-<td></td>
+<td>Nein</td>
+<td>InPlanung</td>
 </tr>
 <tr>
 <td>Anlagenbetreiber</td>
@@ -31354,6 +31403,13 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>SNB91234567890</td>
 </tr>
 <tr>
+<td>Personenart</td>
+<td>Angabe der Personenart des Marktakteurs: natürliche Person oder Organisation</td>
+<td><a href="#personenartenum">PersonenartEnum</a></td>
+<td>Ja</td>
+<td>Organisation</td>
+</tr>
+<tr>
 <td>Marktakteur</td>
 <td>Name der Organisation mit dem rechtsformergänzenden Namenszusatz</td>
 <td>string</td>
@@ -31939,6 +31995,13 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>Ungeprueft</td>
 </tr>
 <tr>
+<td>TicketMitStatus[]</td>
+<td>Eine Liste von TicketIds und Status</td>
+<td><a href="#ticketmitstatus">TicketMitStatus</a></td>
+<td>Nein</td>
+<td>334551 - Offen</td>
+</tr>
+<tr>
 <td>kategorie</td>
 <td>Kategorie der Netzbetreiberprüfung</td>
 <td><a href="#netzbetreiberpruefungskategorieenum">NetzbetreiberpruefungsKategorieEnum</a></td>
@@ -32023,11 +32086,18 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>Offen</td>
 </tr>
 <tr>
-<td>FristverlaengerungFristVerlaengertBis</td>
-<td>Die letzte gewährte Fristverlängerung</td>
+<td>AktuelleFrist</td>
+<td>Die aktuelle Frist</td>
 <td>date</td>
 <td>Nein</td>
-<td>2021-10-21</td>
+<td>2022-12-31</td>
+</tr>
+<tr>
+<td>Frist</td>
+<td>Datum der Frist für die Ticketbearbeitung</td>
+<td>date</td>
+<td>Nein</td>
+<td>2022-12-31</td>
 </tr>
 <tr>
 <td>FristverlaengerungAblehnungstext</td>
@@ -32035,6 +32105,30 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>string</td>
 <td>Nein</td>
 <td>Antrag abgelehnt</td>
+</tr>
+</table>
+
+## Netzbetreiberzuordnung
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>NetzbetreiberMastrNummer</td>
+<td>MaStR-Nummer des Netzbetreibers</td>
+<td><a href="#marktakteurmastrnummerid">MarktakteurMastrNummerId</a></td>
+<td>Nein</td>
+<td>SNB91234567890</td>
+</tr>
+<tr>
+<td>NetzbetreiberpruefungsDatum</td>
+<td>Datum der letzten Netzbetreiberprüfung, insofern eine durchgeführt wurde</td>
+<td>date</td>
+<td>Nein</td>
+<td>2017-08-02</td>
+</tr>
+<tr>
+<td>NetzbetreiberpruefungsStatus</td>
+<td>Der Status der letzten Netzbetreiberprüfung, insofern eine durchgeführt wurde</td>
+<td><a href="#netzbetreiberzuordnungsstatusenum">NetzbetreiberzuordnungsStatusEnum</a></td>
+<td>Nein</td>
+<td>Geprueft</td>
 </tr>
 </table>
 
@@ -32052,6 +32146,23 @@ Diese Funktion ermöglicht das Abrufen von einem Netzanschlusspunkt an einer Lok
 <td>string</td>
 <td>Ja</td>
 <td>Wien</td>
+</tr>
+</table>
+
+## TicketMitStatus
+<table><tr><td style="width:15%">Name</td><td style="width:55%">Beschreibung</td><td style="width:5%">Typ</td><td style="width:5%">Pflicht</td><td style="width:20%">Beispiel</td></tr><tr>
+<td>NetzbetreiberpruefungTicketId</td>
+<td>Die aktuelle Ticket-Id des Prozesses</td>
+<td><a href="#netzbetreiberpruefungticketid">NetzbetreiberpruefungTicketId</a></td>
+<td>Nein</td>
+<td>7890</td>
+</tr>
+<tr>
+<td>Ticketstatus</td>
+<td>Status des Tickets</td>
+<td><a href="#ticketstatusenum">TicketStatusEnum</a></td>
+<td>Nein</td>
+<td>Offen</td>
 </tr>
 </table>
 
@@ -32121,7 +32232,6 @@ Basistyp: `string`
 * `InBetrieb` In Betrieb 
 * `VoruebergehendStillgelegt` Vorübergehend stillgelegt 
 * `EndgueltigStillgelegt` Endgültig stillgelegt 
-* `InBetriebnahmeVorbereiten` In Betriebnahme vorbereiten 
 
 ## AnlagenSystemStatusEnum
 
@@ -32132,7 +32242,6 @@ Basistyp: `string`
 * `None` None 
 * `Aktiv` Aktiviert 
 * `Deaktiviert` Deaktiviert 
-* `Ungeprueft` Ungeprüft 
 * `Unvollstaendig` Unvollständig 
 * `Geloescht` Gelöscht 
 
@@ -33703,7 +33812,7 @@ Basistyp: `string`
 ### Erlaubte Werte:
 
 * `AnlagenbetreiberWuenschtKlaerung`  
-* `AufforderungZurNetzbetreiberkorrektur`  
+* `NetzbetreiberkorrekturErforderlich`  
 * `DatenkorrekturErforderlich`  
 * `NetzbetreiberWuenschtKlaerung`  
 * `NetzbetreiberpruefungGestartet`  
@@ -33727,6 +33836,26 @@ Basistyp: `string`
 * `Klaerung` . 
 * `Geprueft` . 
 * `Abgebrochen` . 
+
+## NetzbetreiberzuordnungsStatusEnum
+
+Basistyp: `string`
+
+### Erlaubte Werte:
+
+* `None` None 
+* `Ungeprueft` Ungeprüft 
+* `InPruefung` In Prüfung 
+* `DatenKorrekturErforderlich` Daten-Korrektur erforderlich 
+* `BetriebsstatusKorrekturErforderlich` Betriebsstatus-Korrektur erforderlich 
+* `NetzbetreiberKorrekturErforderlich` Netzbetreiber-Korrektur erforderlich 
+* `NetzbetreiberWuenschtKlaerung` Netzbetreiber wünscht Klärung 
+* `AnlagenbetreiberWuenschtKlaerung` Anlagenbetreiber wünscht Klärung 
+* `Geprueft` Geprüft 
+* `Abgebrochen` Abgebrochen 
+* `WiedervorlageNachKlaerung` Wiedervorlage nach Klärung 
+* `RueckmeldungBundesnetzagentur` Rückmeldung Bundesnetzagentur 
+* `Wiedervorlage` Wiedervorlage 
 
 ## NummernkreisTypenEnum
 
@@ -33876,11 +34005,16 @@ Basistyp: `string`
 * `Ackerland` Ackerland 
 * `EigentumOderBesitzOderVerwaltungDesBundesamtes` Eigentum des Bundes oder Besitz oder Verwaltung des Bundesamtes für Immobilienaufgaben 
 * `Konversionsflaeche` Konversionsfläche 
-* `Planfeststellungsverfahren` Planfeststellungsverfahren nach§ 38 Satz 1 Baugesetzbuch 
+* `Planfeststellungsverfahren` Planfeststellungsverfahren oder sonstiges Verfahren gemäß § 37 Absatz 1 Nummer 2 f) EEG 
 * `110MeterRandstreifenLaengsVonAutobahnenOderSchienenwegen` 110 Meter Randstreifen längs von Autobahnen oder Schienenwegen 
 * `200MeterMitMindestabstandVon15MeternLaengsVonAutobahnenOderSchienenwegen` 200 Meter Randstreifen mit Mindestabstand von 15 Metern längs von Autobahnen oder Schienenwegen 
+* `500MeterRandstreifenLaengsVonAutobahnenOderSchienenwegen` 500 Meter Randstreifen längs von Autobahnen oder Schienenwegen 
 * `VersiegelteFlaeche` Versiegelte Fläche 
 * `Gruenland` Grünland 
+* `BesondereSolaranlageAufAckerflaecheBeiLandwirtschaftlicherNutzung` Besondere Solaranlage auf Ackerfläche bei gleichzeitiger landwirtschaftlicher Nutzung 
+* `BesondereSolaranlageDauerkulturenBeiLandwirtschaftlicherNutzung` Besondere Solaranlage Dauerkulturen bei gleichzeitiger landwirtschaftlicher Nutzung 
+* `BesondereSolaranlageGruenlandBeiLandwirtschaftlicherNutzung` Besondere Solaranlage Grünland bei gleichzeitiger landwirtschaftlicher Nutzung 
+* `BesondereSolaranlageMoorboeden` Besondere Solaranlage Moorböden 
 * `Sonstiges` Sonstiges 
 
 ## SolarLageEnum
@@ -33891,10 +34025,11 @@ Basistyp: `string`
 
 * `None` None 
 * `Freiflaeche` Freifläche 
-* `BaulicheAnlagen` Bauliche Anlagen (Gebäude und Fassade) 
+* `BaulicheAnlagen` Bauliche Anlagen (Hausdach, Gebäude und Fassade) 
 * `BaulicheAnlagenSonstige` Bauliche Anlagen (Sonstige) 
 * `SteckerfertigeErzeugungsanlage` Steckerfertige Erzeugungsanlage (sog. Plug-In- oder Balkon-PV-Anlage) 
 * `Gewaesser` Gewässer 
+* `Grossparkplatz` Großparkplatz 
 
 ## SolarLeistungsbegrenzungEnum
 
@@ -34068,6 +34203,17 @@ Basistyp: `string`
 * `MarktakteurUebertragen` Marktakteur übertragen 
 * `AutomatischeAnlagenueberpruefung` Automatische Einheitenprüfung 
 * `ExternerMelder` Externe Meldung 
+
+## TicketStatusEnum
+
+Basistyp: `string`
+
+### Erlaubte Werte:
+
+* `Offen` In Übertragung 
+* `InBearbeitung` Das Ticket befindet sich in Bearbeitung. 
+* `WartetAufRueckmeldung` Das Ticket wartet auf die Rückmeldung. 
+* `Abgeschlossen` Das Ticket ist abgeschlossen. 
 
 ## TitelEnum
 

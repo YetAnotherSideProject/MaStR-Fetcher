@@ -1579,6 +1579,18 @@
           </documentation>
         </annotation>
       </element>
+      <element
+        name="TicketMitStatus"
+        type="mastr:TicketMitStatus"
+        minOccurs="0"
+        maxOccurs="unbounded">
+        <annotation>
+          <documentation>
+            Eine Liste von TicketIds und Status
+            <m-ex>334551 - Offen</m-ex>
+          </documentation>
+        </annotation>
+      </element>
 	  <element
         name="kategorie"
         type="mastr:NetzbetreiberpruefungsKategorieEnum">
@@ -1711,13 +1723,24 @@
 		</annotation>
 	  </element>
 	  <element
-        name="FristverlaengerungFristVerlaengertBis"
+        name="AktuelleFrist"
         type="date"
         minOccurs="0">
         <annotation>
           <documentation>
-            Die letzte gewährte Fristverlängerung
-            <m-ex>2021-10-21</m-ex>
+            Die aktuelle Frist
+            <m-ex>2022-12-31</m-ex>
+          </documentation>
+        </annotation>
+      </element>
+	  <element
+        name="Frist"
+        type="date"
+        minOccurs="0">
+        <annotation>
+          <documentation>
+            Datum der Frist für die Ticketbearbeitung
+            <m-ex>2022-12-31</m-ex>
           </documentation>
         </annotation>
       </element>
@@ -1926,7 +1949,18 @@
             <m-ex>SNB91234567890</m-ex>
           </documentation>
         </annotation>
-      </element>
+      </element>	  
+	  <element
+		name="Personenart"
+		type="mastr:PersonenartEnum">
+		<annotation>
+		  <documentation>
+			Angabe der Personenart des Marktakteurs: natürliche Person
+			oder Organisation
+			<m-ex>Organisation</m-ex>
+		  </documentation>
+		</annotation>
+	  </element>
       <element
         name="Marktakteur"
         type="string">
@@ -2219,8 +2253,27 @@
         </annotation>
       </element>
       <element
+        name="EinheitSystemstatus"
+        type="mastr:AnlagenSystemStatusEnum"			 
+		minOccurs="0">
+        <annotation>
+            <documentation>
+                  Systemstatus der Einheit
+                <m-ex>Deaktiviert</m-ex>
+            </documentation>
+        </annotation>
+      </element>
+	  <element
         name="EinheitBetriebsstatus"
-        type="mastr:AnlagenBetriebsStatusEnum" />
+        type="mastr:AnlagenBetriebsStatusEnum"			 
+		minOccurs="0">
+        <annotation>
+            <documentation>
+				Betriebsstatus der Einheit
+                <m-ex>InPlanung</m-ex>
+            </documentation>
+        </annotation>
+      </element>
       <element
         name="Anlagenbetreiber"
         type="mastr:MarktakteurMastrNummerId"
@@ -3723,6 +3776,126 @@
       </extension>
     </complexContent>
   </complexType>
+  <complexType name="GetMeineEinheitenParameter">
+    <complexContent>
+      <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
+        <sequence>
+          <element
+            name="startAb"
+            type="int"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Setzt den Beginn der zu liefernden Datensätze
+                [Standardwert: 1].
+                <m-ex>100</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="datumAb"
+            type="dateTime"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Einschränkung der abzurufenden Datenmenge auf geänderte
+                Daten ab dem angegebenen Datum [Standardwert: NULL]
+                <m-ex>2018-08-25T00:00:00.0000000</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="limit"
+            type="int"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Limit der maximal zu liefernden Datensätze
+                [Standard-/Maximalwert: Maximum des eigenen Limits]
+                <m-ex>200</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GetMeineEinheitenAntwort">
+    <annotation>
+      <documentation>Liste von Einheiten</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="mastr:AntwortBasis">
+        <sequence>
+          <element
+            name="Einheiten"
+            type="mastr:Einheit"
+            minOccurs="0"
+            maxOccurs="unbounded" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GetListeEinheitenInMeinemNetzParameter">
+    <complexContent>
+      <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
+        <sequence>
+          <element
+            name="startAb"
+            type="int"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Setzt den Beginn der zu liefernden Datensätze
+                [Standardwert: 1].
+                <m-ex>100</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="datumAb"
+            type="dateTime"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Einschränkung der abzurufenden Datenmenge auf geänderte
+                Daten ab dem angegebenen Datum [Standardwert: NULL]
+                <m-ex>2018-08-25T00:00:00.0000000</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="limit"
+            type="int"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Limit der maximal zu liefernden Datensätze
+                [Standard-/Maximalwert: Maximum des eigenen Limits]
+                <m-ex>200</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GetListeEinheitenInMeinemNetzAntwort">
+    <annotation>
+      <documentation>Liste von Einheiten</documentation>
+    </annotation>
+    <complexContent>
+      <extension base="mastr:AntwortBasis">
+        <sequence>
+          <element
+            name="Einheiten"
+            type="mastr:Einheit"
+            minOccurs="0"
+            maxOccurs="unbounded" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
   <complexType name="GetListeGeloeschteUndDeaktivierteEinheitenParameter">
     <complexContent>
       <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
@@ -3845,7 +4018,7 @@
       <extension base="mastr:GetEinheitBasisParameter" />
     </complexContent>
   </complexType>
-  <complexType name="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungParameter">
+  <complexType name="GetEinheitGeothermieGrubengasDruckentspannungParameter">
     <complexContent>
       <extension base="mastr:GetEinheitBasisParameter" />
     </complexContent>
@@ -3982,18 +4155,6 @@
             </annotation>
           </element>
           <element
-            name="AnschlussAnHoechstOderHochSpannung"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen
-                <m-ex>true</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
             name="Schwarzstartfaehigkeit"
             type="boolean"
             minOccurs="0">
@@ -4125,7 +4286,8 @@
           </element>
           <element
             name="LokationMastrNummer"
-            type="mastr:LokationMastrNummerId">
+            type="mastr:LokationMastrNummerId"
+            minOccurs="0">
             <annotation>
               <documentation>
                 MaStR-Nummer der Lokation
@@ -4141,6 +4303,18 @@
                 Der Status der letzten Netzbetreiberprüfung, insofern
                 eine durchgeführt wurde
                 <m-ex>Geprueft</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="Netzbetreiberzuordnungen"
+            type="mastr:Netzbetreiberzuordnung"
+			minOccurs="0"
+			maxOccurs="unbounded">
+            <annotation>
+              <documentation>
+                Eine Liste von Netzbetreiberzuordnungen
+                <m-ex>SNB91234567890 - 2017-08-02 - Geprueft</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -4800,7 +4974,8 @@
           </element>
           <element
             name="EegMastrNummer"
-            type="mastr:EegMastrNummerId">
+            type="mastr:EegMastrNummerId"
+            minOccurs="0">
             <annotation>
               <documentation>
                 MaStR-Nummer der zugeordneten EEG-Anlage
@@ -4990,7 +5165,8 @@
           </element>
           <element
             name="EegMastrNummer"
-            type="mastr:EegMastrNummerId">
+            type="mastr:EegMastrNummerId"
+            minOccurs="0">
             <annotation>
               <documentation>
                 MaStR-Nummer der zugeordneten EEG-Anlage
@@ -5046,6 +5222,69 @@
 		name="Ort"
 		type="string"
         minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="Netzbetreiberzuordnung">
+    <sequence>
+	  <element
+        name="NetzbetreiberMastrNummer"
+        type="mastr:MarktakteurMastrNummerId"
+        minOccurs="0">
+        <annotation>
+          <documentation>
+            MaStR-Nummer des Netzbetreibers
+            <m-ex>SNB91234567890</m-ex>
+          </documentation>
+        </annotation>
+      </element>
+	  <element
+		name="NetzbetreiberpruefungsDatum"
+		type="date"
+        minOccurs="0">
+		<annotation>
+		  <documentation>
+			Datum der letzten Netzbetreiberprüfung, insofern eine durchgeführt wurde
+			<m-ex>2017-08-02</m-ex>
+		  </documentation>
+		</annotation>
+	  </element>
+	  <element
+		name="NetzbetreiberpruefungsStatus"
+		type="mastr:NetzbetreiberzuordnungsStatusEnum"
+        minOccurs="0">
+		<annotation>
+		  <documentation>
+			Der Status der letzten Netzbetreiberprüfung, insofern eine durchgeführt wurde
+			<m-ex>Geprueft</m-ex>
+		  </documentation>
+		</annotation>
+	  </element>
+    </sequence>
+  </complexType>
+  <complexType name="TicketMitStatus">
+    <sequence>
+	  <element
+        name="NetzbetreiberpruefungTicketId"
+        type="mastr:NetzbetreiberpruefungTicketId"
+        minOccurs="0">
+        <annotation>
+          <documentation>
+            Die aktuelle Ticket-Id des Prozesses
+            <m-ex>7890</m-ex>
+          </documentation>
+        </annotation>
+      </element>
+	  <element
+		name="Ticketstatus"
+		type="mastr:TicketStatusEnum"
+        minOccurs="0">
+		<annotation>
+		  <documentation>
+			Status des Tickets
+			<m-ex>Offen</m-ex>
+		  </documentation>
+		</annotation>
+	  </element>
     </sequence>
   </complexType>
   <complexType name="EinheitMitStatus">
@@ -5507,7 +5746,7 @@
       </extension>
     </complexContent>
   </complexType>
-  <complexType name="GetEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungAntwort">
+  <complexType name="GetEinheitGeothermieGrubengasDruckentspannungAntwort">
     <complexContent>
       <extension base="mastr:GetEinheitStromerzeugungBasisAntwort">
         <sequence>
@@ -5818,6 +6057,17 @@
               <documentation>
                 Technologie der Stromerzeugung
                 <m-ex>Vertikallaeufer</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="AusschliesslicheVerwendungImKombibetrieb"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Angabe, dass die Einheit ausschließlich im Kombibetrieb betrieben wird
+                <m-ex>false</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -7507,7 +7757,7 @@
       </extension>
     </complexContent>
   </complexType>
-  <complexType name="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungParameter">
+  <complexType name="GetAnlageEegGeothermieGrubengasDruckentspannungParameter">
     <complexContent>
       <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
         <sequence>
@@ -7525,7 +7775,7 @@
       </extension>
     </complexContent>
   </complexType>
-  <complexType name="GetAnlageEegGeoSolarthermieGrubenKlaerschlammDruckentspannungAntwort">
+  <complexType name="GetAnlageEegGeothermieGrubengasDruckentspannungAntwort">
     <complexContent>
       <extension base="mastr:GetAnlageEegAntwortBasis">
         <sequence>
@@ -9110,17 +9360,6 @@
               </documentation>
             </annotation>
           </element>
-          <element
-            name="beschreibung"
-            type="string"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Eine optionale Beschreibung
-                <m-ex>Ihr Bearbeiter: Herr Max Mustermann -1234</m-ex>
-              </documentation>
-            </annotation>
-          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -9620,8 +9859,45 @@
         </sequence>
       </extension>
     </complexContent>
-  </complexType>
+  </complexType>  
   <complexType name="SetKorrekturBetriebsstatusAbgeschlossenAntwort">
+    <complexContent>
+      <extension base="mastr:AntwortBasis">
+        <sequence />
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SetEegAnlagenschluesselParameter">
+    <complexContent>
+      <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
+        <sequence>
+          <element
+            name="eegMastrNummer"
+            type="mastr:EegMastrNummerId"
+            minOccurs="1">
+            <annotation>
+              <documentation>
+                MaStR-Nummer der betroffenen Anlage
+                <m-ex>EEG91234567890</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="eegAnlagenschluessel"
+            type="mastr:ErweiterterString"
+            minOccurs="1">
+            <annotation>
+              <documentation>
+                Anlagenschlüssel der EEG-Anlage
+                <m-ex>E1004701000ZE000000513535VS000001</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SetEegAnlagenschluesselAntwort">
     <complexContent>
       <extension base="mastr:AntwortBasis">
         <sequence />
@@ -10330,30 +10606,6 @@
             </annotation>
           </element>
           <element
-            name="anschlussAnHoechstOderHochSpannung"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen
-                <m-ex>true</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anschlussAnHoechstOderHochSpannungZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
             name="praequalifiziertFuerRegelenergie"
             type="boolean"
             minOccurs="0">
@@ -10820,30 +11072,6 @@
               <documentation>
                 MaStR-Nummer der verknüpften-EEG-Anlage
                 (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="eegAnlagenschluessel"
-            type="mastr:ErweiterterString"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage
-                <m-ex>E2325426</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="eegAnlagenschluesselZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -11741,6 +11969,28 @@
               </documentation>
             </annotation>
           </element>
+          <element
+            name="AusschliesslicheVerwendungImKombibetrieb"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Angabe, dass die Einheit ausschließlich im Kombibetrieb betrieben wird
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="AusschliesslicheVerwendungImKombibetriebZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Angabe, dass die Einheit ausschließlich im Kombibetrieb betrieben wird (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -11885,7 +12135,7 @@
     </complexContent>
   </complexType>
   <complexType
-    name="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungParameter">
+    name="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungParameter">
     <complexContent>
       <extension base="mastr:AuthentifizierteAnfrageMitMarktakteurBasis">
         <sequence>
@@ -12053,30 +12303,6 @@
             <annotation>
               <documentation>
                 Bruttoleistung in kW
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anschlussAnHoechstOderHochSpannung"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen
-                <m-ex>true</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anschlussAnHoechstOderHochSpannungZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -12595,30 +12821,6 @@
             </annotation>
           </element>
           <element
-            name="eegAnlagenschluessel"
-            type="mastr:ErweiterterString"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage
-                <m-ex>E2325426</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="eegAnlagenschluesselZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
             name="eegAnlagenkennzifferAnlagenregister"
             type="mastr:ErweiterterString"
             minOccurs="0">
@@ -13023,30 +13225,6 @@
               <documentation>
                 MaStR-Nummer der verknüpften
                 EEG-Anlage (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="eegAnlagenschluessel"
-            type="mastr:ErweiterterString"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage
-                <m-ex>E2325426</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="eegAnlagenschluesselZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -14143,30 +14321,6 @@
               </documentation>
             </annotation>
           </element>
-		  <element
-            name="eegAnlagenschluessel"
-            type="mastr:ErweiterterString"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage
-                <m-ex>E2325426</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="eegAnlagenschluesselZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
           <element
             name="eegMastrNummer"
             type="mastr:EegMastrNummerId"
@@ -14578,6 +14732,17 @@
               <documentation>
                 Datum der letzten Aktualisierung an diesem Objekt
                 <m-ex>2017-07-25T08:36:54.1004464</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="beschreibung"
+            type="string"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Eine Beschreibung für den Anlagenbetreiber
+                <m-ex>Ihre Daten unterscheiden sich</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -15535,7 +15700,7 @@
     </complexContent>
   </complexType>
   <complexType
-    name="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungParameter">
+    name="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungParameter">
     <complexContent>
       <extension
         base="mastr:SetKorrekturVorschlagStromerzeugungseinheitParameterBasis">
@@ -15604,30 +15769,6 @@
               <documentation>
                 MaStR-Nummer der verknüpften EEG-Anlage
                 (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="eegAnlagenschluessel"
-            type="mastr:ErweiterterString"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage
-                <m-ex>E2325426</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="eegAnlagenschluesselZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -16473,30 +16614,6 @@
             </annotation>
           </element>
           <element
-            name="anschlussAnHoechstOderHochSpannung"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen
-                <m-ex>true</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anschlussAnHoechstOderHochSpannungZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
             name="praequalifiziertFuerRegelenergie"
             type="boolean"
             minOccurs="0">
@@ -16794,30 +16911,6 @@
             <annotation>
               <documentation>
                 Inbetriebnahmedatum der EEG-Anlage (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-		  <element
-            name="eegAnlagenschluessel"
-            type="mastr:ErweiterterString"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage
-                <m-ex>E2325426</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="eegAnlagenschluesselZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Vom Netzbetreiber vergebene Kennziffer zur
-                Identifikation der EEG-Anlage (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -17873,7 +17966,7 @@
     </complexContent>
   </complexType>
   <complexType
-    name="GetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungAntwort">
+    name="GetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungAntwort">
     <complexContent>
       <extension
         base="mastr:GetKorrekturVorschlagStromerzeugungseinheitAntwortBasis">
@@ -19097,30 +19190,6 @@
             <annotation>
               <documentation>
                 Nettoleistung in kW (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anschlussAnHoechstOderHochSpannung"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen
-                <m-ex>true</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anschlussAnHoechstOderHochSpannungZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -20821,6 +20890,28 @@
               </documentation>
             </annotation>
           </element>
+          <element
+            name="AusschliesslicheVerwendungImKombibetrieb"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Angabe, dass die Einheit ausschließlich im Kombibetrieb betrieben wird
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="AusschliesslicheVerwendungImKombibetriebZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Angabe, dass die Einheit ausschließlich im Kombibetrieb betrieben wird (Prüfungskennzeichen)
+                <m-ex>true</m-ex>
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -21160,30 +21251,6 @@
             <annotation>
               <documentation>
                 Batterietechnologie (Prüfungskennzeichen)
-                <m-ex>false</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anschlussAnHoechstOderHochSpannung"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen
-                <m-ex>true</m-ex>
-              </documentation>
-            </annotation>
-          </element>
-          <element
-            name="anschlussAnHoechstOderHochSpannungZuPruefen"
-            type="boolean"
-            minOccurs="0">
-            <annotation>
-              <documentation>
-                Die Stromerzeugungseinheit ist an ein Höchst- oder
-                Hochspannungsnetz angeschlossen (Prüfungskennzeichen)
                 <m-ex>false</m-ex>
               </documentation>
             </annotation>
@@ -22050,6 +22117,30 @@
               </documentation>
             </annotation>
           </element>
+		  <element
+            name="eegAnlagenschluessel"
+            type="mastr:ErweiterterString"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Vom Netzbetreiber vergebene Kennziffer zur
+                Identifikation der EEG-Anlage
+                <m-ex>E2325426</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="eegAnlagenschluesselZuPruefen"
+            type="boolean"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Vom Netzbetreiber vergebene Kennziffer zur
+                Identifikation der EEG-Anlage (Prüfungskennzeichen)
+                <m-ex>false</m-ex>
+              </documentation>
+            </annotation>
+          </element>
           <element
             name="eegMastrNummer"
             type="mastr:EegMastrNummerId"
@@ -22410,6 +22501,17 @@
               <documentation>
                 Datum der letzten Aktualisierung an diesem Objekt
                 <m-ex>2017-07-25T08:36:54.1004464</m-ex>
+              </documentation>
+            </annotation>
+          </element>
+          <element
+            name="beschreibung"
+            type="string"
+            minOccurs="0">
+            <annotation>
+              <documentation>
+                Eine Beschreibung für den Anlagenbetreiber
+                <m-ex>Ihre Daten unterscheiden sich</m-ex>
               </documentation>
             </annotation>
           </element>
@@ -23387,7 +23489,7 @@
     </complexContent>
   </complexType>
   <complexType
-    name="SetKorrekturVorschlagEinheitGeoSolarthermieGrubenKlaerschlammDruckentspannungAntwort">
+    name="SetKorrekturVorschlagEinheitGeothermieGrubengasDruckentspannungAntwort">
     <complexContent>
       <extension base="mastr:AntwortBasis">
         <sequence>
@@ -27620,12 +27722,6 @@
           </documentation>
         </annotation>
       </enumeration>
-      <enumeration value="InBetriebnahmeVorbereiten">
-        <annotation>
-          <documentation>In Betriebnahme vorbereiten
-          </documentation>
-        </annotation>
-      </enumeration>
     </restriction>
   </simpleType>
   <!-- Enumeration: AnlagenSystemStatusEnum" -->
@@ -27646,12 +27742,6 @@
       <enumeration value="Deaktiviert">
         <annotation>
           <documentation>Deaktiviert
-          </documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Ungeprueft">
-        <annotation>
-          <documentation>Ungeprüft
           </documentation>
         </annotation>
       </enumeration>
@@ -27741,6 +27831,118 @@
       <enumeration value="Gasverbrauchsanlage">
         <annotation>
           <documentation>Verbrennungsanlage
+          </documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <!-- Enumeration: NetzbetreiberzuordnungsStatusEnum" -->
+  <simpleType name="NetzbetreiberzuordnungsStatusEnum">
+    <restriction base="string">
+      <enumeration value="None">
+        <annotation>
+          <documentation>None
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="Ungeprueft">
+        <annotation>
+          <documentation>Ungeprüft
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="InPruefung">
+        <annotation>
+          <documentation>In Prüfung
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="DatenKorrekturErforderlich">
+        <annotation>
+          <documentation>Daten-Korrektur erforderlich
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="BetriebsstatusKorrekturErforderlich">
+        <annotation>
+          <documentation>Betriebsstatus-Korrektur erforderlich
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="NetzbetreiberKorrekturErforderlich">
+        <annotation>
+          <documentation>Netzbetreiber-Korrektur erforderlich
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="NetzbetreiberWuenschtKlaerung">
+        <annotation>
+          <documentation>Netzbetreiber wünscht Klärung
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="AnlagenbetreiberWuenschtKlaerung">
+        <annotation>
+          <documentation>Anlagenbetreiber wünscht Klärung
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="Geprueft">
+        <annotation>
+          <documentation>Geprüft
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="Abgebrochen">
+        <annotation>
+          <documentation>Abgebrochen
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="WiedervorlageNachKlaerung">
+        <annotation>
+          <documentation>Wiedervorlage nach Klärung
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="RueckmeldungBundesnetzagentur">
+        <annotation>
+          <documentation>Rückmeldung Bundesnetzagentur
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="Wiedervorlage">
+        <annotation>
+          <documentation>Wiedervorlage
+          </documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <!-- Enumeration: TicketStatusEnum" -->
+  <simpleType name="TicketStatusEnum">
+    <restriction base="string">
+      <enumeration value="Offen">
+        <annotation>
+          <documentation>In Übertragung
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="InBearbeitung">
+        <annotation>
+          <documentation>Das Ticket befindet sich in Bearbeitung.
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="WartetAufRueckmeldung">
+        <annotation>
+          <documentation>Das Ticket wartet auf die Rückmeldung.
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="Abgeschlossen">
+        <annotation>
+          <documentation>Das Ticket ist abgeschlossen.
           </documentation>
         </annotation>
       </enumeration>
@@ -33112,7 +33314,7 @@
           </documentation>
         </annotation>
       </enumeration>
-      <enumeration value="AufforderungZurNetzbetreiberkorrektur">
+      <enumeration value="NetzbetreiberkorrekturErforderlich">
         <annotation>
           <documentation>
           </documentation>
@@ -33732,7 +33934,7 @@
       </enumeration>
       <enumeration value="Planfeststellungsverfahren">
         <annotation>
-          <documentation>Planfeststellungsverfahren nach§ 38 Satz 1 Baugesetzbuch
+          <documentation>Planfeststellungsverfahren oder sonstiges Verfahren gemäß § 37 Absatz 1 Nummer 2 f) EEG
           </documentation>
         </annotation>
       </enumeration>
@@ -33748,6 +33950,12 @@
           </documentation>
         </annotation>
       </enumeration>
+	  <enumeration value="500MeterRandstreifenLaengsVonAutobahnenOderSchienenwegen">
+        <annotation>
+          <documentation>500 Meter Randstreifen längs von Autobahnen oder Schienenwegen
+          </documentation>
+        </annotation>
+      </enumeration>
       <enumeration value="VersiegelteFlaeche">
         <annotation>
           <documentation>Versiegelte Fläche
@@ -33757,6 +33965,30 @@
       <enumeration value="Gruenland">
         <annotation>
           <documentation>Grünland
+          </documentation>
+        </annotation>
+	  </enumeration>
+      <enumeration value="BesondereSolaranlageAufAckerflaecheBeiLandwirtschaftlicherNutzung">
+        <annotation>
+          <documentation>Besondere Solaranlage auf Ackerfläche bei gleichzeitiger landwirtschaftlicher Nutzung
+          </documentation>
+        </annotation>
+	  </enumeration>
+      <enumeration value="BesondereSolaranlageDauerkulturenBeiLandwirtschaftlicherNutzung">
+        <annotation>
+          <documentation>Besondere Solaranlage Dauerkulturen bei gleichzeitiger landwirtschaftlicher Nutzung
+          </documentation>
+        </annotation>
+	  </enumeration>
+      <enumeration value="BesondereSolaranlageGruenlandBeiLandwirtschaftlicherNutzung">
+        <annotation>
+          <documentation>Besondere Solaranlage Grünland bei gleichzeitiger landwirtschaftlicher Nutzung
+          </documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="BesondereSolaranlageMoorboeden">
+        <annotation>
+          <documentation>Besondere Solaranlage Moorböden
           </documentation>
         </annotation>
       </enumeration>
@@ -33785,7 +34017,7 @@
       </enumeration>
       <enumeration value="BaulicheAnlagen">
         <annotation>
-          <documentation>Bauliche Anlagen (Gebäude und Fassade)
+          <documentation>Bauliche Anlagen (Hausdach, Gebäude und Fassade)
           </documentation>
         </annotation>
       </enumeration>
@@ -33804,6 +34036,12 @@
 	  <enumeration value="Gewaesser">
         <annotation>
           <documentation>Gewässer
+          </documentation>
+        </annotation>
+      </enumeration>
+	  <enumeration value="Grossparkplatz">
+        <annotation>
+          <documentation>Großparkplatz
           </documentation>
         </annotation>
       </enumeration>
