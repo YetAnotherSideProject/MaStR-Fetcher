@@ -8,12 +8,15 @@ import org.springframework.util.CollectionUtils;
 
 import dev.yasp.mastrfetcher.client.GetGefilterteListeStromErzeugerRequestBuilder;
 import dev.yasp.mastrfetcher.client.StromerzeugerClient;
+import dev.yasp.mastrfetcher.model.PvAnlageDetail;
+import dev.yasp.mastrfetcher.model.PvAnlageDetailRepository;
 import dev.yasp.mastrfetcher.model.PvBestandMonat;
 import dev.yasp.mastrfetcher.model.PvBestandMonatRepository;
 import dev.yasp.mastrfetcher.webservice.AnlagenBetriebsStatusEnum;
 import dev.yasp.mastrfetcher.webservice.Einheit;
 import dev.yasp.mastrfetcher.webservice.EnergietraegerEnum;
 
+import jakarta.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.YearMonth;
 import java.util.*;
@@ -22,15 +25,20 @@ import java.util.*;
 public class PvAnlagenService {
 
     private static final Logger LOG = LoggerFactory.getLogger(PvAnlagenService.class);
-    private final StromerzeugerClient stromerzeugerClient; //Injected by Spring via Constructor
-    private final PvBestandMonatRepository pvBestandMonatRepository; //Injected by Spring via Constructor
+    //Injected by Spring Context via Constructor
+    private final StromerzeugerClient stromerzeugerClient;
+    private final PvBestandMonatRepository pvBestandMonatRepository;
+    private final PvAnlageDetailRepository pvAnlageDetailRepository;
 
     public PvAnlagenService(StromerzeugerClient stromerzeugerClient,
-                            PvBestandMonatRepository pvBestandMonatRepository) {
+                            PvBestandMonatRepository pvBestandMonatRepository,
+                            PvAnlageDetailRepository pvAnlageDetailRepository) {
         this.stromerzeugerClient = stromerzeugerClient;
         this.pvBestandMonatRepository = pvBestandMonatRepository;
+        this.pvAnlageDetailRepository = pvAnlageDetailRepository;
     }
 
+    @Transactional //TODO prüfen, ob auf dieser Ebene korrekt? Soll eigentlich nur DB Calls bündeln
     public void pvAnlagenAbfragenUndAufbereiten(String gemeindeschluessel, YearMonth inbetriebnahmeStartMonat,
                                                 YearMonth inbetriebnahmeEndMonat) {
         LOG.info("PV Anlagen abfragen & aufbereiten für Gemeindeschlüssel {}, von Inbetriebnahme {} bis {}",
@@ -38,7 +46,11 @@ public class PvAnlagenService {
                 inbetriebnahmeStartMonat,
                 inbetriebnahmeEndMonat);
 
+        //TODO eventuell Parallelisierung möglich
         this.monatlicheBestandsdatenErzeugen(gemeindeschluessel, inbetriebnahmeStartMonat, inbetriebnahmeEndMonat);
+        this.grosseAnlagenAufbereiten(gemeindeschluessel, inbetriebnahmeEndMonat);
+    }
+
     private void monatlicheBestandsdatenErzeugen(String gemeindeschluessel, YearMonth startMonat, YearMonth endMonat) {
         LOG.info("Monatliche Bestands- & Zubaudaten abfragen & aggregieren");
         //TODO Mapping Gemeindeschlüssel --> PLZ (1:n)
@@ -100,7 +112,35 @@ public class PvAnlagenService {
         LOG.info("Bestandsdaten monatlich aggregiert wurden persistiert");
     }
 
+    /*
+    Große Anlage ist definiert als Nettoleistung > 30 kWp.
+    Dann werden Detailinfos (u.A. Adresse) im MaStR veröffentlicht.
+     */
+    private void grosseAnlagenAufbereiten(String gemeindeschluessel, YearMonth endMonat) {
+        LOG.info("Große PV Anlagen filtern und Detailangaben aufbereiten");
+        //TODO Mapping Gemeindeschlüssel --> PLZ (1:n)
+        var plz = "48268";
+        var groessteAnlagen = this.stromerzeugerClient.gefilterteListeStromerzeuger(
+                        this.basisPVRequestBuilder(plz)
+                                .mitInbetriebnahmeKleiner(endMonat.atEndOfMonth().plusDays(1))
+                                .mitNettoleistungGroesser(new BigDecimal(30)))
+                .stream()
+                /*
+                Im Response Objekt ist Nettoleistung nicht mehr vorhanden, Sortierung daher über angelehnte Bruttoleistung
+                Sortierung umdrehen, indem im compare objekte vertauscht werden, damit folgendes limit() die größten und nicht die kleinsten Einheiten behält
+                 */
+                .sorted((e1, e2) -> e2.getBruttoleistung().compareTo(e1.getBruttoleistung()))
+                //TODO Wie viele Anlagen? ggf. parametrisiert?
+                .limit(25)
+                .map(einheit -> this.stromerzeugerClient.einheitSolar(einheit.getEinheitMastrNummer()))
+                .map(dto -> new PvAnlageDetail(gemeindeschluessel, dto))
                 .toList();
+        LOG.info("Detailinformationen für {} PV-Anlagen abgefragt", groessteAnlagen.size());
+
+        this.pvAnlageDetailRepository.deleteByGemeindeschluessel(gemeindeschluessel);
+        LOG.info("Vorherige Anlagendaten gelöscht");
+        this.pvAnlageDetailRepository.saveAll(groessteAnlagen);
+        LOG.info("Anlagendetaildaten wurden persistiert");
     }
 
     private BigDecimal summeBruttoleistung(List<Einheit> einheiten) {

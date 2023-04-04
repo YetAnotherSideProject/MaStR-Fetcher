@@ -32,6 +32,29 @@ public class StromerzeugerClient extends WebServiceGatewaySupport {
         return response.getEinheitens();
     }
 
+    public EinheitSolarDTO einheitSolar(String einheitMastrNummer) {
+        var request = new GetEinheitSolarRequest();
+        request.setApiKey(this.apiKey);
+        request.setMarktakteurMastrNummer(this.marktakteurMastrNummer);
+        request.setEinheitMastrNummer(einheitMastrNummer);
+
+        //TODO Logging
+        var response = (GetEinheitSolarResponse) getWebServiceTemplate().marshalSendAndReceive(
+                this.mastrWebserviceUrl + "Anlage", request, new SoapActionCallback("GetEinheitSolar"));
+        if (response.getErgebniscode() != ErgebniscodeTyp.OK) {
+            LOG.error("Solar Einheit mit MaStR-Nummer {} konnte nicht abgefragt werden", einheitMastrNummer);
+        }
+
+        return new EinheitSolarDTO(
+                response.getEinheitMastrNummer(),
+                response.getLaengengrad(),
+                response.getBreitengrad(),
+                response.getBruttoleistung(),
+                LocalDate.of(response.getInbetriebnahmedatum().getYear(),
+                        response.getInbetriebnahmedatum().getMonth(),
+                        response.getInbetriebnahmedatum().getDay()));
+    }
+
     public void setMastrWebserviceUrl(String mastrWebserviceUrl) {
         this.mastrWebserviceUrl = mastrWebserviceUrl;
     }
