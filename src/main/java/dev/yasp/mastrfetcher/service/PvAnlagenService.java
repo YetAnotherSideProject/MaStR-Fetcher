@@ -6,14 +6,15 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import dev.yasp.mastrfetcher.client.GetGefilterteListeStromErzeugerRequestBuilder;
 import dev.yasp.mastrfetcher.client.StromerzeugerClient;
 import dev.yasp.mastrfetcher.model.PvBestandMonat;
 import dev.yasp.mastrfetcher.model.PvBestandMonatRepository;
+import dev.yasp.mastrfetcher.webservice.AnlagenBetriebsStatusEnum;
 import dev.yasp.mastrfetcher.webservice.Einheit;
 import dev.yasp.mastrfetcher.webservice.EnergietraegerEnum;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.*;
 
@@ -32,17 +33,22 @@ public class PvAnlagenService {
 
     public void pvAnlagenAbfragenUndAufbereiten(String gemeindeschluessel, YearMonth inbetriebnahmeStartMonat,
                                                 YearMonth inbetriebnahmeEndMonat) {
-        //TODO Mapping Gemeindeschlüssel --> PLZ (1:n)
-        var plz = "48268";
-        LOG.info("PV Anlagen abfragen für Postleitzahl {}, von Inbetriebnahme {} bis {}", plz, inbetriebnahmeStartMonat,
+        LOG.info("PV Anlagen abfragen & aufbereiten für Gemeindeschlüssel {}, von Inbetriebnahme {} bis {}",
+                gemeindeschluessel,
+                inbetriebnahmeStartMonat,
                 inbetriebnahmeEndMonat);
 
+        this.monatlicheBestandsdatenErzeugen(gemeindeschluessel, inbetriebnahmeStartMonat, inbetriebnahmeEndMonat);
+    private void monatlicheBestandsdatenErzeugen(String gemeindeschluessel, YearMonth startMonat, YearMonth endMonat) {
+        LOG.info("Monatliche Bestands- & Zubaudaten abfragen & aggregieren");
+        //TODO Mapping Gemeindeschlüssel --> PLZ (1:n)
+        var plz = "48268";
         //Erzeugen aller Monatsintervalle
         //TODO ggf. effizienter möglich, wirkt unsauber
         Set<YearMonth> monate = new HashSet<>();
         int i = 0;
-        while (!monate.contains(inbetriebnahmeEndMonat)) {
-            monate.add(inbetriebnahmeStartMonat.plusMonths(i++));
+        while (!monate.contains(endMonat)) {
+            monate.add(startMonat.plusMonths(i++));
         }
 
         LOG.info("Abfragen von Daten für {} Monatsintervalle", monate.size());
@@ -52,11 +58,11 @@ public class PvAnlagenService {
                 .map(monat -> {
                     //TODO Ggf. in eine Methode ausgliedern, welche dann in map verwendet wird
                     return Pair.of(monat, this.stromerzeugerClient.gefilterteListeStromerzeuger(
-                            EnergietraegerEnum.SOLARE_STRAHLUNGSENERGIE, plz,
-                            //Nach dem letzten Tag des Vormonats
-                            monat.atDay(1).minusDays(1),
-                            //Vor dem ersten Tag des Folgemonats
-                            monat.atEndOfMonth().plusDays(1)));
+                            this.basisPVRequestBuilder(plz)
+                                    //Nach dem letzten Tag des Vormonats
+                                    .mitInbetriebnahmeGroesser(monat.atDay(1).minusDays(1))
+                                    //Vor dem ersten Tag des Folgemonats
+                                    .mitInbetriebnahmeKleiner(monat.atEndOfMonth().plusDays(1))));
                 })
                 .sorted(Comparator.comparing(Pair::getFirst))
                 .toList();
@@ -64,23 +70,15 @@ public class PvAnlagenService {
 
         LOG.info("PV Anlagen vor den Monatsintervallen abfragen & aggregieren");
         var anlagenBasis = this.stromerzeugerClient.gefilterteListeStromerzeuger(
-                EnergietraegerEnum.SOLARE_STRAHLUNGSENERGIE, plz, LocalDate.MIN, inbetriebnahmeStartMonat.atDay(1));
+                this.basisPVRequestBuilder(plz).mitInbetriebnahmeKleiner(startMonat.atDay(1)));
         var anlagenAnzahlBasis = anlagenBasis.size();
         var anlagenLeistungBasis = this.summeBruttoleistung(anlagenBasis);
 
-        LOG.info("Daten monatlich aggregieren & Anlagen > 30 kWp zusätzlich filtern");
-        //Große Anlagen vor den Monatsintervallen
-        List<Einheit> grosseAnlagen = new ArrayList<>(this.filterGrosseAnlagen(anlagenBasis));
-
-        //Monatsintervalle aggregieren & große Anlagen identifizieren
+        //Monatsintervalle aggregieren
         List<PvBestandMonat> bestandMonate = new ArrayList<>();
         for (var monat : anlagenMonatlich) {
-            //Große Anlagen des Monats
-            grosseAnlagen.addAll(this.filterGrosseAnlagen(monat.getSecond()));
             //Bestand & Zubaudaten des Monats
-            var bestandMonat = new PvBestandMonat();
-            bestandMonat.setGemeindeschluessel(gemeindeschluessel);
-            bestandMonat.setMonat(monat.getFirst());
+            var bestandMonat = new PvBestandMonat(gemeindeschluessel, monat.getFirst());
             bestandMonat.setZubauAnzahl(monat.getSecond().size());
             bestandMonat.setZubauLeistung(this.summeBruttoleistung(monat.getSecond()));
             //1. Monat mit den basisDaten beginnen, danach jeweils auf dem Vormonat
@@ -100,18 +98,8 @@ public class PvAnlagenService {
 
         this.pvBestandMonatRepository.saveAll(bestandMonate);
         LOG.info("Bestandsdaten monatlich aggregiert wurden persistiert");
-
-        LOG.info("{} große Anlagen identifiziert", grosseAnlagen.size());
-        //TODO Datenaufbereitung große Anlagen
     }
 
-    private List<Einheit> filterGrosseAnlagen(List<Einheit> einheiten) {
-        /*
-        Große Anlagen sind definiert als größer 30 kWp Nettoleistung im MaStR (Dann werden Adresse etc. veröffentlicht)
-        Einheit bietet keinen Zugriff auf Nettoleistung, also als Annäherung Bruttoleistung nehmen
-         */
-        return einheiten.stream()
-                .filter(einheit -> einheit.getBruttoleistung().compareTo(new BigDecimal(30)) > 0)
                 .toList();
     }
 
@@ -119,5 +107,12 @@ public class PvAnlagenService {
         return einheiten.stream()
                 .map(Einheit::getBruttoleistung)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    private GetGefilterteListeStromErzeugerRequestBuilder basisPVRequestBuilder(String plz) {
+        return new GetGefilterteListeStromErzeugerRequestBuilder()
+                .mitEnergietraeger(EnergietraegerEnum.SOLARE_STRAHLUNGSENERGIE)
+                .mitBetriebsstatus(AnlagenBetriebsStatusEnum.IN_BETRIEB)
+                .mitPlz(plz);
     }
 }

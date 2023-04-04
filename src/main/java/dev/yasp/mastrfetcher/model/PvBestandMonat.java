@@ -24,13 +24,12 @@ public class PvBestandMonat {
     private BigDecimal bruttoleistung, zubauLeistung;
 
     public PvBestandMonat() {
-        this.gemeindeschluessel = "";
-        //TODO ???
-        this.monat = YearMonth.now();
-        this.anzahlAnlagen = 0;
-        this.zubauAnzahl = 0;
-        this.bruttoleistung = BigDecimal.ZERO;
-        this.zubauLeistung = BigDecimal.ZERO;
+        //TODO monat YearMonth.now()?
+        this("", YearMonth.now(), 0, 0, BigDecimal.ZERO, BigDecimal.ZERO);
+    }
+
+    public PvBestandMonat(String gemeindeschluessel, YearMonth monat) {
+        this(gemeindeschluessel, monat, 0, 0, BigDecimal.ZERO, BigDecimal.ZERO);
     }
 
     public PvBestandMonat(String gemeindeschluessel, YearMonth monat, int anzahlAnlagen, int zubauAnzahl,
