@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import dev.yasp.mastrfetcher.client.GetGefilterteListeStromErzeugerRequestBuilder;
 import dev.yasp.mastrfetcher.client.StromerzeugerClient;
+import dev.yasp.mastrfetcher.model.AnlageDetailRepository;
 import dev.yasp.mastrfetcher.model.PvBestandMonat;
 import dev.yasp.mastrfetcher.model.PvBestandMonatRepository;
 import dev.yasp.mastrfetcher.webservice.AnlagenBetriebsStatusEnum;
@@ -26,6 +27,8 @@ class PvAnlagenServiceTest {
     private StromerzeugerClient stromerzeugerClient;
     @Mock
     private PvBestandMonatRepository pvBestandMonatRepository;
+    @Mock
+    private AnlageDetailRepository anlageDetailRepository;
     @InjectMocks
     private PvAnlagenService pvAnlagenService;
 

@@ -8,8 +8,8 @@ import org.springframework.util.CollectionUtils;
 
 import dev.yasp.mastrfetcher.client.GetGefilterteListeStromErzeugerRequestBuilder;
 import dev.yasp.mastrfetcher.client.StromerzeugerClient;
-import dev.yasp.mastrfetcher.model.PvAnlageDetail;
-import dev.yasp.mastrfetcher.model.PvAnlageDetailRepository;
+import dev.yasp.mastrfetcher.model.AnlageDetail;
+import dev.yasp.mastrfetcher.model.AnlageDetailRepository;
 import dev.yasp.mastrfetcher.model.PvBestandMonat;
 import dev.yasp.mastrfetcher.model.PvBestandMonatRepository;
 import dev.yasp.mastrfetcher.webservice.AnlagenBetriebsStatusEnum;
@@ -28,14 +28,14 @@ public class PvAnlagenService {
     //Injected by Spring Context via Constructor
     private final StromerzeugerClient stromerzeugerClient;
     private final PvBestandMonatRepository pvBestandMonatRepository;
-    private final PvAnlageDetailRepository pvAnlageDetailRepository;
+    private final AnlageDetailRepository anlageDetailRepository;
 
     public PvAnlagenService(StromerzeugerClient stromerzeugerClient,
                             PvBestandMonatRepository pvBestandMonatRepository,
-                            PvAnlageDetailRepository pvAnlageDetailRepository) {
+                            AnlageDetailRepository anlageDetailRepository) {
         this.stromerzeugerClient = stromerzeugerClient;
         this.pvBestandMonatRepository = pvBestandMonatRepository;
-        this.pvAnlageDetailRepository = pvAnlageDetailRepository;
+        this.anlageDetailRepository = anlageDetailRepository;
     }
 
     @Transactional //TODO prüfen, ob auf dieser Ebene korrekt? Soll eigentlich nur DB Calls bündeln
@@ -133,13 +133,15 @@ public class PvAnlagenService {
                 //TODO Wie viele Anlagen? ggf. parametrisiert?
                 .limit(25)
                 .map(einheit -> this.stromerzeugerClient.einheitSolar(einheit.getEinheitMastrNummer()))
-                .map(dto -> new PvAnlageDetail(gemeindeschluessel, dto))
+                .map(dto -> new AnlageDetail(gemeindeschluessel, EnergietraegerEnum.SOLARE_STRAHLUNGSENERGIE, dto))
                 .toList();
         LOG.info("Detailinformationen für {} PV-Anlagen abgefragt", groessteAnlagen.size());
 
-        this.pvAnlageDetailRepository.deleteByGemeindeschluessel(gemeindeschluessel);
+        this.anlageDetailRepository.deleteByGemeindeschluesselAndEnergietraeger(
+                gemeindeschluessel,
+                EnergietraegerEnum.SOLARE_STRAHLUNGSENERGIE);
         LOG.info("Vorherige Anlagendaten gelöscht");
-        this.pvAnlageDetailRepository.saveAll(groessteAnlagen);
+        this.anlageDetailRepository.saveAll(groessteAnlagen);
         LOG.info("Anlagendetaildaten wurden persistiert");
     }
 

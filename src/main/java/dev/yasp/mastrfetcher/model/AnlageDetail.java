@@ -1,38 +1,42 @@
 package dev.yasp.mastrfetcher.model;
 
-import dev.yasp.mastrfetcher.client.EinheitSolarDTO;
+import dev.yasp.mastrfetcher.client.EinheitDTO;
+import dev.yasp.mastrfetcher.webservice.EnergietraegerEnum;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "pv_anlage_detail", schema = "public")
-public class PvAnlageDetail {
+@Table(name = "anlage_detail", schema = "public")
+public class AnlageDetail {
 
     //TODO zus. zu Primary Key und gemeindeschluessel sollten breiten/Längengrad für Map Anzeige ausreichen und Info im Popup: Leistung und Inbetriebnahmedatum
     @Id
     private String einheitMastrNummer;
-    private String gemeindeschluessel;//TODO Index auf Gemeindeschlüssel, da Abfragen immer darüber gefiltert werden sollten
+    @Enumerated(EnumType.STRING)
+    private EnergietraegerEnum energietraeger;
+    private String gemeindeschluessel;//TODO Index auf diese beiden Felder auch anlegen, da Abfragen immer darüber gefiltert werden sollten
     //TODO prüfen wie Abbildung der Geo Daten im Backend (Supabase PostgreSQL) besser abgebildet werden kann
     private BigDecimal laengengrad, breitengrad, leistung;
     private LocalDate inbetriebnahme;
 
-    public PvAnlageDetail() {
+    public AnlageDetail() {
     }
 
     //TODO eventell als static Methode in EinheitSolarDTO, dann gäbe es hier keine direkte Abhängigkeit zu der Klasse
-    public PvAnlageDetail(String gemeindeschluessel, EinheitSolarDTO dto) {
-        this(gemeindeschluessel, dto.einheitMastrNummer(), dto.laengengrad(), dto.breitengrad(), dto.leistung(),
+    public AnlageDetail(String gemeindeschluessel, EnergietraegerEnum energietraeger, EinheitDTO dto) {
+        this(gemeindeschluessel, dto.einheitMastrNummer(), energietraeger,
+                dto.laengengrad(), dto.breitengrad(), dto.leistung(),
                 dto.inbetriebnahme());
     }
 
-    public PvAnlageDetail(String gemeindeschluessel, String einheitMastrNummer, BigDecimal laengengrad,
-                          BigDecimal breitengrad, BigDecimal leistung, LocalDate inbetriebnahme) {
+    public AnlageDetail(String gemeindeschluessel, String einheitMastrNummer, EnergietraegerEnum energietraeger,
+                        BigDecimal laengengrad,
+                        BigDecimal breitengrad, BigDecimal leistung, LocalDate inbetriebnahme) {
         this.gemeindeschluessel = gemeindeschluessel;
         this.einheitMastrNummer = einheitMastrNummer;
+        this.energietraeger = energietraeger;
         this.laengengrad = laengengrad;
         this.breitengrad = breitengrad;
         this.leistung = leistung;
@@ -45,6 +49,10 @@ public class PvAnlageDetail {
 
     public void setEinheitMastrNummer(String einheitMastrNummer) {
         this.einheitMastrNummer = einheitMastrNummer;
+    }
+
+    public void setEnergietraeger(EnergietraegerEnum energietraeger) {
+        this.energietraeger = energietraeger;
     }
 
     public void setLaengengrad(BigDecimal laengengrad) {
@@ -69,6 +77,10 @@ public class PvAnlageDetail {
 
     public String getEinheitMastrNummer() {
         return einheitMastrNummer;
+    }
+
+    public EnergietraegerEnum getEnergietraeger() {
+        return energietraeger;
     }
 
     public BigDecimal getLaengengrad() {

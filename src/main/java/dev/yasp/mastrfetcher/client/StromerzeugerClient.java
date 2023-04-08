@@ -32,7 +32,7 @@ public class StromerzeugerClient extends WebServiceGatewaySupport {
         return response.getEinheitens();
     }
 
-    public EinheitSolarDTO einheitSolar(String einheitMastrNummer) {
+    public EinheitDTO einheitSolar(String einheitMastrNummer) {
         var request = new GetEinheitSolarRequest();
         request.setApiKey(this.apiKey);
         request.setMarktakteurMastrNummer(this.marktakteurMastrNummer);
@@ -45,7 +45,30 @@ public class StromerzeugerClient extends WebServiceGatewaySupport {
             LOG.error("Solar Einheit mit MaStR-Nummer {} konnte nicht abgefragt werden", einheitMastrNummer);
         }
 
-        return new EinheitSolarDTO(
+        return new EinheitDTO(
+                response.getEinheitMastrNummer(),
+                response.getLaengengrad(),
+                response.getBreitengrad(),
+                response.getBruttoleistung(),
+                LocalDate.of(response.getInbetriebnahmedatum().getYear(),
+                        response.getInbetriebnahmedatum().getMonth(),
+                        response.getInbetriebnahmedatum().getDay()));
+    }
+
+    public EinheitDTO einheitWind(String einheitMastrNummer) {
+        var request = new GetEinheitWindRequest();
+        request.setApiKey(this.apiKey);
+        request.setMarktakteurMastrNummer(this.marktakteurMastrNummer);
+        request.setEinheitMastrNummer(einheitMastrNummer);
+
+        //TODO Logging
+        var response = (GetEinheitWindResponse) getWebServiceTemplate().marshalSendAndReceive(
+                this.mastrWebserviceUrl + "Anlage", request, new SoapActionCallback("GetEinheitWind"));
+        if (response.getErgebniscode() != ErgebniscodeTyp.OK) {
+            LOG.error("Wind Einheit mit MaStR-Nummer {} konnte nicht abgefragt werden", einheitMastrNummer);
+        }
+
+        return new EinheitDTO(
                 response.getEinheitMastrNummer(),
                 response.getLaengengrad(),
                 response.getBreitengrad(),

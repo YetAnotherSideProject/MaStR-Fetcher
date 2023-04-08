@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import dev.yasp.mastrfetcher.service.PvAnlagenService;
+import dev.yasp.mastrfetcher.service.WindAnlagenService;
 
 import java.time.YearMonth;
 
@@ -18,11 +19,14 @@ public class MaStRFetcherCLI implements ApplicationRunner {
     private final PvAnlagenService pVAnlagenService;
     private static ConfigurableApplicationContext appCtx;
     private static final Logger LOG = LoggerFactory.getLogger(MaStRFetcherCLI.class);
+    private final WindAnlagenService windAnlagenService;
 
 
-    public MaStRFetcherCLI(CLIParser cliParser, PvAnlagenService pVAnlagenService) {
+    public MaStRFetcherCLI(CLIParser cliParser, PvAnlagenService pVAnlagenService,
+                           WindAnlagenService windAnlagenService) {
         this.cliParser = cliParser;
         this.pVAnlagenService = pVAnlagenService;
+        this.windAnlagenService = windAnlagenService;
     }
 
     public static void main(String[] args) {
@@ -46,5 +50,6 @@ public class MaStRFetcherCLI implements ApplicationRunner {
         //TODO Parameter
         this.pVAnlagenService.pvAnlagenAbfragenUndAufbereiten(gemeindeschluessel, YearMonth.of(2010, 1),
                 YearMonth.now().minusMonths(1));
+        this.windAnlagenService.windAnlagenAbfragenUndAufbereiten(gemeindeschluessel);
     }
 }
