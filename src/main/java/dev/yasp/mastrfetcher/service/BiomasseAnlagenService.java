@@ -14,38 +14,38 @@ import dev.yasp.mastrfetcher.webservice.EnergietraegerEnum;
 import jakarta.transaction.Transactional;
 
 @Component
-public class WindAnlagenService {
-
-    private static final Logger LOG = LoggerFactory.getLogger(WindAnlagenService.class);
+public class BiomasseAnlagenService {
+    private static final Logger LOG = LoggerFactory.getLogger(BiomasseAnlagenService.class);
     //Injected by Spring Context via Constructor
     private final StromerzeugerClient stromerzeugerClient;
     private final AnlageDetailRepository anlageDetailRepository;
 
-    public WindAnlagenService(StromerzeugerClient stromerzeugerClient, AnlageDetailRepository anlageDetailRepository) {
+    public BiomasseAnlagenService(StromerzeugerClient stromerzeugerClient,
+                                  AnlageDetailRepository anlageDetailRepository) {
         this.stromerzeugerClient = stromerzeugerClient;
         this.anlageDetailRepository = anlageDetailRepository;
     }
 
     @Transactional //TODO prüfen, ob auf dieser Ebene korrekt? Soll eigentlich nur DB Calls bündeln
-    public void windAnlagenAbfragenUndAufbereiten(String gemeindeschluessel) {
-        LOG.info("Wind Anlagen abfragen & aufbereiten für Gemeindeschlüssel {}", gemeindeschluessel);
+    public void biomasseAnlagenAbfragenUndAufbereiten(String gemeindeschluessel) {
+        LOG.info("Biomasse Anlagen abfragen & aufbereiten für Gemeindeschlüssel {}", gemeindeschluessel);
         //TODO Mapping Gemeindeschlüssel --> PLZ (1:n), solange kein Abfrageparameter gemeindeschluessel vorhanden
         var plz = "48268";
 
         var anlagen = this.stromerzeugerClient.gefilterteListeStromerzeuger(
                         new GetGefilterteListeStromErzeugerRequestBuilder()
-                                .mitEnergietraeger(EnergietraegerEnum.WIND)
+                                .mitEnergietraeger(EnergietraegerEnum.BIOMASSE)
                                 .mitBetriebsstatus(AnlagenBetriebsStatusEnum.IN_BETRIEB)
                                 .mitPlz(plz))
                 .stream()
-                .map(einheit -> this.stromerzeugerClient.einheitWind(einheit.getEinheitMastrNummer()))
-                .map(dto -> new AnlageDetail(gemeindeschluessel, EnergietraegerEnum.WIND, dto))
+                .map(einheit -> this.stromerzeugerClient.einheitBiomasse(einheit.getEinheitMastrNummer()))
+                .map(dto -> new AnlageDetail(gemeindeschluessel, EnergietraegerEnum.BIOMASSE, dto))
                 .toList();
-        LOG.info("Detailinformationen für {} Wind-Anlagen abgefragt", anlagen.size());
+        LOG.info("Detailinformationen für {} Biomasse-Anlagen abgefragt", anlagen.size());
 
         this.anlageDetailRepository.deleteByGemeindeschluesselAndEnergietraeger(
                 gemeindeschluessel,
-                EnergietraegerEnum.WIND);
+                EnergietraegerEnum.BIOMASSE);
         LOG.info("Vorherige Anlagendaten gelöscht");
         this.anlageDetailRepository.saveAll(anlagen);
         LOG.info("Anlagendetaildaten wurden persistiert");

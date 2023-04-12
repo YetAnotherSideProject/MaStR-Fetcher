@@ -78,6 +78,29 @@ public class StromerzeugerClient extends WebServiceGatewaySupport {
                         response.getInbetriebnahmedatum().getDay()));
     }
 
+    public EinheitDTO einheitBiomasse(String einheitMastrNummer) {
+        var request = new GetEinheitBiomasseRequest();
+        request.setApiKey(this.apiKey);
+        request.setMarktakteurMastrNummer(this.marktakteurMastrNummer);
+        request.setEinheitMastrNummer(einheitMastrNummer);
+
+        //TODO Logging
+        var response = (GetEinheitBiomasseResponse) getWebServiceTemplate().marshalSendAndReceive(
+                this.mastrWebserviceUrl + "Anlage", request, new SoapActionCallback("GetEinheitBiomasse"));
+        if (response.getErgebniscode() != ErgebniscodeTyp.OK) {
+            LOG.error("Biomasse Einheit mit MaStR-Nummer {} konnte nicht abgefragt werden", einheitMastrNummer);
+        }
+
+        return new EinheitDTO(
+                response.getEinheitMastrNummer(),
+                response.getLaengengrad(),
+                response.getBreitengrad(),
+                response.getBruttoleistung(),
+                LocalDate.of(response.getInbetriebnahmedatum().getYear(),
+                        response.getInbetriebnahmedatum().getMonth(),
+                        response.getInbetriebnahmedatum().getDay()));
+    }
+
     public void setMastrWebserviceUrl(String mastrWebserviceUrl) {
         this.mastrWebserviceUrl = mastrWebserviceUrl;
     }

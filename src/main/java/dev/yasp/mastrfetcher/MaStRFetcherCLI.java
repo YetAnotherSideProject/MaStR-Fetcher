@@ -8,10 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import dev.yasp.mastrfetcher.service.BiomasseAnlagenService;
 import dev.yasp.mastrfetcher.service.PvAnlagenService;
 import dev.yasp.mastrfetcher.service.WindAnlagenService;
-
-import java.time.YearMonth;
 
 @SpringBootApplication
 public class MaStRFetcherCLI implements ApplicationRunner {
@@ -20,13 +19,15 @@ public class MaStRFetcherCLI implements ApplicationRunner {
     private static ConfigurableApplicationContext appCtx;
     private static final Logger LOG = LoggerFactory.getLogger(MaStRFetcherCLI.class);
     private final WindAnlagenService windAnlagenService;
+    private final BiomasseAnlagenService biomasseAnlagenService;
 
 
     public MaStRFetcherCLI(CLIParser cliParser, PvAnlagenService pVAnlagenService,
-                           WindAnlagenService windAnlagenService) {
+                           WindAnlagenService windAnlagenService, BiomasseAnlagenService biomasseAnlagenService) {
         this.cliParser = cliParser;
         this.pVAnlagenService = pVAnlagenService;
         this.windAnlagenService = windAnlagenService;
+        this.biomasseAnlagenService = biomasseAnlagenService;
     }
 
     public static void main(String[] args) {
@@ -48,8 +49,9 @@ public class MaStRFetcherCLI implements ApplicationRunner {
 
         LOG.info("Fetcher App startet für Gemeindeschlüssel {}", gemeindeschluessel);
         //TODO Parameter
-        this.pVAnlagenService.pvAnlagenAbfragenUndAufbereiten(gemeindeschluessel, YearMonth.of(2010, 1),
-                YearMonth.now().minusMonths(1));
+        //this.pVAnlagenService.pvAnlagenAbfragenUndAufbereiten(gemeindeschluessel, YearMonth.of(2010, 1),
+        //      YearMonth.now().minusMonths(1));
         this.windAnlagenService.windAnlagenAbfragenUndAufbereiten(gemeindeschluessel);
+        this.biomasseAnlagenService.biomasseAnlagenAbfragenUndAufbereiten(gemeindeschluessel);
     }
 }
